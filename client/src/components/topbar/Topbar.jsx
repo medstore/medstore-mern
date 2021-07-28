@@ -5,6 +5,7 @@ export default function Topbar() {
     return (
         <div className="topbar">
             <div className="topbarWrapper">
+                <span className="homeLogo">MedStore</span>
                 <ul className="topbarList">
                     <li className="nav-item">
                         <NavLink exact className="nav-link" to="/">Home</NavLink>

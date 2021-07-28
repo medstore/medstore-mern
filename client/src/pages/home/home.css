@@ -1,0 +1,34 @@
+.homeWrapper{
+    display: flex;
+    height: calc(100vh - 50px);
+}
+
+.homeLeft{
+    flex: 0.5;
+    background-color: rgb(255, 221, 221);
+}
+.leftWrapper{
+    padding: 20px;   
+}
+.inputItem{
+    margin: 10px 20px;
+}
+.inputItem i{
+    position: absolute;
+    font-size: 20px;
+    margin: 10px;
+    color: gray;
+}
+.inputProduct{
+    width: -webkit-fill-available;
+    padding: 10px 20px 10px 40px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.homeRight{
+    flex: 0.5;
+    background-color: rgb(230, 230, 255);
+}
