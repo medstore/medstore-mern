@@ -1,4 +1,5 @@
 import './home.css'
+import Homemap from '../../components/maps/Homemap'
 
 export default function Home() {
     return (
@@ -12,7 +13,9 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                <div className="homeRight"></div>
+                <div className="homeRight">
+                    <Homemap/>
+                </div>
             </div>
         </div>
     )

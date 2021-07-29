@@ -30,5 +30,8 @@
 
 .homeRight{
     flex: 0.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: rgb(230, 230, 255);
 }
