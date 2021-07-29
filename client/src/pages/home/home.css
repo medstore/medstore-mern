@@ -5,7 +5,7 @@
 
 .homeLeft{
     flex: 0.5;
-    background-color: rgb(255, 221, 221);
+    background-color: #f0f2f5;
 }
 .leftWrapper{
     padding: 20px;   
@@ -26,6 +26,9 @@
     border: none;
     border-radius: 10px;
     font-size: 20px;
+    box-shadow: 0px 0px 27px -10px rgba(0,0,0,0.45);
+    -webkit-box-shadow: 0px 0px 27px -10px rgba(0,0,0,0.45);
+    -moz-box-shadow: 0px 0px 27px -10px rgba(0,0,0,0.45);
 }
 
 .homeRight{
@@ -33,5 +36,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(230, 230, 255);
+    background-color: #f0f2f5;
 }

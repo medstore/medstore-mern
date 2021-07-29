@@ -14,7 +14,7 @@ export default function Home() {
                     </div>
                 </div>
                 <div className="homeRight">
-                    <Homemap/>
+                    <Homemap />
                 </div>
             </div>
         </div>
