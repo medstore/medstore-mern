@@ -3,5 +3,5 @@
 # Group Members
     * Sushil Kumar Gupta
     * Akash Yadav
-    * Raunak Pandeys
+    * Raunak Pandey
 Added Topbar and Map
