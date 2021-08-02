@@ -32,12 +32,51 @@ export default function Signup() {
                             <div className="errorDiv">
                                 <span className="errorMessage">{errors}</span>
                             </div> : null}
-                        <input type="text" required placeholder="First name" className="loginInput" name="firstname" value={user.firstname} onChange={handleChange} />
-                        <input type="text" required placeholder="Last name" className="loginInput" name="lastname" value={user.lastname} onChange={handleChange} />
-                        <input type="email" required placeholder="Email" className="loginInput" name="email" value={user.email} onChange={handleChange} />
-                        <input type="password" required placeholder="Password" className="loginInput" name="password" value={user.password} onChange={handleChange} />
-                        <input type="password" required placeholder="Confirm password" className="loginInput" name="cpassword" value={user.cpassword} onChange={handleChange} />
-                        <button type="submit" className="loginButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "Sign Up"}</button>
+                        <div className="divinput" > 
+                        <input type="text" required   
+                        className="loginInput" 
+                        name="firstname" 
+                        value={user.firstname} 
+                        onChange={handleChange} />
+                        <label for="">First name</label>
+                        </div>
+
+                        <div className="divinput" > 
+                        <input type="text" required  
+                        className="loginInput" 
+                        name="lastname" 
+                        value={user.lastname} 
+                        onChange={handleChange} />
+                        <label for="">Last name</label>
+                        </div>
+                        
+                        <div className="divinput" > 
+                        <input type="email" required  className="loginInput" 
+                        name="email" 
+                        value={user.email} 
+                        onChange={handleChange} />
+                        <label for="">Email</label>
+                        </div>
+                        
+                        <div className="divinput" > 
+                        <input type="password" required   className="loginInput" 
+                        name="password" 
+                        value={user.password} 
+                        onChange={handleChange} />
+                        <label for="">Password</label>
+                        </div>
+                        
+                        <div className="divinput" > 
+                        <input type="password" required  className="loginInput" 
+                        name="cpassword" 
+                        value={user.cpassword} 
+                        onChange={handleChange} />
+                        <label for="">Confirm Password</label>
+                        </div>
+
+                        <button type="submit" 
+                        className="loginButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "Sign Up"}</button>
+                        
                         <button onClick={gotoLogin} className="loginRegisterButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "Log Into Account"}</button>
                     </div>
                 </form>
