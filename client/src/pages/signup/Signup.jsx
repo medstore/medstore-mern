@@ -1,4 +1,4 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
 import './signup.css'
 import { useHistory } from 'react-router';
 import { CircularProgress } from '@material-ui/core'
@@ -7,7 +7,7 @@ export default function Signup() {
 
 
     const [errors, setErrors] = useState("");
-    const [user, setUser] = useState({ firstname: "",lastname: "", email: "", password: "", cpassword: "" })
+    const [user, setUser] = useState({ firstname: "", lastname: "", email: "", password: "", cpassword: "" })
     const [isFetching, setIsFetching] = useState(false);
     const history = useHistory();
 
@@ -22,7 +22,7 @@ export default function Signup() {
         const value = e.target.value;
         setUser({ ...user, [name]: value });
     }
-    
+
     return (
         <div className="loginContainer">
             <div className="loginWrapper">
@@ -32,6 +32,8 @@ export default function Signup() {
                             <div className="errorDiv">
                                 <span className="errorMessage">{errors}</span>
                             </div> : null}
+
+
                         <input type="text" required placeholder="First name" className="loginInput" name="firstname" value={user.firstname} onChange={handleChange} />
                         <input type="text" required placeholder="Last name" className="loginInput" name="lastname" value={user.lastname} onChange={handleChange} />
                         <input type="email" required placeholder="Email" className="loginInput" name="email" value={user.email} onChange={handleChange} />
