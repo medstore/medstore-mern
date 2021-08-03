@@ -1,4 +1,4 @@
-.loginContainer {
+.signupContainer {
     height: calc(100vh - 50px);
     width: 100%;
     background-color: #f0f2f5;
@@ -7,20 +7,20 @@
     justify-content: center;
 }
 
-.loginWrapper {
+.signupWrapper {
     width: 35%;
     height: 85%;
     display: flex;
 }
 
-.loginRight {
+.signupRight {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.loginBox {
+.signupBox {
     border-radius: 5%;
     height: 100%;
     background-color: white;
@@ -49,13 +49,14 @@
         pointer-events: none;
  }
  .divinput input:focus ~ label, .divinput input:not(:focus):valid ~ label{
-            top:-12px;
-         background-color:white ;
-         font-size: 15px;
-         color: blue
-        }
+        top:-12px;
+        background-color:white ;
+        font-size: 15px;
+        color: #1775ee;
+        border-radius: 10px;
+}
       
-.loginInput {
+.signupInput {
     height: 40px;
     background: transparent;
     padding-left: 20px;
@@ -65,18 +66,18 @@
     outline: none;
     width: 100%;
 }
-.loginInput:focus {
+.signupInput:focus {
     border: 1px solid blue;
 }
  
-.loginButton, .loginRegisterButton {
+.signupButton, .loginRegisterButton {
     height: 40px;
     padding: 10px;
     border-radius: 10px;
     border: none;
     cursor: pointer;
 }
-.loginButton{
+.signupButton{
     background-color: #283290;
     font-size: 20px;
     font-weight: 500;
