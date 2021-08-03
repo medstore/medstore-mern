@@ -48,9 +48,11 @@
         padding: 0 5px;
         pointer-events: none;
  }
- .divinput input:focus ~ label {
-            top:-14px;
+ .divinput input:focus ~ label, .divinput input:not(:focus):valid ~ label{
+            top:-12px;
          background-color:white ;
+         font-size: 15px;
+         color: blue
         }
       
 .loginInput {
@@ -62,6 +64,9 @@
     border: 1px solid grey;
     outline: none;
     width: 100%;
+}
+.loginInput:focus {
+    border: 1px solid blue;
 }
  
 .loginButton, .loginRegisterButton {

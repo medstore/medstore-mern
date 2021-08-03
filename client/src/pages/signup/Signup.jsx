@@ -22,11 +22,15 @@ export default function Signup() {
         const value = e.target.value;
         setUser({ ...user, [name]: value });
     }
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        history.push('/')
+    }
     
     return (
         <div className="loginContainer">
             <div className="loginWrapper">
-                <form className="loginRight" /* onSubmit={handleSubmit} */ >
+                <form className="loginRight" onSubmit={handleSubmit} >
                     <div className="loginBox">
                         {errors ?
                             <div className="errorDiv">
@@ -55,7 +59,7 @@ export default function Signup() {
                         name="email" 
                         value={user.email} 
                         onChange={handleChange} />
-                        <label for="">Email</label>
+                        <label for="email">Email</label>
                         </div>
                         
                         <div className="divinput" > 
