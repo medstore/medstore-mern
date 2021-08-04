@@ -83,11 +83,17 @@
     font-weight: 500;
     color: white;
 }
+.signupButton:disabled{
+    cursor: not-allowed;
+}
 .loginRegisterButton {
     background-color: #42b72a;
     font-size: 20px;
     font-weight: 500;
     color: white;
+}
+.loginRegisterButton:disabled{
+    cursor: not-allowed;
 }
 .errorMessage {
     background-color: red;
