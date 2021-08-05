@@ -24,7 +24,6 @@ export default function Signin() {
     }
     const handleSubmit = (e)=>{
         e.preventDefault();
-        history.push('/')
     }
     
     return (

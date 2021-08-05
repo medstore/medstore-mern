@@ -24,7 +24,20 @@ export default function Signup() {
     }
     const handleSubmit = (e)=>{
         e.preventDefault();
-        history.push('/')
+        setIsFetching(true)
+        setErrors(false);
+        if (user.password === user.cpassword) {
+            try {
+                //api fetching here
+                setIsFetching(false)
+                history.push('/')
+            } catch (err) {
+                setIsFetching(false)
+            }
+        } else {
+            alert("Password don't match!")
+            setIsFetching(false)
+        }
     }
     
     return (
