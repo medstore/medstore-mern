@@ -3,7 +3,9 @@
     width: 100%;
     background-color: #283290;
     box-shadow: 0px 0px 10px #283290;
-    position: relative;
+    position: fixed;
+    top: 0;
+    z-index: 999;
 }
 .topbarWrapper{
     height: 50px;
