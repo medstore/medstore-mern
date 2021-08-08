@@ -1,7 +1,6 @@
 .profile{
     padding: 20px 50px;
     background-color: hsl(216, 20%, 95%);
-    overflow-y: scroll;
     display: flex;
     justify-content: center;
     align-content: center;
