@@ -54,7 +54,7 @@ function Homemap() {
 					return (
 						<div key={data.id}>
 							<Marker latitude={data.lati} longitude={data.long} offsetLeft={-20} offsetTop={-10}>
-							<i className="fas fa-clinic-medical" style={{ fontSize: viewport.zoom * 5, color: '#ff0000' }} onClick={() => togglePopup(data.id)}></i>
+							<i className="fas fa-clinic-medical" style={{ fontSize: "20px", color: '#ff0000' }} onClick={() => togglePopup(data.id)}></i>
 								{/* <i className="fas fa-map-marker-alt" ></i> */}
 							</Marker>
 							{
