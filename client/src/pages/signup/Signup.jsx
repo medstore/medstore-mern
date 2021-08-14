@@ -39,10 +39,9 @@ export default function Signup() {
                     }
                     throw err;
                 });
-                console.log(data)
                 localStorage.setItem("authToken", data.token);
                 setIsFetching(false);
-                //history.push('/')
+                history.push('/')
             } catch (err) {
                 setIsFetching(false)
             }

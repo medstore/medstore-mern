@@ -1,14 +1,18 @@
 import './topbar.css'
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import emptyprofile from "../../images/emptyprofile.png"
 
 export default function Topbar() {
-    const user = localStorage.getItem("authToken");
+    const [user, setUser] = useState(false);
     const history = useHistory();
+    useEffect(()=>{
+        setUser(localStorage.getItem("authToken"));
+    },[user])
     const logoutHandler = ()=>{
         localStorage.removeItem("authToken")
+        setUser(false);
         history.push("/signin")
     }
     return (
