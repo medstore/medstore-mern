@@ -1,6 +1,3 @@
-
-
-//const crypto = require("crypto");
 const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
 
@@ -36,25 +33,29 @@ exports.signin = async (req, res, next) => {
 
 //   Register user
 exports.signup = async (req, res, next) => {
-  const { Firstname,Lastname, email, password } = req.body;
+  const { firstname, lastname, email, password } = req.body;
 
   try {
     const user = await User.create({
-        Firstname,
-        Lastname,
-         email,
+      firstname,
+      lastname,
+      email,
       password,
     });
 
     sendToken(user, 200, res);
   }
-   catch (err) {
+  catch (err) {
     next(err);
   }
 };
 
 
-const sendToken = (user, statusCode, res) => {
-  const token = user.getSignedJwtToken();
+const sendToken = async (user, statusCode, res) => {
+  const token = await user.getSignedJwtToken();
+  res.cookie("authorization", "Bearer "+token, {
+    expires: new Date(Date.now() + 25892000000),
+    httpOnly: true
+  });
   res.status(statusCode).json({ sucess: true, token });
 };
