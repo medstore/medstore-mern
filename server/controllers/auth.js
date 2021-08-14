@@ -33,9 +33,16 @@ exports.signin = async (req, res, next) => {
 
 //   Register user
 exports.signup = async (req, res, next) => {
-  const { firstname, lastname, email, password } = req.body;
+  const { firstname, lastname, email, password, cpassword } = req.body;
 
   try {
+    const oldUser = await User.findOne({ email: req.body.email });
+    if (password != cpassword) {
+      return res.status(401).json({ sucess: false, error: "Invalid credential" });
+    }
+    if (oldUser) {
+      return res.status(409).json({ sucess: false, error: "user already exist" })
+    }
     const user = await User.create({
       firstname,
       lastname,
@@ -53,9 +60,5 @@ exports.signup = async (req, res, next) => {
 
 const sendToken = async (user, statusCode, res) => {
   const token = await user.getSignedJwtToken();
-  res.cookie("authorization", "Bearer "+token, {
-    expires: new Date(Date.now() + 25892000000),
-    httpOnly: true
-  });
   res.status(statusCode).json({ sucess: true, token });
 };

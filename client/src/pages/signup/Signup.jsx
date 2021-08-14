@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './signup.css'
 import { useHistory } from 'react-router';
 import { CircularProgress } from '@material-ui/core'
+import axios from "axios"
 
 export default function Signup() {
 
@@ -22,15 +23,26 @@ export default function Signup() {
         const value = e.target.value;
         setUser({ ...user, [name]: value });
     }
-    const handleSubmit = (e)=>{
+    const handleSubmit = async(e)=>{
         e.preventDefault();
         setIsFetching(true)
         setErrors(false);
         if (user.password === user.cpassword) {
             try {
-                //api fetching here
-                setIsFetching(false)
-                history.push('/')
+                const {data} = await axios.post("/api/auth/signup", user).catch(err => {
+                    if (err.response.status === 409) {
+                        setErrors("User Already Exist!")
+                        throw new Error(`user already exist`);
+                    } else {
+                        setErrors("Internal Server Error")
+                        throw new Error(`Internal Server Error`);
+                    }
+                    throw err;
+                });
+                console.log(data)
+                localStorage.setItem("authToken", data.token);
+                setIsFetching(false);
+                //history.push('/')
             } catch (err) {
                 setIsFetching(false)
             }
