@@ -27,9 +27,14 @@ export default function Signup() {
         e.preventDefault();
         setIsFetching(true)
         setErrors(false);
+        const config = {
+            header: {
+                "Content-Type": "application/json"
+            }
+        }
         if (user.password === user.cpassword) {
             try {
-                const {data} = await axios.post("/api/auth/signup", user).catch(err => {
+                const {data} = await axios.post("/api/auth/signup", user, config).catch(err => {
                     if (err.response.status === 409) {
                         setErrors("User Already Exist!")
                         throw new Error(`user already exist`);

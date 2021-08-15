@@ -27,8 +27,13 @@ export default function Signin() {
         e.preventDefault();
         setIsFetching(true)
         setErrors(false);
+        const config = {
+            header: {
+                "Content-Type": "application/json"
+            }
+        }
         try {
-            const {data} = await axios.post("/api/auth/signin", user);
+            const {data} = await axios.post("/api/auth/signin", user, config);
             localStorage.setItem("authToken", data.token);
             setIsFetching(false);
             history.push('/')
