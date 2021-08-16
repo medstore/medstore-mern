@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './signin.css'
 import { useHistory } from 'react-router';
 import { CircularProgress } from '@material-ui/core'
+import axios from "axios"
 
 export default function Signin() {
 
@@ -22,8 +23,24 @@ export default function Signin() {
         const value = e.target.value;
         setUser({ ...user, [name]: value });
     }
-    const handleSubmit = (e)=>{
+    const handleSubmit = async(e)=>{
         e.preventDefault();
+        setIsFetching(true)
+        setErrors(false);
+        const config = {
+            header: {
+                "Content-Type": "application/json"
+            }
+        }
+        try {
+            const {data} = await axios.post("/api/auth/signin", user, config);
+            localStorage.setItem("authToken", data.token);
+            setIsFetching(false);
+            history.push('/')
+        } catch (error) {
+            setErrors(error.response.data.error);
+            setIsFetching(false)
+        }
     }
     
     return (
