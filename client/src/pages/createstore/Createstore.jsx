@@ -5,11 +5,11 @@ import { CircularProgress } from '@material-ui/core'
 import axios from "axios"
 import CreateStoreMap from '../../components/maps/CreateStoreMap';
 import { AddContext, AddContextProvider } from '../../context/storemapcontext/AddContext';
-import { AppContext} from '../../context/appContext/AppContext';
+import { AppContext } from '../../context/appContext/AppContext';
 
 export default function Createstore(props) {
 
-    const {user} = useContext(AppContext);
+    const { user } = useContext(AppContext);
     const { latitude, longitude } = useContext(AddContext);
     const [errors, setErrors] = useState("");
     const [myStore, setMyStore] = useState({ storeName: "", ownerName: "", ownerEmail: "", storeAddress: "" })
@@ -25,7 +25,7 @@ export default function Createstore(props) {
             const res = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${long},${lati}.json?access_token=${process.env.REACT_APP_MAPBOX}`);
             const address = res.data.features;
             for (let j = 1; j < address.length; j++) {
-                let pair = { [address[j].place_type[0]] : address[j].text };
+                let pair = { [address[j].place_type[0]]: address[j].text };
                 list.push(pair)
                 j === address.length - 1 ? placeName = placeName.concat(`${address[j].text}`) : placeName = placeName.concat(`${address[j].text}, `)
             }
@@ -59,13 +59,13 @@ export default function Createstore(props) {
                 Authorization: `Bearer ${localStorage.getItem("authToken")}`
             }
         }
-    
+
         try {
-            const { data } = await axios.post(`/api/private/storeregistration/${props.match.params.userid}`, {...myStore, addressList, userId: user._id}, config).catch(err => {
+            const { data } = await axios.post(`/api/private/storeregistration/${props.match.params.userid}`, { ...myStore, addressList, userId: user._id }, config).catch(err => {
                 if (err.response.status === 409) {
                     setErrors("Invalid User")
                     throw new Error(`Invalid User`);
-                } else if(err.response.status === 400){
+                } else if (err.response.status === 400) {
                     setErrors("User can create only one store")
                     throw new Error(`Each user can register only one store`);
                 }
@@ -79,7 +79,7 @@ export default function Createstore(props) {
         } catch (err) {
             setIsFetching(false);
             setErrors(err.message)
-        } 
+        }
     }
 
     return (
