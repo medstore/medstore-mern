@@ -22,7 +22,7 @@ export default function Topbar() {
 
                 <ul className="topbarList">
                     {
-                        authenticated == true && (
+                        authenticated === true && (
                             <>
                                 <li className="nav-item">
                                     <span className="nav-link" onClick={logoutHandler}>Logout</span>
@@ -31,7 +31,7 @@ export default function Topbar() {
                         )
                     }
                     {
-                        authenticated == false && (
+                        authenticated === false && (
                             <>
                                 <li className="nav-item">
                                     <NavLink exact className="nav-link" to="/signin">Login</NavLink>
