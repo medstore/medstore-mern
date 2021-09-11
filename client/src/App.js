@@ -9,6 +9,7 @@ import Signin from './pages/signin/Signin';
 import Signup from './pages/signup/Signup';
 import Profile from './pages/profile/Profile';
 import PrivateRoute from './components/routing/PrivateRoute';
+import Createstore from './pages/createstore/Createstore';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
               <Route exact path="/signin" component={Signin} />
               <Route exact path="/signup" component={Signup} />
               <PrivateRoute exact path="/profile" component={Profile} />
+              <PrivateRoute exact path="/createstore" component={Createstore} />
             </Switch>
           </div>
         </BrowserRouter>
