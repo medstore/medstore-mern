@@ -12,6 +12,7 @@ exports.getuser = async (req, res, next) => {
     }
 };
 
+//Store registration
 exports.registerstore = async (req, res, next) => {
     try {
         let list = {};

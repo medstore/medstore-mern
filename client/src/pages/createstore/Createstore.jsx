@@ -61,7 +61,7 @@ export default function Createstore(props) {
         }
 
         try {
-            const { data } = await axios.post(`/api/private/storeregistration/${props.match.params.userid}`, { ...myStore, addressList, userId: user._id }, config).catch(err => {
+            const { data } = await axios.post(`/api/private/createstore/${props.match.params.userid}`, { ...myStore, addressList, userId: user._id }, config).catch(err => {
                 if (err.response.status === 409) {
                     setErrors("Invalid User")
                     throw new Error(`Invalid User`);
