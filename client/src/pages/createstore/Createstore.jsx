@@ -132,7 +132,6 @@ export default function Createstore(props) {
                         <button type="submit"
                             className="storeregButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "Register"}</button>
 
-                        {/* <button onClick={gotoLogin} className="loginRegisterButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "Log Into Account"}</button> */}
                     </div>
                 </form>
             </div>
