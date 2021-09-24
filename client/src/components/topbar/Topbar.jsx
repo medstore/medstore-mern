@@ -15,6 +15,7 @@ export default function Topbar() {
         dispatch({ type: "EMPTY_STATE" });
         history.push("/signin")
     }
+    console.log(user)
     return (
         <div className="topbar">
             <div className="topbarWrapper">
