@@ -11,6 +11,8 @@ import Signup from './pages/signup/Signup';
 import Profile from './pages/profile/Profile';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Createstore from './pages/createstore/Createstore';
+import Product from './pages/addproduct/Product';
+
 
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
                 <Route exact path="/signup" component={Signup} />
                 <PrivateRoute exact path="/profile" component={Profile} />
                 <PrivateRoute exact path="/createstore/:userid" component={Createstore} />
+                <Route exact path="/product" component={Product} />
               </Switch>
             </div>
           </BrowserRouter>
