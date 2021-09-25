@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-require('dotenv').config({path:"./ak.env"})
+require('dotenv').config({path:"./config.env"})
 const connectDB = async () => {
   await mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
