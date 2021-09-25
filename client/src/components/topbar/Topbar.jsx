@@ -17,7 +17,6 @@ export default function Topbar() {
         history.push("/signin")
         console.log(user);
     }
-    
     return (
         <div className="topbar">
             <div className="topbarWrapper">
