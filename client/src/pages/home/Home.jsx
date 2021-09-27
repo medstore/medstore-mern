@@ -12,6 +12,8 @@ export default function Home() {
     const [locallowed, setLocallowed] = useState(true)
     const location = useGeoLocation();
 
+    console.log(Itemdata.productData)
+
     useEffect(() => {
         const getUserLocation = async () => {
             let list = [];
@@ -66,16 +68,16 @@ export default function Home() {
                             </select>
                             <button className="searchButton" disabled={!locallowed}>Search</button>
                         </div>
-                         
-                         <div>
-                         {
-                Itemdata.productData.map((item , index)=>{
-                    <ItemCart img={item.img} title={item.title} desc={item.desc}
-                    price={item.price}
-                    details={item.details} key={index} />
-                })
-            }
-                         </div>
+
+                        <div className="productsDiv">
+                            {
+                                Itemdata.productData.map((item, index) => {
+                                    return <ItemCart img={item.img} title={item.title} desc={item.desc}
+                                        price={item.price}
+                                        details={item.details} key={index} />
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
                 <div className="homeRight">
