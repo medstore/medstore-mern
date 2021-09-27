@@ -32,6 +32,11 @@
 .leftWrapper{
     padding: 20px;   
 }
+.productsDiv{
+    margin: 0px 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
 .inputItem{
     margin: 10px 20px;
     position: relative;
