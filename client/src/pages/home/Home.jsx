@@ -12,8 +12,8 @@ export default function Home() {
     const [locallowed, setLocallowed] = useState(true)
     const location = useGeoLocation();
 
-    console.log(Itemdata.productData)
-
+    // console.log(Itemdata.productData)
+ 
     useEffect(() => {
         const getUserLocation = async () => {
             let list = [];
