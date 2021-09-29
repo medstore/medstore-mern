@@ -3,7 +3,6 @@ import './ItemCard.css'
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import { makeStyles } from '@material-ui/core/styles';
-import { red } from '@material-ui/core/colors';
 
 const useStyles = makeStyles((theme) => ({
     root: {
