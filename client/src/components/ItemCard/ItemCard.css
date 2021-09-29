@@ -24,6 +24,11 @@ button{
     cursor: pointer;
 }
 
+.btn{
+    margin-left: 180px;
+      
+}
+
 .cardTitle{
     /* font-weight: bold; */
     font-size: 1.2em;
