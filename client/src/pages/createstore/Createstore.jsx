@@ -81,7 +81,7 @@ export default function Createstore(props) {
             setErrors(err.message)
         }
     }
-
+// console.log("Hello World")
     return (
         <div className="storeregContainer">
             <div className="storeregWrapper">

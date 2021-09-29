@@ -29,7 +29,7 @@ function App() {
                 <Route exact path="/signup" component={Signup} />
                 <PrivateRoute exact path="/profile" component={Profile} />
                 <PrivateRoute exact path="/createstore/:userid" component={Createstore} />
-                <Route exact path="/product" component={Product} />
+                <PrivateRoute exact path="/product" component={Product} />
               </Switch>
             </div>
           </BrowserRouter>

@@ -1,6 +1,20 @@
 import React from 'react'
 import './ItemCard.css'
+import AddIcon from "@material-ui/icons/Add";
+import Fab from "@material-ui/core/Fab";
+import { makeStyles } from '@material-ui/core/styles';
+import { red } from '@material-ui/core/colors';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            marginLeft: theme.spacing(22),
+        },
+      },
+     
+  }));
 const ItemCart = (props) => {
+    const classes = useStyles();
     console.log(props)
     return (
         <>
@@ -12,7 +26,12 @@ const ItemCart = (props) => {
                         <p class="cardText">{props.desc}</p>
                         <p class="cardPrice">{props.price}</p>
                         <p class="cardDetails">{props.details}</p>
-                        <button class="btn">Add to Cart</button>
+                        <div className={classes.root}>
+                        <Fab color="primary" aria-label="add">
+                            <AddIcon />
+                        </Fab>
+                        </div>
+
                     </div>
                 </div>
 
