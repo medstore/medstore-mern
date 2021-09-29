@@ -27,6 +27,18 @@ const UserSchema = new mongoose.Schema({
     minlength: 8,
     select: false,
   },
+  cartItem: {
+    type: Array,
+    default: [],
+  },
+  userAddress: {
+    type: String,
+    default: "-",
+  },
+  storeId:{
+    type: String,
+    default: "",
+  },
   tokens: [
     {
       token: {
