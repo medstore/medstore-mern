@@ -54,9 +54,9 @@ exports.addproduct = async (req, res, next) => {
             return res.status(409).json({ sucess: false, error: "Invalid User" })
         }
         
-        const {productImage, productName, productDescription, productPrice,productDetails, userId, ...other} = req.body;
+        const {productImage, productName, productDescription, productPrice,productDetails, userId } = req.body;
         const product = await Product.create({
-            productId: productId,
+            // productId: productId,
             productImage: productImage,
             productName: productName,
             productDescription: productDescription,
