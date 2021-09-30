@@ -48,6 +48,7 @@ exports.registerstore = async (req, res, next) => {
 };
 
 //Add Product
+
 exports.addproduct = async (req, res, next) => {
     try {
        
@@ -55,16 +56,13 @@ exports.addproduct = async (req, res, next) => {
         if (!userExist) {
             return res.status(404).json({ sucess: false, error: "User Not Found" })
         }
-        if(req.body.userId !== req.params.userid){
-            return res.status(409).json({ sucess: false, error: "Invalid User" })
-        }
-        
-        const {productImage, productName, productDescription, productPrice,productDetails, userId, ...other} = req.body;
+         
+        const {productName, productDescription,productImage, productPrice,productDetails} = req.body;
+
         const product = await Product.create({
-            productId: productId,
-            productImage: productImage,
             productName: productName,
             productDescription: productDescription,
+            productImage: productImage,
             productPrice: productPrice,
             productDetails: productDetails
         });

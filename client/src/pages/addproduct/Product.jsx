@@ -15,7 +15,7 @@ import axios from "axios";
 import { AppContext } from '../../context/appContext/AppContext';
 const Product = () => {
     const { user } = useContext(AppContext);
-    const [product, setProduct] = useState({ img:"", title: "", desc: "", price: "", details: ""})
+    const [product, setProduct] = useState({ productName: "", productDescription: "", productImage:"", productPrice: NaN, productDetails: ""})
     const [errors, setErrors] = useState("");
     const [isFetching, setIsFetching] = useState(false);
     const history = useHistory();
@@ -60,6 +60,9 @@ console.log(user)
             setIsFetching(false);
             setErrors(err.message)
         }
+        alert('Product Added Successfully')
+        setProduct({ productName: "", productDescription: "", productImage:"", productPrice: NaN, productDetails: ""})
+
     }
 
     return (
@@ -77,47 +80,47 @@ console.log(user)
                         <div className="divinput" > 
                         <input type="text" required  
                         className="productInput" 
-                        name="title" 
-                        value={product.title} 
+                        name="productName" 
+                        value={product.productName} 
                         onChange={handleChange} />
                         <label for="">Title</label>
                         </div>
                         
                         <div className="divinput" > 
                         <input type="text" required  className="productInput" 
-                        name="desc" 
-                        value={product.desc} 
+                        name="productDescription" 
+                        value={product.productDescription} 
                         onChange={handleChange} />
-                        <label for="desc">Description</label>
+                        <label for="">Description</label>
                         </div>
                         
                         <div className="divinput" > 
                         <input type="text" required   
                         className="productInput" 
-                        name="img" 
-                        value={product.img} 
+                        name="productImage" 
+                        value={product.productImage} 
                         onChange={handleChange} />
                         <label for="">Image Url</label>
                         </div>
               
                         <div className="divinput" > 
                         <input type="number" required   className="productInput" 
-                        name="price" 
-                        value={product.price} 
+                        name="productPrice" 
+                        value={product.productPrice} 
                         onChange={handleChange} />
                         <label for="">Price</label>
                         </div>
                         
                         <div className="divinput" > 
                         <input type="text" required  className="productInput" 
-                        name="details" 
-                        value={product.details} 
+                        name="productDetails" 
+                        value={product.productDetails} 
                         onChange={handleChange} />
                         <label for="">Details</label>
                         </div>
 
                          
-                        <button onClick={gotoProduct} className="loginRegisterButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "Add Product"}</button>
+                        <button type="submit"  className="productButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "Add Product"}</button>
                     </div>
                 </form>
             </div>
@@ -125,5 +128,5 @@ console.log(user)
     )
 }
 
-export default Product
+export default Product;
 

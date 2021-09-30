@@ -2,18 +2,9 @@ import React from 'react'
 import './ItemCard.css'
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
-import { makeStyles } from '@material-ui/core/styles';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-            marginLeft: theme.spacing(22),
-        },
-      },
-     
-  }));
+ 
 const ItemCart = (props) => {
-    const classes = useStyles();
+     
     console.log(props)
     return (
         <>
@@ -25,7 +16,7 @@ const ItemCart = (props) => {
                         <p class="cardText">{props.desc}</p>
                         <p class="cardPrice">{props.price}</p>
                         <p class="cardDetails">{props.details}</p>
-                        <div className={classes.root}>
+                        <div className="btn">
                         <Fab color="primary" aria-label="add">
                             <AddIcon />
                         </Fab>
