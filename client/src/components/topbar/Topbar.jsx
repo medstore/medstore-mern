@@ -5,6 +5,8 @@ import { useHistory } from 'react-router';
 import emptyprofile from "../../images/emptyprofile.png"
 import { AppContext } from '../../context/appContext/AppContext';
 import Createstore from '../../App';
+import userData from '../maps/data';
+import Dashboard from "../Dashboard/dashboard";
 
 export default function Topbar() {
 
@@ -53,14 +55,13 @@ export default function Topbar() {
                         <div class="dropdown-menu">
                             <button class="menu-btn">{user.email} </button>
                             <div class="menu-content">
-                                <NavLink exact className="links-hidden" to='/createstore/:userid '>DashBoard</NavLink>
+                                <NavLink exact className="links-hidden" to='Dashboard'>DashBoard</NavLink>
                             </div>
                         </div>
                         <div className="cartDiv">
                             <span className="cartNumber">10</span>
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </div>
-
                     </div>
                 }
             </div>
