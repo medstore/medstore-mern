@@ -1,6 +1,10 @@
 import React from 'react'
 import './ItemCard.css'
+import AddIcon from "@material-ui/icons/Add";
+import Fab from "@material-ui/core/Fab";
+ 
 const ItemCart = (props) => {
+     
     console.log(props)
     return (
         <>
@@ -12,7 +16,12 @@ const ItemCart = (props) => {
                         <p class="cardText">{props.desc}</p>
                         <p class="cardPrice">{props.price}</p>
                         <p class="cardDetails">{props.details}</p>
-                        <button class="btn">Add to Cart</button>
+                        <div className="btn">
+                        <Fab color="primary" aria-label="add">
+                            <AddIcon />
+                        </Fab>
+                        </div>
+
                     </div>
                 </div>
 

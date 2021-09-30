@@ -83,10 +83,7 @@
     color: white;
     padding: 16px;
     font-size: 20px;
-    font-weight: bolder;
-   
     border: none;
-
     height: 50px;
  }
  .dropdown-menu {
@@ -119,13 +116,9 @@
     display: inline-block;
  }
  .links-hidden:hover,.links:hover {
-    background-color:red;
+    color:grey;
  }
  .dropdown-menu:hover .menu-content {
     display: block;
     
- }
- .dropdown-menu:hover .menu-btn {
-    background-color:#283290;
-    color:#00ff0d ;
  }

@@ -1,15 +1,14 @@
 .productContainer {
-    height: calc(100vh - 50px);
     width: 100%;
     background-color: #f0f2f5;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow-y: scroll;
 }
 
 .productWrapper {
-    width: 35%;
-    height: 85%;
+    width: 80%;
     display: flex;
 }
 
@@ -21,32 +20,32 @@
 }
 
 .productBox {
-    border-radius: 5%;
-    height: 100%;
     background-color: white;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    margin: 20px;
+    padding: 50px 100px;
     justify-content: space-around;
     box-shadow: 0px 0px 27px -10px rgba(0,0,0,0.45);
     -webkit-box-shadow: 0px 0px 27px -10px rgba(0,0,0,0.45);
     -moz-box-shadow: 0px 0px 27px -10px rgba(0,0,0,0.45);
 }
 .divinput{
+    margin: 15px 0px;
     display: flex;
-     width: 100%;
-     position: relative;
+    width: 100%;
+    position: relative;
  }
  .divinput label{
-        position: absolute;
-        top: 8px;
-        left: 10px;
-        color: rgb(117 98 98);
-        text-transform: capitalize;
-        font-size: 18px;
-        transition: top .3s;
-        padding: 0 5px;
-        pointer-events: none;
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    color: rgb(117 98 98);
+    text-transform: capitalize;
+    font-size: 18px;
+    transition: top .3s;
+    padding: 0 5px;
+    pointer-events: none;
  }
  .divinput input:focus ~ label, .divinput input:not(:focus):valid ~ label{
         top:-12px;
@@ -78,23 +77,24 @@
     cursor: pointer;
 }
 .productButton{
+    align-items: center;
     background-color: #283290;
     font-size: 20px;
     font-weight: 500;
     color: white;
+    margin: 20px 0px;
+    width: 300px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
 }
 .productButton:disabled{
     cursor: not-allowed;
 }
-.loginRegisterButton {
-    background-color: #42b72a;
-    font-size: 20px;
-    font-weight: 500;
-    color: white;
-}
-.loginRegisterButton:disabled{
-    cursor: not-allowed;
-}
+ 
+ 
 .errorMessage {
     background-color: red;
     padding: 10px 0;
@@ -103,4 +103,23 @@
     align-items: center;
     justify-content: center;
     border-radius: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .productWrapper {
+        width: 100%;
+        display: flex;
+    }
+    .productBox {
+        background-color: white;
+        display: flex;
+        margin: unset;
+        padding: 20px 20px;
+        flex-direction: column;
+        justify-content: space-around;
+        box-shadow: unset;
+    }
+    .productButton{
+        width: 100%;
+    }
 }

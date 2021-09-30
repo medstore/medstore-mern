@@ -1,7 +1,7 @@
 .card {
     border-radius: 5%;
     height: 100%;
-    width: 40%;
+    width: 39%;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -22,4 +22,14 @@ button{
     border-radius: 10px;
     border: none;
     cursor: pointer;
+}
+
+.btn{
+    margin-left: 180px;
+      
+}
+
+.cardTitle{
+    /* font-weight: bold; */
+    font-size: 1.2em;
 }
