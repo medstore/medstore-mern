@@ -1,12 +1,12 @@
 const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
 const Store = require("../models/Store");
-
+const Product = require("../models/Product");
 //get user data
 exports.getuser = async (req, res, next) => {
     try {
-        const {_id, firstname, lastname, email, ...other} = req.user;
-        res.status(200).json({_id, firstname, lastname, email});
+        const {_id, firstname, lastname, email, cartItem, userAddress, storeId, ...other} = req.user;
+        res.status(200).json({_id, firstname, lastname, email, cartItem, userAddress, storeId });
     } catch (err) {
         next(err);
     }
@@ -35,7 +35,39 @@ exports.registerstore = async (req, res, next) => {
             storeAddress: storeAddress,
             addressList: {...list}
         });
+
+        const user = await User.findById(req.body.userId);
+        if (user) {
+            await user.updateOne({ $set: { storeId: store._id } });
+        }
         res.status(200).json({ sucess: true, message: "Store Created Successfully" });
+    } catch (err) {
+        next(err);
+        console.log(err)
+    }
+};
+
+//Add Product
+
+exports.addproduct = async (req, res, next) => {
+    try {
+       
+        const userExist = await User.findOne({ _id: req.body.userId});
+        if (!userExist) {
+            return res.status(404).json({ sucess: false, error: "User Not Found" })
+        }
+         
+        const {productName, productDescription,productImage, productPrice,productDetails, storeId} = req.body;
+
+        const product = await Product.create({
+            storeId: storeId,
+            productName: productName,
+            productDescription: productDescription,
+            productImage: productImage,
+            productPrice: productPrice,
+            productDetails: productDetails
+        });
+        res.status(200).json({ sucess: true, message: "Product Added Successfully" });
     } catch (err) {
         next(err);
         console.log(err)
