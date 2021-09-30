@@ -31,7 +31,6 @@ const Product = () => {
         setProduct({ ...product, [name]: value });
     }
 
-console.log(user)
     const handleSubmit = async (e) => {
         e.preventDefault();
         setIsFetching(true)
@@ -44,7 +43,7 @@ console.log(user)
         }
 
         try {
-            const { data } = await axios.post(`/api/private/product`, { ...product,  userId: user._id }, config).catch(err => {
+            const { data } = await axios.post(`/api/private/product`, { ...product,  userId: user._id, storeId: user.storeId}, config).catch(err => {
                 if (err.response.status === 409) {
                     setErrors("Invalid User")
                     throw new Error(`Invalid User`);

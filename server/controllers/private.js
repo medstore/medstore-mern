@@ -57,9 +57,10 @@ exports.addproduct = async (req, res, next) => {
             return res.status(404).json({ sucess: false, error: "User Not Found" })
         }
          
-        const {productName, productDescription,productImage, productPrice,productDetails} = req.body;
+        const {productName, productDescription,productImage, productPrice,productDetails, storeId} = req.body;
 
         const product = await Product.create({
+            storeId: storeId,
             productName: productName,
             productDescription: productDescription,
             productImage: productImage,
