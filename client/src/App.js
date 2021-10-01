@@ -12,6 +12,7 @@ import Profile from './pages/profile/Profile';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Createstore from './pages/createstore/Createstore';
 import Product from './pages/addproduct/Product';
+import Userdashboard from './pages/userdashboard/Userdashboard';
 
 
 
@@ -29,7 +30,8 @@ function App() {
                 <Route exact path="/signup" component={Signup} />
                 <PrivateRoute exact path="/profile" component={Profile} />
                 <PrivateRoute exact path="/createstore/:userid" component={Createstore} />
-                <PrivateRoute exact path="/product" component={Product} />
+                <PrivateRoute exact path="/addproduct" component={Product} />
+                <PrivateRoute exact path="/userdashboard/:id" component={Userdashboard} />
               </Switch>
             </div>
           </BrowserRouter>
