@@ -15,6 +15,7 @@ import Product from './pages/addproduct/Product';
 import Userdashboard from './pages/userdashboard/Userdashboard';
 import Storedashboard from './pages/storedashboard/Storedashboard';
 import AllProduct from './pages/allproduct/AllProduct';
+import Analytics from './pages/analytics/Analytics';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
                 <Route exact path="/signin" component={Signin} />
                 <Route exact path="/signup" component={Signup} />
                 <PrivateRoute exact path="/storedashboard/allproduct" component={AllProduct} />
+                {/* <PrivateRoute exact path="/storedashboard/analytics" component={Analytics} /> */}
                 <PrivateRoute exact path="/profile" component={Profile} />
                 <PrivateRoute exact path="/createstore/:userid" component={Createstore} />
                 <PrivateRoute exact path="/addproduct" component={Product} />

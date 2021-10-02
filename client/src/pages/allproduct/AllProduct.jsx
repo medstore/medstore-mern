@@ -19,7 +19,7 @@ const AllProduct = () => {
       
         if(user) 
         {
-            const handleSubmit = async () => {
+            const productData = async () => {
              
             setIsFetching(true)
             setErrors(false);
@@ -49,7 +49,7 @@ const AllProduct = () => {
                 setErrors(err.message)
             }
         }
-        handleSubmit()
+        productData()
         }
   },[user])
 
