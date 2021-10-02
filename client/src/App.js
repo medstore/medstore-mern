@@ -12,7 +12,11 @@ import Profile from './pages/profile/Profile';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Createstore from './pages/createstore/Createstore';
 import Product from './pages/addproduct/Product';
-import Dashboard from './components/Dashboard/dashboard';
+import Userdashboard from './pages/userdashboard/Userdashboard';
+import Storedashboard from './pages/storedashboard/Storedashboard';
+import AllProduct from './pages/allproduct/AllProduct';
+
+
 
 function App() {
   return (
@@ -26,12 +30,13 @@ function App() {
                 <PrivateRoute exact path="/" component={Home} />
                 <Route exact path="/signin" component={Signin} />
                 <Route exact path="/signup" component={Signup} />
+                <PrivateRoute exact path="/storedashboard/allproduct" component={AllProduct} />
                 <PrivateRoute exact path="/profile" component={Profile} />
                 <PrivateRoute exact path="/createstore/:userid" component={Createstore} />
-                <PrivateRoute exact path="/product" component={Product} />
-                <Route exact path="/Dashboard/" component={Dashboard} />
-
-              </Switch>
+                <PrivateRoute exact path="/addproduct" component={Product} />
+                <PrivateRoute exact path="/userdashboard/:id" component={Userdashboard} />
+                <PrivateRoute exact path="/storedashboard/:id" component={Storedashboard} />
+                </Switch>
             </div>
           </BrowserRouter>
         </div>

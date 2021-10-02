@@ -17,7 +17,6 @@ export default function Topbar() {
         localStorage.removeItem("authToken")
         dispatch({ type: "EMPTY_STATE" });
         history.push("/signin")
-        console.log(user);
     }
     return (
         <div className="topbar">
@@ -25,15 +24,6 @@ export default function Topbar() {
                 <NavLink exact className="nav-link" to="/"><span className="homeLogo">MedStore</span></NavLink>
 
                 <ul className="topbarList">
-                    {
-                        authenticated === true && (
-                            <>
-                                <li className="nav-item">
-                                    <span className="nav-link" onClick={logoutHandler}>Logout</span>
-                                </li>
-                            </>
-                        )
-                    }
                     {
                         authenticated === false && (
                             <>
@@ -55,7 +45,8 @@ export default function Topbar() {
                         <div class="dropdown-menu">
                             <button class="menu-btn">{user.email} </button>
                             <div class="menu-content">
-                                <NavLink exact className="links-hidden" to='Dashboard'>DashBoard</NavLink>
+                                <NavLink exact className="links-hidden" to='/userdashboard/profile'>DashBoard</NavLink>
+                                <NavLink exact className="links-hidden" to='/storedashboard/analytics'>Store DashBoard</NavLink>
                             </div>
                         </div>
                         <div className="cartDiv">
