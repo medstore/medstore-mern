@@ -17,7 +17,7 @@ import Storedashboard from './pages/storedashboard/Storedashboard';
 import AllProduct from './pages/allproduct/AllProduct';
 import Analytics from './pages/analytics/Analytics';
 import Orders from './pages/orders/Orders';
-
+import Setting from './pages/setting/Setting';
 
 function App() {
   return (
@@ -31,9 +31,10 @@ function App() {
                 <PrivateRoute exact path="/" component={Home} />
                 <Route exact path="/signin" component={Signin} />
                 <Route exact path="/signup" component={Signup} />
-                <PrivateRoute exact path="/storedashboard/allProduct" component={AllProduct} />
-                {/* <PrivateRoute exact path="/storedashboard/analytics" component={Analytics} /> */}
+                {/* <PrivateRoute exact path="/storedashboard/allProduct" component={AllProduct} />
+                <PrivateRoute exact path="/storedashboard/analytics" component={Analytics} />
                 <PrivateRoute exact path="/storedashboard/orders" component={Orders} />
+                <PrivateRoute exact path="/storedashboard/setting" component={Setting} /> */}
                 <PrivateRoute exact path="/profile" component={Profile} />
                 <PrivateRoute exact path="/createstore/:userid" component={Createstore} />
                 <PrivateRoute exact path="/addproduct" component={Product} />

@@ -30,9 +30,9 @@ const Orders = () => {
                 }
             }
        
-            console.log(user.storeId)
+            // console.log(user.storeId)
             try {
-                const { data } = await axios.post(`/api/private/storedashboard/analytics`, {storeId : user.storeId} , config).catch(err => {
+                const { data } = await axios.post(`/api/private/storedashboard/orders`, {storeId : user.storeId} , config).catch(err => {
                     if (err.response.status === 409) {
                         setErrors("Invalid User")
                         throw new Error(`Invalid User`);
