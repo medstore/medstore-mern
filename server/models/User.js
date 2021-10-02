@@ -76,12 +76,5 @@ UserSchema.methods.getSignedJwtToken = async function() {
     console.log(err);
   }
 };
-
-
-
-
-
-
 const User = mongoose.model("User", UserSchema);
-
 module.exports = User;
