@@ -32,7 +32,7 @@ const AllProduct = () => {
        
              
             try {
-                const { data } = await axios.post(`/api/private/storedashboard/allproduct`, {storeId : user.storeId} , config).catch(err => {
+                const { data } = await axios.post(`/api/private/storedashboard/allProduct`, {storeId : user.storeId} , config).catch(err => {
                     if (err.response.status === 409) {
                         setErrors("Invalid User")
                         throw new Error(`Invalid User`);
