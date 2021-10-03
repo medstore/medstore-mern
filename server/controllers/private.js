@@ -73,3 +73,27 @@ exports.addproduct = async (req, res, next) => {
         console.log(err)
     }
 };
+
+exports.getallStoreProduct = async (req, res, next) => {
+    try {
+        // console.log(req.body.storeId);
+         const storeExist = await Store.findById({ _id: req.body.storeId});
+        
+        if (storeExist) {
+            const productExist = await Product.find({ storeId : req.body.storeId});
+            
+            if(!productExist){
+                return res.status(404).json({ sucess: false, error: "Product data unavailable" });
+            }
+            else{
+                console.log(productExist)
+                return res.status(200).json({products: productExist}); 
+            }
+ 
+        }
+     
+    } catch (err) {
+        next(err);
+        console.log(err)
+    }
+};

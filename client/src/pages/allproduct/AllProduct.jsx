@@ -11,7 +11,7 @@ const AllProduct = () => {
     const [errors, setErrors] = useState("");
     const [isFetching, setIsFetching] = useState(false);
     const history = useHistory();
-    
+    const [product, setProduct] = useState([{ productName: "abcdd", productDescription: "", productImage:"", productPrice: "", productDetails: ""}])
     
     
     useEffect(() => {   
@@ -29,10 +29,10 @@ const AllProduct = () => {
                     Authorization: `Bearer ${localStorage.getItem("authToken")}`
                 }
             }
-       
+             
              
             try {
-                const { data } = await axios.post(`/api/private/storedashboard/allProduct`, {storeId : user.storeId} , config).catch(err => {
+                const { data } = await axios.post(`/api/private/storedashboard/allstoreproduct`, {storeId : user.storeId} , config).catch(err => {
                     if (err.response.status === 409) {
                         setErrors("Invalid User")
                         throw new Error(`Invalid User`);
@@ -43,28 +43,36 @@ const AllProduct = () => {
                     }
                     throw err;
                 });
+                 
+                setProduct(data.products)
                 setIsFetching(false);
+
             } catch (err) {
                  
                 setErrors(err.message)
             }
         }
         productData()
+        
         }
+        
   },[user])
 
   
     return (
         <div>
-            <h1>All Product Page</h1>
+            <h1>All Product Page </h1>
+            
             <div className="productsDiv">
-                {/* {
-                Itemdata.productData.map((item, index) => {
-                return <ItemCart img={item.img} title={item.title} desc={item.desc}
-                price={item.price}
-                details={item.details} key={index} />
+                {
+                product.map((item, index) => {
+                    
+                return  <div>
+                    <h1>{item.productName}</h1>
+                </div>
                 })
-                } */}
+                }
+                
             </div>
 
         </div>
