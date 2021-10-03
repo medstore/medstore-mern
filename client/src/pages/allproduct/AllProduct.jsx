@@ -61,20 +61,38 @@ const AllProduct = () => {
   
     return (
         <div>
-            <h1>All Product Page </h1>
-            
-            <div className="productsDiv">
+        <div className="heading">
+        <h1>All Store Product Page </h1>
+        </div>
+                
+             
                 {
                 product.map((item, index) => {
                     
-                return  <div>
-                    <h1>{item.productName}</h1>
+                return  <div className="storeregContainer">
+                
+                <div className="storeregWrapper">
+                <div className="storeregRight" >
+                    <div className="storeregBox">
+                        
+                            {errors ?
+                            <div className="errorDiv">
+                                <span className="errorMessage">{errors}</span>
+                            </div> : null}
+                         <div>
+                         <h2>{item.productName}</h2>
+                         <p>{item.productDescription}</p>
+                         <p>{item.productPrice}</p>
+                         <p>{item.productDetails}</p>
+                         </div>
+
+                    </div>
                 </div>
+             </div>
+        </div>
                 })
                 }
-                
-            </div>
-
+                 
         </div>
     )
 }

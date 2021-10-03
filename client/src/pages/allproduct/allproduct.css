@@ -1,3 +1,38 @@
-h1{
-    color:red;
+ div h1{
+     color:black
+ }
+ .heading{
+     text-align: center;
+ }
+.storeregContainer {
+    width: 100%;
+    background-color: #f0f2f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: scroll;
+}
+
+.storeregWrapper {
+    width: 100%;
+    display: flex;
+}
+
+.storeregRight {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.storeregBox {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 20px 100px;
+    justify-content: space-around;
+    box-shadow: 0px 0px 27px -10px rgba(0,0,0,0.45);
+    -webkit-box-shadow: 0px 0px 27px -10px rgba(0,0,0,0.45);
+    -moz-box-shadow: 0px 0px 27px -10px rgba(0,0,0,0.45);
 }

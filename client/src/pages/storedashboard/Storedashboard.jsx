@@ -18,7 +18,7 @@ export default function Storedashboard() {
             <div className="left">
                 <ul className="dashboardul">
                     <li id="analytics" className={"dashboardListItem"} onClick={changePage}>Analytics</li>
-                    <li id="addProduct" className={"dashboardListItem"} onClick={changePage} >Add Product</li>
+                    <li id="addstoreproduct" className={"dashboardListItem"} onClick={changePage} >Add Product</li>
                     <li id="allstoreproduct" className={"dashboardListItem"} onClick={changePage}>All Product</li>
                     <li id="orders" className={"dashboardListItem"} onClick={changePage}>Orders</li>
                     <li id="setting" className={"dashboardListItem"} onClick={changePage}>Setting</li>
