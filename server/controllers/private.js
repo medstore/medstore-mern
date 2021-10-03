@@ -12,6 +12,19 @@ exports.getuser = async (req, res, next) => {
     }
 };
 
+exports.getsingleproduct = async (req, res, next) => {
+    try {
+        const product = await Product.findById(req.params.productId);
+        if(product){
+            res.status(200).json(product);
+        }else{
+            res.status(404).json({ sucess: false, error: "Product not found" });
+        }
+    } catch (err) {
+        next(err);
+    }
+};
+
 //Store registration
 exports.registerstore = async (req, res, next) => {
     try {

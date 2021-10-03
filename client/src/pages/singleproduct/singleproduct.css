@@ -15,6 +15,10 @@
     flex: 0.6;
     padding: 20px;
 }
+.spImage{
+    height: 100%;
+    width: 100%;
+}
 .spName{
     font-weight: 500;
     font-size: 22px;
@@ -41,6 +45,9 @@
     border-radius: 10px;
     border: none;
     cursor: pointer;
+}
+.spAddtocart:hover{
+    background-color: #78af6d;
 }
 
 @media only screen and (max-width: 768px) {
