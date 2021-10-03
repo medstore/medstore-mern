@@ -4,11 +4,31 @@ import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import emptyprofile from "../../images/emptyprofile.png"
 import { AppContext } from '../../context/appContext/AppContext';
+import axios from 'axios';
 import Createstore from '../../App';
 
 export default function Topbar() {
 
     const { authenticated, user, dispatch } = useContext(AppContext);
+
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+        }
+    }
+    const getLoggedIn = async ()=>{
+        const res = await axios.get("/api/private/getuser", config);
+        if(res){
+            dispatch({type: "FETCH_SUCCESS", payload: res.data });
+        }else{
+            dispatch({type: "EMPTY_STATE"});
+        }
+    }
+
+    useEffect(()=>{
+        getLoggedIn();
+    },[]);
 
     const history = useHistory();
     const logoutHandler = () => {

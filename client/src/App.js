@@ -13,6 +13,7 @@ import PrivateRoute from './components/routing/PrivateRoute';
 import Createstore from './pages/createstore/Createstore';
 import Product from './pages/addproduct/Product';
 import Userdashboard from './pages/userdashboard/Userdashboard';
+import Singleproduct from './pages/singleproduct/Singleproduct';
 
 
 
@@ -28,6 +29,7 @@ function App() {
                 <PrivateRoute exact path="/" component={Home} />
                 <Route exact path="/signin" component={Signin} />
                 <Route exact path="/signup" component={Signup} />
+                <PrivateRoute exact path="/product/:productId" component={Singleproduct} />
                 <PrivateRoute exact path="/profile" component={Profile} />
                 <PrivateRoute exact path="/createstore/:userid" component={Createstore} />
                 <PrivateRoute exact path="/addproduct" component={Product} />
