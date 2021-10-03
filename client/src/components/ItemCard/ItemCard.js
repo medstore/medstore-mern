@@ -4,8 +4,6 @@ import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
  
 const ItemCart = (props) => {
-     
-    console.log(props)
     return (
         <>
             <div className="card">
