@@ -1,35 +1,45 @@
-.card {
-    border-radius: 5%;
-    height: 100%;
-    width: 39%;
+.productCards{
     background-color: white;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    margin: 10px;
-    justify-content: space-around;
-    box-shadow: 0px 0px 27px -10px rgba(0,0,0,0.45);
-    -webkit-box-shadow: 0px 0px 27px -10px rgba(0,0,0,0.45);
-    -moz-box-shadow: 0px 0px 27px -10px rgba(0,0,0,0.45);
-}
-button{
-    background-color: #283290;
-    font-size: 20px;
-    font-weight: 500;
-    color: white;
-    height: 40px;
-    padding: 10px;
+    width: 30%;
+    height: auto;
+    margin: 5px;
     border-radius: 10px;
-    border: none;
     cursor: pointer;
 }
-
-.btn{
-    margin-left: 180px;
-      
+.productCards:hover{
+    box-shadow: 0px 0px 27px -10px rgba(0,0,0,0.35);
+    -webkit-box-shadow: 0px 0px 27px -10px rgba(0,0,0,0.35);
+    -moz-box-shadow: 0px 0px 27px -10px rgba(0,0,0,0.35);
+}
+.productCardWrapper{
+    padding: 10px;
 }
 
-.cardTitle{
-    /* font-weight: bold; */
-    font-size: 1.2em;
+.productImg{
+    width: 100%;
+    object-fit: contain;
+    height: 140px;
+    margin: 0px;
+    padding: 0px;
+}
+.productTitle{
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+}
+.productPrice{
+    font-weight: bold;
+}
+.productPriceStrike{
+    color: grey;
+    font-size: 15px;
+}
+
+@media only screen and (max-width: 768px) {
+    .productCards{
+        width: 47%;
+    }
+    .productCards{
+        height: 250px;
+    }
 }

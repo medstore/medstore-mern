@@ -33,9 +33,10 @@
     padding: 20px;   
 }
 .productsDiv{
-    margin: 0px 20px;
+    margin: 20px;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
 }
 .inputItem{
     margin: 10px 20px;
@@ -110,6 +111,12 @@
 }
 
 @media only screen and (max-width: 768px) {
+    .homeLeft{
+        overflow-y: unset;
+    }
+    .productsDiv{
+        margin: 0px;
+    }
     .homeWrapper{
         display: block;
     }

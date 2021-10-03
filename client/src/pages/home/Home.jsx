@@ -109,9 +109,10 @@ export default function Home() {
                             {
                                 isLoading ? <CircularProgress color="grey" size="40px" /> :
                                     products ? products.map((item, key) => {
-                                        return <ItemCart value={item} key={key} />
+                                        return <><ItemCart value={item} key={key} /><ItemCart value={item} key={key} /></>
                                     }) : "No Product Found"
                             }
+                            
                         </div>
                     </div>
                 </div>
