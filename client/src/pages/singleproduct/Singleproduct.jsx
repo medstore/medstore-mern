@@ -37,8 +37,14 @@ export default function Singleproduct(props) {
 
     const handleAddtocart = async (e) => {
         e.preventDefault();
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            }
+        }
         try {
-            const { data } = await axios.get(`/api/private/getsingleproduct/${props.match.params.productId}`).catch(err => {
+            const { data } = await axios.post(`/api/private/additemtocart`, {userId: user._id, productId: props.match.params.productId}, config).catch(err => {
                 /* if (err.response.status === 409) {
                     setErrors("Invalid User")
                     throw new Error(`Invalid User`);
@@ -52,7 +58,17 @@ export default function Singleproduct(props) {
                 }
                 throw err; */
             });
-            console.log(data);
+            if(data){
+                const getLoggedIn = async ()=>{
+                    const res = await axios.get("/api/private/getuser", config);
+                    if(res){
+                        dispatch({type: "FETCH_SUCCESS", payload: res.data });
+                    }else{
+                        dispatch({type: "EMPTY_STATE"});
+                    }
+                }
+                getLoggedIn();
+            }
             /*  setIsFetching(false); */
         } catch (err) {
             /* setIsFetching(false); */
