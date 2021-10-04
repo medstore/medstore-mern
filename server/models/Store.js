@@ -22,6 +22,14 @@ const StoreSchema = new mongoose.Schema({
       "Please provide a valid email",
     ],
   },
+  latitude: {
+    type: String,
+    required: [true, "Location Error"],
+  },
+  longitude: {
+    type: String,
+    required: [true, "Location Error"],
+  },
   storeAddress: {
     type: String,
     default: "-",

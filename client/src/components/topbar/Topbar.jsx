@@ -67,7 +67,7 @@ export default function Topbar() {
                             </div>
                         </div>
                         <div className="cartDiv">
-                            <span className="cartNumber">10</span>
+                            <span className="cartNumber">{user.cartItem.length}</span>
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </div>
 

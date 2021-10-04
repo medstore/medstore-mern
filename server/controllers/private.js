@@ -53,11 +53,13 @@ exports.registerstore = async (req, res, next) => {
         req.body.addressList.map((obj) => {
             list = { ...list, ...obj }
         })
-        const { storeName, ownerName, ownerEmail, storeAddress, userId, ...other } = req.body;
+        const { storeName, ownerName, ownerEmail, storeAddress, userId, latitude, longitude, ...other } = req.body;
         const store = await Store.create({
             ownerId: userId,
             storeName: storeName,
             ownerName: ownerName,
+            latitude: latitude,
+            longitude: longitude,
             ownerEmail: ownerEmail,
             storeAddress: storeAddress,
             addressList: { ...list }

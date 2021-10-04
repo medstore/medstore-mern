@@ -13,6 +13,7 @@ export default function Home() {
     const [userAddress, setUserAddress] = useState([]);
     const [searchValue, setSearchValue] = useState("");
     const [products, setProducts] = useState([]);
+    const [stores, setStores] = useState([]);
     const [selected, setSelected] = useState("N/A")
     const [locallowed, setLocallowed] = useState(true)
     const [isLoading, setIsLoading] = useState(false);
@@ -67,6 +68,7 @@ export default function Home() {
                     const res = await axios.post("/api/private/searchproduct", { "locationName": selected, "location": userAddress[i].name, "searchValue": searchValue }, config)
                     console.log(res.data);
                     setProducts(res.data.product);
+                    setStores(res.data.stores);
                 }
             }
             setIsLoading(false);
@@ -117,7 +119,7 @@ export default function Home() {
                     </div>
                 </div>
                 <div className="homeRight">
-                    <Homemap />
+                    <Homemap value={stores}/>
                 </div>
             </div>
         </div >
