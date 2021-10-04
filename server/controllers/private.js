@@ -2,6 +2,7 @@ const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
 const Store = require("../models/Store");
 const Product = require("../models/Product");
+const Order = require("../models/Order");
 //get user data
 exports.getuser = async (req, res, next) => {
     try {
@@ -88,6 +89,30 @@ exports.getallStoreProduct = async (req, res, next) => {
             else{
                 console.log(productExist)
                 return res.status(200).json({products: productExist}); 
+            }
+ 
+        }
+     
+    } catch (err) {
+        next(err);
+        console.log(err)
+    }
+};
+
+exports.getallOrderedProduct = async (req, res, next) => {
+    try {
+        // console.log(req.body.storeId);
+         const storeExist = await Store.findById({ _id: req.body.storeId});
+        
+        if (storeExist) {
+            const orderExist = await Order.find({ storeId : req.body.storeId});
+            
+            if(!orderExist){
+                return res.status(404).json({ sucess: false, error: "Product data unavailable" });
+            }
+            else{
+                console.log(orderExist)
+                return res.status(200).json({orders: orderExist}); 
             }
  
         }
