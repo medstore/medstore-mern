@@ -17,6 +17,10 @@ const OrderSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide Order status"],
   },
+  quantity:{
+    type: Number,
+    required: [true, "Please provide Quantity"],
+  },
 },
 {timestamps: true});
 
