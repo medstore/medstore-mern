@@ -106,13 +106,16 @@ exports.getallOrderedProduct = async (req, res, next) => {
         
         if (storeExist) {
             const orderExist = await Order.find({ storeId : req.body.storeId});
-            
-            if(!orderExist){
+            const productExist = await Product.find({ storeId : req.body.storeId});
+            const userExist = await User.findOne({_id: req.body.ownerId});
+            if(!orderExist && !productExist && !userExist){
                 return res.status(404).json({ sucess: false, error: "Product data unavailable" });
             }
             else{
                 console.log(orderExist)
-                return res.status(200).json({orders: orderExist}); 
+                console.log(productExist)
+                console.log(userExist)
+                return res.status(200).json({orders: orderExist ,products: productExist , users : userExist }); 
             }
  
         }
