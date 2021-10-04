@@ -29,7 +29,7 @@ exports.additemtocart = async (req, res, next) => {
     try {
         const user = await User.findById(req.body.userId);
         if (user) {
-            await user.updateOne({ $push: { cartItem: req.body.productId }});
+            await user.updateOne({ $push: { cartItem: req.body.productId } });
             res.status(200).json(req.user);
         } else {
             res.status(404).json({ sucess: false, error: "Error Occured" });
@@ -104,6 +104,7 @@ exports.addproduct = async (req, res, next) => {
 
 exports.searchProduct = async (req, res, next) => {
     try {
+        const prod = [];
         const locationName = req.body.locationName;
         const location = req.body.location;
         const query = {};
@@ -112,17 +113,15 @@ exports.searchProduct = async (req, res, next) => {
         if (storeData.length == 0) {
             return res.status(200).json({ message: "No store found near your location" });
         }
-        storeData.forEach((obj) => {
-            const getProduct = async () => {
-                let search = req.body.searchValue;
-                let product = await Product.find({ "storeId": obj._id, "productName": new RegExp(`\\b${search}\\b`, 'i') });
-                if (product.length == 0) {
-                    return res.status(200).json({ message: "No product found" });
-                }
-                res.status(200).json({ product: product, stores: obj });
-            }
-            getProduct();
-        })
+        for (const obj of storeData) {
+            let search = req.body.searchValue.split(" ")[0];
+            let product = await Product.find({ "storeId": obj._id, "productName": new RegExp(`\\b${search}\\b`, 'i') });
+            prod.push(...product);
+        }
+        if (prod.length == 0) {
+            return res.status(200).json({ message: "No product found" });
+        }
+        res.status(200).json({ product: prod, stores: storeData });
     } catch (err) {
         next(err);
         console.log(err)
