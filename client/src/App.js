@@ -34,10 +34,11 @@ function App() {
                  <PrivateRoute exact path="/storedashboard/allstoreproduct" component={AllProduct} />
                  <PrivateRoute exact path="/storedashboard/addstoreproduct" component={Product} />
                  <PrivateRoute exact path="/storedashboard/orders" component={Orders} />
+                 
                  {/*
                 <PrivateRoute exact path="/storedashboard/analytics" component={Analytics} />
-                
-                <PrivateRoute exact path="/storedashboard/setting" component={Setting} /> */}
+                */}
+                <PrivateRoute exact path="/storedashboard/setting" component={Setting} /> 
                 <PrivateRoute exact path="/profile" component={Profile} />
                 <PrivateRoute exact path="/createstore/:userid" component={Createstore} />
                 <PrivateRoute exact path="/addproduct" component={Product} />

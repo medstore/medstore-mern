@@ -106,7 +106,7 @@ exports.getallOrderedProduct = async (req, res, next) => {
         
         if (storeExist) {
             const orderExist = await Order.find({ storeId : req.body.storeId});
-            
+
             let result = orderExist.map(a => a.productId);
                 // console.log(result)
             const productExist = await Product.find({ _id : result});
@@ -124,6 +124,27 @@ exports.getallOrderedProduct = async (req, res, next) => {
         }
      
     } catch (err) {
+        next(err);
+        console.log(err)
+    }
+};
+
+exports.getStoreDetails = async (req, res, next) => {
+    try {
+        // console.log(req.body.storeId);
+         const storeExist = await Store.findById({ _id: req.body.storeId});
+        
+        if (!storeExist) {
+            return res.status(404).json({ sucess: false, error: "Product data unavailable" });
+        }
+            else{
+                console.log(storeExist)
+                return res.status(200).json({store: storeExist}); 
+            }
+ 
+        }
+     
+    catch (err) {
         next(err);
         console.log(err)
     }
