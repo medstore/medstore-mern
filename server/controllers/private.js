@@ -135,7 +135,7 @@ exports.getStoreDetails = async (req, res, next) => {
          const storeExist = await Store.findById({ _id: req.body.storeId});
         
         if (!storeExist) {
-            return res.status(404).json({ sucess: false, error: "Product data unavailable" });
+            return res.status(404).json({ sucess: false, error: "Store data unavailable" });
         }
             else{
                 console.log(storeExist)

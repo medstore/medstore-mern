@@ -11,9 +11,14 @@ const Setting = () => {
     const [errors, setErrors] = useState("");
     const [isFetching, setIsFetching] = useState(false);
     const history = useHistory();
+    const [myStore, setMyStore] = useState({ storeName: "", ownerName: "", ownerEmail: "", storeAddress: "" })
     
-    
-    
+    const handleChange = (e) => {
+        e.preventDefault();
+        const name = e.target.name;
+        const value = e.target.value;
+        setMyStore({ ...myStore, [name]: value });
+    }
     useEffect(() => {   
      
       
@@ -43,6 +48,8 @@ const Setting = () => {
                     }
                     throw err;
                 });
+                 
+                setMyStore(data.store)
                 setIsFetching(false);
             } catch (err) {
                  
@@ -55,12 +62,56 @@ const Setting = () => {
   },[user])
 
   
-    return (
-        <div>
-            <h1>Setting Page</h1>
-             
+    return ( 
+            <div className="storeregContainer">
+            <div className="storeregWrapper">
+                <form className="storeregRight" >
+                    <div className="storeregBox">
+                        <h1>Update Store Page</h1>
+                        {errors ?
+                            <div className="errorDiv">
+                                <span className="errorMessage">{errors}</span>
+                            </div> : null}
+                        <div className="divinput" >
+                            <input type="text" required
+                                className="storeregInput"
+                                name="storeName"
+                                value={myStore.storeName}
+                                onChange={handleChange} />
+                            <label for="">Store Name</label>
+                        </div>
 
+                        <div className="divinput" >
+                            <input type="text" required
+                                className="storeregInput"
+                                name="ownerName"
+                                value={myStore.ownerName}
+                                onChange={handleChange} />
+                            <label for="">Store Owner Name</label>
+                        </div>
+
+                        <div className="divinput" >
+                            <input type="email" required className="storeregInput"
+                                name="ownerEmail"
+                                value={myStore.ownerEmail}
+                                onChange={handleChange} />
+                            <label for="email">Store Owner Email</label>
+                        </div>
+
+                        <div className="divinput" >
+                            <input type="text" required className="storeregInput"
+                                name="storeAddress"
+                                value={myStore.storeAddress} />
+                            <label for="">Store Address</label>
+                        </div>
+                        
+
+
+                    </div>
+                </form>
+            </div>
         </div>
+
     )
 }
 
