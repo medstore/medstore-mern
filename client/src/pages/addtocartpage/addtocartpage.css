@@ -1,0 +1,33 @@
+.addtocartpage{
+    display: flex;
+    justify-content: center;
+    background-color: #f0f2f5;
+
+}
+.addtocartpageWrapper{
+    margin: 20px 0px;
+    width: 80%;
+    height: calc(100vh - 50px);
+}
+.footer{
+    float: right;
+    padding-right: 40px;
+    display: flex;
+    flex-direction: column;
+}
+.gt{
+    margin-right: 50px;
+}
+
+.ckButton{
+    background-color: #42b72a;
+    margin: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    height: 40px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}

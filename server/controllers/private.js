@@ -39,6 +39,20 @@ exports.additemtocart = async (req, res, next) => {
     }
 };
 
+exports.getAllCartItem = async (req, res, next) => {
+    try {
+        const currentUser = await User.findById(req.body.userId);
+        const cartItem = await Promise.all(
+            currentUser.cartItem.map((itemId) => {
+                return Product.findById(itemId);
+            })
+        );
+        res.status(200).json(cartItem);
+    } catch (err) {
+        next(err);
+    }
+};
+
 //Store registration
 exports.registerstore = async (req, res, next) => {
     try {

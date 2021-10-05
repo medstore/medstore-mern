@@ -1,0 +1,58 @@
+.cartitem{
+    margin: 2px;
+    background-color: white;
+    border: 1px solid lightgrey;
+}
+.cartitemWrapper{
+    padding: 10px;
+    display: flex;
+}
+
+.cartHeader{
+    display: flex;
+}
+.chleft{
+    flex: 0.7;
+    display: flex;
+    flex-direction: row;
+}
+.chmid{
+    flex: 0.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chright{
+    flex: 0.1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+.cartHeaderImg{
+    height: 70px;
+    width: 70px;
+}
+.headerText{
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px;
+}
+.quantityDiv{
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px;
+}
+.headerText h4{
+    margin: 4px 0px;
+    padding: 0;
+}
+.ciPrice{
+    font-weight: 500;
+}
+.removeCart{
+    color: red;
+}
