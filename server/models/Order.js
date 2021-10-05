@@ -13,6 +13,10 @@ const OrderSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide product Id"],
   },
+  customerName: {
+    type: String,
+    required: [true, "Please provide Owner Id"],
+  },
   status:{
     type: String,
     required: [true, "Please provide Order status"],

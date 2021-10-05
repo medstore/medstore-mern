@@ -24,7 +24,7 @@ const Orders = () => {
     const [order, setOrder] = useState([{ ownerId: "", storeId: "", productId:"", status: "", quantity: ""}])
     const [product, setProduct] = useState([{ productName: "abcdd", productDescription: "", productImage:"", productPrice: "", productDetails: ""}])
     const [status, setStatus] = useState('');
-    const [users, setUsers] = useState({ firstname: "", lastname: ""})
+ 
   const handleChange = (event) => {
     setStatus(event.target.value);
   };
@@ -59,7 +59,7 @@ const Orders = () => {
                 }); 
                 setOrder(data.orders)
                 setProduct(data.products)
-                setUsers(data.users)
+               
                 setIsFetching(false);
                  
             } catch (err) {
@@ -83,12 +83,12 @@ const Orders = () => {
             <span className="errorMessage">{errors}</span>
             </div> : null}
 
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} >
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-          <TableCell align="left">First Name</TableCell>
-            <TableCell align="left">Last Name</TableCell>
+          <TableCell align="left">Order Id</TableCell>
+          <TableCell align="left">Customer Name</TableCell>
             <TableCell align="left">Quantity</TableCell>
             <TableCell align="left">Product</TableCell>
             <TableCell align="left">Status</TableCell>
@@ -99,12 +99,14 @@ const Orders = () => {
           {order.map((order) => (
 
             <TableRow>
+            <TableCell align="left">{order._id}</TableCell> 
               
-             <TableCell align="left">{users.firstname}</TableCell> <TableCell align="left">{users.lastname}</TableCell> 
+             <TableCell align="left">{order.customerName}</TableCell> 
                 
               <TableCell align="left">
                 {order.quantity}
               </TableCell>
+              <TableCell>
               {product.map((item) => (
                 <TableRow>
                 <label> <b>Name: </b> &nbsp; <TableCell align="left">{item.productName}</TableCell></label>  
@@ -115,6 +117,8 @@ const Orders = () => {
                 
 
                 ))}
+              </TableCell>
+              
                  
                 <TableCell align="left">
                  
