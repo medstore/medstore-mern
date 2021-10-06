@@ -16,7 +16,11 @@ export default function CartItem(props) {
 
                     <div className="chmid">
                         <div className="quantityDiv">
-                            <span>5</span>
+                            <select className="cartItemSpinner">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>
                         </div>
                     </div>
 

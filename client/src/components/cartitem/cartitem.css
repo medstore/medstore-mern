@@ -28,6 +28,9 @@
     justify-content: center;
     align-items: center;
 }
+.cartItemSpinner{
+    padding: 5px;
+}
 
 
 
