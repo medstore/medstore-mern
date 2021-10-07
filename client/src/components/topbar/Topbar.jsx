@@ -68,7 +68,7 @@ export default function Topbar() {
                         </div>
                         <div className="cartDiv">
                             <span className="cartNumber">{user.cartItem.length}</span>
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                            <i class="fa fa-shopping-cart" aria-hidden="true" onClick={()=>history.push('/addtocart')}></i>
                         </div>
 
                     </div>

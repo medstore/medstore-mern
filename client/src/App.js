@@ -15,6 +15,7 @@ import Product from './pages/addproduct/Product';
 import Userdashboard from './pages/userdashboard/Userdashboard';
 import Singleproduct from './pages/singleproduct/Singleproduct';
 import Addtocartpage from './pages/addtocartpage/Addtocartpage';
+import { CartContextProvider } from './context/cartContext/CartContext';
 
 
 
@@ -22,6 +23,7 @@ function App() {
   return (
     <AppContextProvider>
       <AddContextProvider>
+        <CartContextProvider>
         <div className="App">
           <BrowserRouter>
             <Topbar />
@@ -40,6 +42,7 @@ function App() {
             </div>
           </BrowserRouter>
         </div>
+        </CartContextProvider>
       </AddContextProvider>
     </AppContextProvider>
   );
