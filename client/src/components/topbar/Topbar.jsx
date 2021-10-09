@@ -66,9 +66,9 @@ export default function Topbar() {
                                 <NavLink exact className="links-hidden" to='/userdashboard/profile'>DashBoard</NavLink>
                             </div>
                         </div>
-                        <div className="cartDiv">
+                        <div className="cartDiv" onClick={()=>history.push('/addtocart')}>
                             <span className="cartNumber">{user.cartItem.length}</span>
-                            <i class="fa fa-shopping-cart" aria-hidden="true" onClick={()=>history.push('/addtocart')}></i>
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </div>
 
                     </div>

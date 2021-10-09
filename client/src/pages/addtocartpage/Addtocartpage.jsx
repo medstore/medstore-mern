@@ -110,7 +110,7 @@ export default function Addtocartpage() {
 
     useEffect(() => {
         const getProductdata = async () => {
-            /* setIsFetching(true); */
+            setIsFetching(true);
             const config = {
                 headers: {
                     "Content-Type": "application/json",
@@ -120,11 +120,11 @@ export default function Addtocartpage() {
             try {
                 const { data } = await axios.post('/api/private/getallcartitem', { userId: user._id }, config).catch(err => {
                     if (err.response.status === 404) {
-                        /*  setErrors("Product Not Found") */
+                         setErrors("Product Not Found")
                         throw new Error(`Product Not Found`);
                     }
                     else {
-                        /* setErrors("Internal Server Error") */
+                        setErrors("Internal Server Error")
                         throw new Error(`Internal Server Error`);
                     }
                     throw err;
@@ -137,11 +137,10 @@ export default function Addtocartpage() {
                     setGrosstotal(dummy);
                 }
                 setCartitems(data);
-                /* setItem(data) */
-                /* setIsFetching(false); */
+                setIsFetching(false);
             } catch (err) {
                 console.log("Error Occured");
-                /* setIsFetching(false); */
+                setIsFetching(false);
             }
         }
         getProductdata();
