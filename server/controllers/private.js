@@ -39,6 +39,20 @@ exports.additemtocart = async (req, res, next) => {
     }
 };
 
+exports.removeitemfromcart = async (req, res, next) => {
+    try {
+        const user = await User.findById(req.body.userId);
+        if (user) {
+            await user.updateOne({ $pull: { cartItem: req.body.productId }});
+            res.status(200).json(req.user);
+        } else {
+            res.status(404).json({ sucess: false, error: "Error Occured" });
+        }
+    } catch (err) {
+        next(err);
+    }
+};
+
 exports.getAllCartItem = async (req, res, next) => {
     try {
         const currentUser = await User.findById(req.body.userId);

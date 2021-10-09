@@ -71,6 +71,9 @@
     display: flex;
     flex-direction: row;
 }
+.removeCart{
+    cursor: pointer;
+}
 .secDiv{
     flex: 0.3;
     display: flex;

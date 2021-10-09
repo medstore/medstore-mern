@@ -1,5 +1,6 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { AppContext } from '../../context/appContext/AppContext'
+import { CircularProgress } from '@material-ui/core';
 import './addtocartpage.css'
 import axios from 'axios'
 
@@ -8,6 +9,8 @@ export default function Addtocartpage() {
     const { user, dispatch } = useContext(AppContext);
     const [cartitems, setCartitems] = useState([])
     const [grossTotal, setGrosstotal] = useState(0);
+    const [isFetching, setIsFetching] = useState(false);
+    const [errors, setErrors] = useState("");
 
     function CartItem(props) {
         const handleDecrement = (e) => {
@@ -35,6 +38,46 @@ export default function Addtocartpage() {
             }
         }
 
+        const handleCartRemove = async (e) => {
+            e.preventDefault();
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                }
+            }
+            setIsFetching(true);
+            try {
+                const { data } = await axios.post(`/api/private/removeitemfromcart`, { userId: user._id, productId: props.value._id }, config).catch(err => {
+                    if (err.response.status === 404) {
+                        /* setErrors("Invalid User") */
+                        throw new Error(`Invalid User`);
+                    }
+                    else {
+                        /* setErrors("Internal Server Error") */
+                        throw new Error(`Internal Server Error`);
+                    }
+                    throw err;
+                });
+                if (data) {
+                    const getLoggedIn = async () => {
+                        const res = await axios.get("/api/private/getuser", config);
+                        if (res) {
+                            dispatch({ type: "FETCH_SUCCESS", payload: res.data });
+                        } else {
+                            dispatch({ type: "EMPTY_STATE" });
+                        }
+                    }
+                    getLoggedIn();
+                    alert("Item removed from cart")
+                }
+                setIsFetching(false);
+            } catch (err) {
+                /* setIsFetching(false); */
+                setErrors("Error Occured")
+            }
+        }
+
 
         return (
             <div className="cartitem">
@@ -44,7 +87,7 @@ export default function Addtocartpage() {
                         <div className="headerText">
                             <h4>{props.value.productName}</h4>
                             <span className="ciPrice">Price: ₹{props.value.productPrice}/-</span>
-                            <span className="removeCart">Remove</span>
+                            <span className="removeCart" onClick={handleCartRemove}>Remove</span>
                         </div>
                     </div>
                     <div className="secDiv">
@@ -64,7 +107,6 @@ export default function Addtocartpage() {
         )
     }
 
-    /* export default React.memo(Child); */
 
     useEffect(() => {
         const getProductdata = async () => {
@@ -95,7 +137,6 @@ export default function Addtocartpage() {
                     setGrosstotal(dummy);
                 }
                 setCartitems(data);
-                console.log(data)
                 /* setItem(data) */
                 /* setIsFetching(false); */
             } catch (err) {
@@ -106,16 +147,22 @@ export default function Addtocartpage() {
         getProductdata();
     }, [user])
 
+    const handleCheckOut = () => {
+
+    }
+
     return (
         <div className="addtocartpage">
             <div className="addtocartpageWrapper">
                 {
-                    cartitems.map((item, key) => {
+                    isFetching ?
+                        <CircularProgress color="inherit" size="30px" /> :
+                        cartitems.map((item, key) => {
 
-                        return (
-                            <CartItem value={item} />
-                        )
-                    })
+                            return (
+                                <CartItem value={item} />
+                            )
+                        })
                 }
                 <div className="footer">
                     <hr></hr>
@@ -123,7 +170,7 @@ export default function Addtocartpage() {
                         <span className="gt">Grand Total</span>
                         <span>₹{grossTotal}/-</span>
                     </b>
-                    <button className="ckButton">Check Out</button>
+                    <button className="ckButton" onClick={handleCheckOut}>Check Out</button>
                 </div>
             </div>
         </div>
