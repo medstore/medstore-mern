@@ -135,6 +135,7 @@ exports.addproduct = async (req, res, next) => {
 exports.searchProduct = async (req, res, next) => {
     try {
         const prod = [];
+        const nearByStores = [];
         const locationName = req.body.locationName;
         const location = req.body.location;
         const query = {};
@@ -144,14 +145,18 @@ exports.searchProduct = async (req, res, next) => {
             return res.status(200).json({ message: "No store found near your location" });
         }
         for (const obj of storeData) {
+            
             let search = req.body.searchValue.split(" ")[0];
             let product = await Product.find({ "storeId": obj._id, "productName": new RegExp(`\\b${search}\\b`, 'i') });
-            prod.push(...product);
+            if(product.length != 0){
+                nearByStores.push(obj);
+                prod.push(...product);
+            }
         }
         if (prod.length == 0) {
             return res.status(200).json({ message: "No product found" });
         }
-        res.status(200).json({ product: prod, stores: storeData });
+        res.status(200).json({ product: prod, stores: nearByStores });
     } catch (err) {
         next(err);
         console.log(err)
