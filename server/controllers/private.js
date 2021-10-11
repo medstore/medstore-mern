@@ -2,6 +2,7 @@ const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
 const Store = require("../models/Store");
 const Product = require("../models/Product");
+const Order = require('../models/Order')
 //get user data
 exports.getuser = async (req, res, next) => {
     try {
@@ -43,7 +44,7 @@ exports.removeitemfromcart = async (req, res, next) => {
     try {
         const user = await User.findById(req.body.userId);
         if (user) {
-            await user.updateOne({ $pull: { cartItem: req.body.productId }});
+            await user.updateOne({ $pull: { cartItem: req.body.productId } });
             res.status(200).json(req.user);
         } else {
             res.status(404).json({ sucess: false, error: "Error Occured" });
@@ -132,6 +133,32 @@ exports.addproduct = async (req, res, next) => {
 };
 
 
+exports.buyproduct = async (req, res, next) => {
+    try {
+        const receiveItem = req.body;
+        for (const obj of receiveItem) {
+            const { customerId, customerName, storeId, totalPrice } = obj;
+            const productId = obj._id;
+            const quantity = obj.orderQuantity;
+
+            const order = await Order.create({
+                customerId: customerId,
+                customerName: customerName,
+                storeId: storeId,
+                totalPrice: totalPrice,
+                productId: productId,
+                quantity: quantity
+            });
+        }
+
+        res.status(200).json({ sucess: true, message: "Order Successfull" });
+    } catch (err) {
+        next(err);
+        console.log(err)
+    }
+};
+
+
 exports.searchProduct = async (req, res, next) => {
     try {
         const prod = [];
@@ -145,10 +172,10 @@ exports.searchProduct = async (req, res, next) => {
             return res.status(200).json({ message: "No store found near your location" });
         }
         for (const obj of storeData) {
-            
+
             let search = req.body.searchValue.split(" ")[0];
             let product = await Product.find({ "storeId": obj._id, "productName": new RegExp(`\\b${search}\\b`, 'i') });
-            if(product.length != 0){
+            if (product.length != 0) {
                 nearByStores.push(obj);
                 prod.push(...product);
             }

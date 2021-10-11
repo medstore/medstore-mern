@@ -131,12 +131,15 @@ export default function Addtocartpage() {
                 });
                 let dummy = 0;
                 for (let i = 0; i < data.length; i++) {
+                    data[i].customerId = user._id;
+                    data[i].customerName = `${user.firstname} ${user.lastname}`;
                     data[i].totalPrice = data[i].productPrice;
                     data[i].orderQuantity = 1;
                     dummy = dummy + data[i].productPrice
                     setGrosstotal(dummy);
                 }
                 setCartitems(data);
+                console.log(data)
                 setIsFetching(false);
             } catch (err) {
                 console.log("Error Occured");
@@ -146,7 +149,33 @@ export default function Addtocartpage() {
         getProductdata();
     }, [user])
 
-    const handleCheckOut = () => {
+    const handleCheckOut = async(e) => {
+        e.preventDefault();
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            }
+        }
+        /* setIsFetching(true); */
+        try {
+            const { data } = await axios.post(`/api/private/buyproduct`, cartitems, config).catch(err => {
+                if (err.response.status === 404) {
+                    /* setErrors("Invalid User") */
+                    throw new Error(`Invalid User`);
+                }
+                else {
+                    /* setErrors("Internal Server Error") */
+                    throw new Error(`Internal Server Error`);
+                }
+                throw err;
+            });
+            /* setIsFetching(false); */
+            alert("Order Successful")
+        } catch (err) {
+            /* setIsFetching(false); */
+            /* setErrors("Error Occured") */
+        }
 
     }
 
