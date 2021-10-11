@@ -42,6 +42,20 @@ export default function Home() {
         getUserLocation();
     }, [location.coordinates])
 
+    useEffect(() => {
+        const getallProduct = async()=>{
+            try {
+                const res = await axios.get("/api/private/getrandomproducts");
+                setProducts(res.data);
+                /* setIsLoading(false); */
+            } catch (err) {
+                /* setIsLoading(false);
+                console.log("Error in fetching products") */
+            }
+        }
+        getallProduct();
+    }, [])
+
     const handleChange = (e) => {
         e.preventDefault();
         setSelected(e.target.value)
@@ -65,8 +79,7 @@ export default function Home() {
         try {
             for (let i = 0; i < userAddress.length; i++) {
                 if (userAddress[i].id === selected) {
-                    const res = await axios.post("/api/private/searchproduct", { "locationName": selected, "location": userAddress[i].name, "searchValue": searchValue }, config)
-                    console.log(res.data);
+                    const res = await axios.post("/api/private/searchproduct", { "locationName": selected, "location": userAddress[i].name, "searchValue": searchValue }, config);
                     setProducts(res.data.product);
                     setStores(res.data.stores);
                 }
@@ -114,12 +127,12 @@ export default function Home() {
                                         return <><ItemCart value={item} key={key} /></>
                                     }) : "No Product Found"
                             }
-                            
+
                         </div>
                     </div>
                 </div>
                 <div className="homeRight">
-                    <Homemap value={stores}/>
+                    <Homemap value={stores} />
                 </div>
             </div>
         </div >

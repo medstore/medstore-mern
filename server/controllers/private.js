@@ -189,3 +189,13 @@ exports.searchProduct = async (req, res, next) => {
         console.log(err)
     }
 }
+
+exports.getrandomproducts = async (req, res, next) => {
+    try {
+        let product = await Product.find();
+        res.status(200).json(product);
+    } catch (err) {
+        next(err);
+        console.log(err)
+    }
+}
