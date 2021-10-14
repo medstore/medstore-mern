@@ -90,7 +90,7 @@ const Orders = () => {
           <TableCell align="left">Order Id</TableCell>
           <TableCell align="left">Customer Name</TableCell>
             <TableCell align="left">Quantity</TableCell>
-            <TableCell align="left">Product</TableCell>
+            <TableCell align="left">Product Name</TableCell>
             <TableCell align="left">Status</TableCell>
             
           </TableRow>
@@ -106,18 +106,15 @@ const Orders = () => {
               <TableCell align="left">
                 {order.quantity}
               </TableCell>
-              <TableCell>
-              {product.map((item) => (
-                <TableRow>
-                <label> <b>Name: </b> &nbsp; <TableCell align="left">{item.productName}</TableCell></label>  
-                <label> <b>Price : </b> &nbsp;<TableCell align="left">{item.productPrice}</TableCell></label>
-                <hr></hr>
-                
-                </TableRow>
-                
-
-                ))}
-              </TableCell>
+              
+              {product.map(item => { return order.productId === item._id ?<div>
+                    <label><b>Name : &nbsp; </b><TableCell align="left">{item.productName}</TableCell></label> 
+                    <label><b>Price : &nbsp; </b><TableCell align="left">{item.productPrice}</TableCell></label>
+                     
+                  </div>  :""
+                 
+              })}
+              
               
                  
                 <TableCell align="left">

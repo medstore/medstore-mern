@@ -4,8 +4,10 @@ import { useHistory } from 'react-router';
 import axios from "axios";
 import { AppContext } from '../../context/appContext/AppContext';
 import ItemCart from '../../components/ItemCard/ItemCard'
+import CardMedia from '@material-ui/core/CardMedia';
+ 
 const AllProduct = () => {
-
+    
 
     const { user } = useContext(AppContext);
     const [errors, setErrors] = useState("");
@@ -69,21 +71,29 @@ const AllProduct = () => {
                 {
                 product.map((item, index) => {
                     
-                return  <div className="storeregContainer">
+                return  <div className="allproductContainer">
                 
-                <div className="storeregWrapper">
-                <div className="storeregRight" >
-                    <div className="storeregBox">
+                <div className="allproductWrapper">
+                <div className="allproductRight" >
+                    <div className="allproductBox">
                         
                             {errors ?
                             <div className="errorDiv">
                                 <span className="errorMessage">{errors}</span>
                             </div> : null}
+                            <div>
+                            <CardMedia
+                                className="productImg1"
+                                image={
+                                    item.productImage
+                                }
+                                title={"Image"} />
+                            </div>
                          <div>
-                         <h2>{item.productName}</h2>
+                         <h3>{item.productName}</h3>
+                         <span className="productPrice">{`₹${item.productPrice}/-`}</span> 
                          <p>{item.productDescription}</p>
-                         <p>{item.productPrice}</p>
-                         <p>{item.productDetails}</p>
+                          <p>{item.productDetails}</p>
                          </div>
 
                     </div>
