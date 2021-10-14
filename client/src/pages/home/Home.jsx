@@ -6,14 +6,21 @@ import axios from 'axios'
 import Itemdata from '../../components/ItemCard/Itemdata'
 import ItemCart from '../../components/ItemCard/ItemCard'
 import Product from '../addproduct/Product';
+import { CircularProgress } from '@material-ui/core';
+
 export default function Home() {
+
     const [userAddress, setUserAddress] = useState([]);
+    const [searchValue, setSearchValue] = useState("");
+    const [products, setProducts] = useState([]);
+    const [stores, setStores] = useState([]);
     const [selected, setSelected] = useState("N/A")
     const [locallowed, setLocallowed] = useState(true)
+    const [isLoading, setIsLoading] = useState(false);
     const location = useGeoLocation();
 
     // console.log(Itemdata.productData)
- 
+
     useEffect(() => {
         const getUserLocation = async () => {
             let list = [];
@@ -35,11 +42,55 @@ export default function Home() {
         getUserLocation();
     }, [location.coordinates])
 
+    useEffect(() => {
+        const getallProduct = async()=>{
+            try {
+                const res = await axios.get("/api/private/getrandomproducts");
+                setProducts(res.data);
+                /* setIsLoading(false); */
+            } catch (err) {
+                /* setIsLoading(false);
+                console.log("Error in fetching products") */
+            }
+        }
+        getallProduct();
+    }, [])
+
     const handleChange = (e) => {
         e.preventDefault();
         setSelected(e.target.value)
     }
     // console.log(Itemdata.productData);
+
+    const handleInputChange = (e) => {
+        e.preventDefault();
+        setSearchValue(e.target.value);
+    }
+
+    const handleSearch = async (e) => {
+        e.preventDefault();
+        setIsLoading(true);
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            }
+        }
+        try {
+            for (let i = 0; i < userAddress.length; i++) {
+                if (userAddress[i].id === selected) {
+                    const res = await axios.post("/api/private/searchproduct", { "locationName": selected, "location": userAddress[i].name, "searchValue": searchValue }, config);
+                    setProducts(res.data.product);
+                    setStores(res.data.stores);
+                }
+            }
+            setIsLoading(false);
+        } catch (err) {
+            setIsLoading(false);
+            console.log("Error in fetching products")
+        }
+    }
+
     return (
         <div className="home">
             {
@@ -53,7 +104,7 @@ export default function Home() {
                     <div className="leftWrapper">
                         <div className="inputItem">
                             <i className="fas fa-search"></i>
-                            <input className="inputProduct" placeholder="Search products here..." />
+                            <input onChange={handleInputChange} value={searchValue} className="inputProduct" placeholder="Search products here..." />
                         </div>
                         <div className="selectItem">
                             <select id="dropdown" onChange={handleChange}>
@@ -66,22 +117,22 @@ export default function Home() {
                                     })
                                 }
                             </select>
-                            <button className="searchButton" disabled={!locallowed}>Search</button>
+                            <button onClick={handleSearch} className="searchButton" disabled={!locallowed}>Search</button>
                         </div>
 
                         <div className="productsDiv">
                             {
-                                Itemdata.productData.map((item, index) => {
-                                    return <ItemCart img={item.img} title={item.title} desc={item.desc}
-                                        price={item.price}
-                                        details={item.details} key={index} />
-                                })
+                                isLoading ? <CircularProgress color="grey" size="40px" /> :
+                                    products ? products.map((item, key) => {
+                                        return <><ItemCart value={item} key={key} /></>
+                                    }) : "No Product Found"
                             }
+
                         </div>
                     </div>
                 </div>
                 <div className="homeRight">
-                    <Homemap />
+                    <Homemap value={stores} />
                 </div>
             </div>
         </div >
