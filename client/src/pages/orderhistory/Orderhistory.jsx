@@ -9,17 +9,19 @@ import './orderhistory.css'
 export default function Orderhistory() {
 
     const { user } = useContext(AppContext);
+    const [orders, setOrders] = useState([]);
 
     useEffect(()=>{
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("authToken")}`
-            }
-        }
         const fetchdata = async()=>{
+            const config = {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                }
+            }
             try{
-                const {res} = axios.get('/api/private/getallcartitem', { userId: user._id }, config).catch(err => {
+                const {data} = await axios.post('/api/private/getorderhistory', { userId: user._id }, config).catch(err => {
+                    console.log(err);
                     if (err.response.status === 404) {
                         throw new Error(`Product Not Found`);
                     }
@@ -28,9 +30,9 @@ export default function Orderhistory() {
                     }
                     throw err;
                 });
-                console.log(res)
+                setOrders(data);
             }catch(err){
-                console.log("Error Occured")
+                console.log(err)
             }
         }
         fetchdata();
@@ -39,12 +41,13 @@ export default function Orderhistory() {
     return (
         <div className="orderhistory">
             <div className="orderHistoryWrapper">
-                <ItemHistoryCard/>
-                <ItemHistoryCard/>
-                <ItemHistoryCard/>
-                <ItemHistoryCard/>
-                <ItemHistoryCard/>
-                <ItemHistoryCard/>
+                {
+                    orders.map((obj, key)=>{
+                        return (
+                            <ItemHistoryCard value={obj}/>
+                        )
+                    })
+                }
             </div>
         </div>
     )

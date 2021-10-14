@@ -199,3 +199,13 @@ exports.getrandomproducts = async (req, res, next) => {
         console.log(err)
     }
 }
+
+exports.getorderhistory = async (req, res, next) => {
+    try {
+        const order = await Order.find({customerId: req.body.userId});
+        res.status(200).json(order);
+    } catch (err) {
+        next(err);
+        console.log(err)
+    }
+}
