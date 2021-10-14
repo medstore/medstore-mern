@@ -13,7 +13,8 @@ import Paper from '@material-ui/core/Paper';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';  
+import FormControl from '@material-ui/core/FormControl';
+import { CircularProgress } from '@material-ui/core';   
 const Orders = () => {
 
 
@@ -28,6 +29,8 @@ const Orders = () => {
   const handleChange = (event) => {
     setStatus(event.target.value);
   };
+
+
     useEffect(() => {   
      
       
@@ -137,7 +140,9 @@ const Orders = () => {
            </FormControl>
                          
                 </TableCell>
-              
+              <TableCell>
+              <button type="submit"  className="statusButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "Update Status"}</button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
