@@ -157,7 +157,7 @@ exports.getallStoreProduct = async (req, res, next) => {
         console.log(err)
     }
 };
- 
+  
 exports.buyproduct = async (req, res, next) => {
     try {
         const receiveItem = req.body;
@@ -256,8 +256,15 @@ exports.getStoreDetails = async (req, res, next) => {
             return res.status(404).json({ sucess: false, error: "Store data unavailable" });
         }
             else{
-                console.log(storeExist)
-                return res.status(200).json({store: storeExist}); 
+                // console.log(storeExist)
+                store = await Store.findByIdAndUpdate(req.body.storeId,req.body,{
+                    //new : true => return new updated document , defalut value is false
+                    new: true,
+                    //runValidators :true => to check validation
+                    runValidators :true,
+                    useFindAndModify : false
+                });
+                return res.status(200).json({store: store}); 
             }
  
         }
@@ -268,6 +275,28 @@ exports.getStoreDetails = async (req, res, next) => {
     }
 };
  
+exports.updateStore = async (req, res, next) => {
+    try {
+        // console.log(req.body.storeId);
+         const storeExist = await Store.findById({ _id: req.body.storeId});
+        
+        if (!storeExist) {
+            return res.status(404).json({ sucess: false, error: "Store data unavailable" });
+        }
+            else{
+                // console.log(storeExist)
+                console.log(req.body)
+                // await storeExist.updateOne({ $pull: { cartItem: req.body.productId } });
+                return res.status(200).json({store: storeExist}); 
+            }
+ 
+        }
+     
+    catch (err) {
+        next(err);
+        console.log(err)
+    }
+};
 
 exports.getrandomproducts = async (req, res, next) => {
     try {
