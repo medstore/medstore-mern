@@ -15,7 +15,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     const getLoggedIn = async ()=>{
         const res = await axios.get("/api/private/getuser", config);
         if(res){
-            console.log(res)
             dispatch({type: "FETCH_SUCCESS", payload: res.data });
         }else{
             dispatch({type: "EMPTY_STATE"});
