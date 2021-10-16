@@ -35,6 +35,9 @@
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
 }
+.dashboardListItem:hover{
+    background-color: #5a63b9;
+}
 
 .dashListItemLogout{
     cursor: pointer;
@@ -48,4 +51,10 @@
     color: white;
     transition: all 0.2s ease;
     border-radius: 10px;
+}
+.dashListItemLogout:hover{
+    background-color: #5a63b9;
+}
+.dashHr{
+    margin: 20px;
 }

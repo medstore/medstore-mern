@@ -54,7 +54,7 @@ export default function Userdashboard(props) {
                         <li id="createstore" className={"dashboardListItem"} onClick={()=>{history.push(`/createstore/${user._id}`);}}>Store Dashboard</li> :
                         <li id="createstore" className={"dashboardListItem"} onClick={()=>{history.push(`/createstore/${user._id}`);}}>Create Store</li>
                     }
-                    
+                    <hr className="dashHr"></hr>
                     <li id="logout" className="dashListItemLogout" onClick={logoutHandler}>Logout</li>
                 </ul>
             </div>

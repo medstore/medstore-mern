@@ -40,7 +40,7 @@ export default function ItemHistoryCard(props) {
 
                 <div className="hcsecDiv">
                     <div className="historyTS">
-                        <span className="orderTime">Ordered on {props.value.createdAt.split("T")[0]} - Delivered on {props.value.updatedAt.split("T")[0]}</span>
+                        <span className="orderTime">Ordered on {props.value.createdAt.split("T")[0]}</span>
                     </div>
                     <div className="c2">
                         <div className="sec1">
