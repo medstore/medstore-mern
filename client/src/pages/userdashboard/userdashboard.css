@@ -2,12 +2,16 @@
     height: calc(100vh - 50px);
     width: 100%;
     background-color: #f0f2f5;
+    display: flex;
 }
 .left{
-    width: 300px;
+    flex: 0.2;
     height: calc(100vh - 50px);
     background-color:#283290;
-    position: absolute;
+}
+.right{
+    flex: 0.8;
+    overflow-y: scroll;
 }
 
 .dashboardul{
