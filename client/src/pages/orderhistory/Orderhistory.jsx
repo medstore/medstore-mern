@@ -51,6 +51,7 @@ export default function Orderhistory() {
                 :
                 <div className="orderHistoryWrapper">
                 {
+                    orders.length == 0 ? <h2>No history to show</h2> :
                     orders.map((obj, key)=>{
                         return (
                             <ItemHistoryCard value={obj}/>

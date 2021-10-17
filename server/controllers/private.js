@@ -6,8 +6,8 @@ const Order = require('../models/Order')
 //get user data
 exports.getuser = async (req, res, next) => {
     try {
-        const { _id, firstname, lastname, email, cartItem, userAddress, storeId, ...other } = req.user;
-        res.status(200).json({ _id, firstname, lastname, email, cartItem, userAddress, storeId });
+        const { _id, firstname, lastname, email, cartItem, userAddress, storeId, profileImg, ...other } = req.user;
+        res.status(200).json({ _id, firstname, lastname, email, cartItem, userAddress, storeId, profileImg });
     } catch (err) {
         next(err);
     }

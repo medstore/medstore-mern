@@ -4,6 +4,10 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 const UserSchema = new mongoose.Schema({
+  profileImg: {
+    type: String,
+    default: "https://cdn.shoplightspeed.com/shops/626275/files/18687152/600x600x1/stickers-northwest-sticker-smiley-face.jpg",
+  },
   firstname: {
     type: String,
     required: [true, "Please provide Firstname"],

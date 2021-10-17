@@ -13,7 +13,7 @@ export default function Profile() {
                 user ?
                     <div className="profileWrapper">
                         <h1 className="profileHeading">Profile</h1>
-                        <div className="profileImgDiv"><img className="profileImg" src={emptyprofile} /></div>
+                        <div className="profileImgDiv"><img className="profileImg" src={user.profileImg} /></div>
                         <Editdetailform signal={true} />
                         <div className="pInfo">
                             <h2>Personal Infomation</h2>

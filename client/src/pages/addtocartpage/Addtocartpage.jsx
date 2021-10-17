@@ -120,7 +120,7 @@ export default function Addtocartpage() {
             try {
                 const { data } = await axios.post('/api/private/getallcartitem', { userId: user._id }, config).catch(err => {
                     if (err.response.status === 404) {
-                         setErrors("Product Not Found")
+                        setErrors("Product Not Found")
                         throw new Error(`Product Not Found`);
                     }
                     else {
@@ -149,7 +149,7 @@ export default function Addtocartpage() {
         getProductdata();
     }, [user])
 
-    const handleCheckOut = async(e) => {
+    const handleCheckOut = async (e) => {
         e.preventDefault();
         const config = {
             headers: {
@@ -185,12 +185,13 @@ export default function Addtocartpage() {
                 {
                     isFetching ?
                         <CircularProgress color="inherit" size="30px" /> :
-                        cartitems.map((item, key) => {
-
-                            return (
-                                <CartItem value={item} />
-                            )
-                        })
+                        cartitems.length == 0 ?
+                            <h2>Your cart is empty</h2> :
+                            cartitems.map((item, key) => {
+                                return (
+                                    <CartItem value={item} />
+                                )
+                            })
                 }
                 <div className="footer">
                     <hr></hr>

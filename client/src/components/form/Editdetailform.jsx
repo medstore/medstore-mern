@@ -61,6 +61,16 @@ export default function Editdetailform(props) {
                 <TextField
                   autoFocus
                   margin="dense"
+                  id="profileImg"
+                  name="profileImg"
+                  onChange={handleChange}
+                  value={myUser.profileImg}
+                  label="Profile Image Url"
+                  type="text"
+                  fullWidth />
+                <TextField
+                  autoFocus
+                  margin="dense"
                   id="firstname"
                   name="firstname"
                   onChange={handleChange}
