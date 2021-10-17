@@ -43,7 +43,7 @@ export default function Home() {
     }, [location.coordinates])
 
     useEffect(() => {
-        const getallProduct = async()=>{
+        const getallProduct = async () => {
             try {
                 const res = await axios.get("/api/private/getrandomproducts");
                 setProducts(res.data);
@@ -79,9 +79,15 @@ export default function Home() {
         try {
             for (let i = 0; i < userAddress.length; i++) {
                 if (userAddress[i].id === selected) {
+                    console.log(selected, userAddress[i].name)
                     const res = await axios.post("/api/private/searchproduct", { "locationName": selected, "location": userAddress[i].name, "searchValue": searchValue }, config);
-                    setProducts(res.data.product);
-                    setStores(res.data.stores);
+                    if (res.data.message) {
+                        setProducts([]);
+                        setStores([]);
+                    }else{
+                        setProducts(res.data.product);
+                        setStores(res.data.stores);
+                    }
                 }
             }
             setIsLoading(false);
@@ -123,7 +129,7 @@ export default function Home() {
                         <div className="productsDiv">
                             {
                                 isLoading ? <CircularProgress color="grey" size="40px" /> :
-                                    products ? products.map((item, key) => {
+                                    products && products.length>0 ? products.map((item, key) => {
                                         return <><ItemCart value={item} key={key} /></>
                                     }) : "No Product Found"
                             }
