@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
@@ -6,10 +6,14 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import { AppContext } from '../../context/appContext/AppContext';
+import axios from 'axios'
 
 export default function Editdetailform(props) {
+
+  const { user } = useContext(AppContext);
   const [open, setOpen] = React.useState(false);
-  const [myUser, setMyUser] = useState({firstName: "Sushil Kumar", lastName:"Gupta", email:"abcd@gmail.com", delAddress:"Delivery Address: Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt quis consectetur temporibus"})
+  const [myUser, setMyUser] = useState(user)
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -22,7 +26,18 @@ export default function Editdetailform(props) {
   };
 
   const handleSubmit = async () => {
-    
+    const updateUser = async () => {
+      try {
+        const { data } = await axios.post('/api/auth/updateuserdata', { userId: user._id, ...myUser });
+        if(data){
+          handleClose();
+          alert("Profile Updated Successfully")
+        }
+      } catch (err) {
+        console.log("Error in updating user");
+      }
+    }
+    updateUser();
   }
 
   const handleClose = async () => {
@@ -46,20 +61,20 @@ export default function Editdetailform(props) {
                 <TextField
                   autoFocus
                   margin="dense"
-                  id="firstName"
-                  name="firstName"
+                  id="firstname"
+                  name="firstname"
                   onChange={handleChange}
-                  value={myUser.firstName}
+                  value={myUser.firstname}
                   label="First Name"
                   type="text"
                   fullWidth />
                 <TextField
                   autoFocus
                   margin="dense"
-                  id="lastName"
-                  name="lastName"
+                  id="lastname"
+                  name="lastname"
                   onChange={handleChange}
-                  value={myUser.lastName}
+                  value={myUser.lastname}
                   label="Last Name"
                   type="text"
                   fullWidth
@@ -67,15 +82,15 @@ export default function Editdetailform(props) {
                 <TextField
                   autoFocus
                   margin="dense"
-                  id="delAddress"
-                  name="delAddress"
+                  id="userAddress"
+                  name="userAddress"
                   onChange={handleChange}
-                  value={myUser.delAddress}
+                  value={myUser.userAddress}
                   label="Delivery Address"
                   type="text"
                   fullWidth
                 />
-                
+
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleClose} color="primary">

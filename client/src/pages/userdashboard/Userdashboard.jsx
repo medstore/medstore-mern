@@ -50,7 +50,7 @@ export default function Userdashboard(props) {
                     <li id="addtocart" className={"dashboardListItem"} onClick={changePage}>My Cart</li>
 
                     {
-                        user.storeId ?
+                        user && user.storeId ?
                         <li id="createstore" className={"dashboardListItem"} onClick={()=>{history.push(`/createstore/${user._id}`);}}>Store Dashboard</li> :
                         <li id="createstore" className={"dashboardListItem"} onClick={()=>{history.push(`/createstore/${user._id}`);}}>Create Store</li>
                     }

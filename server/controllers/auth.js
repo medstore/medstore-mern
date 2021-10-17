@@ -62,7 +62,7 @@ exports.updateuser = async (req, res, next) => {
         $set: req.body
       }
    )
-   res.status(200).json("Profile Successfully Updated")
+   res.status(200).json(user);
   }
   catch (err) {
     next(err);
