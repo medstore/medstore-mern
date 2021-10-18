@@ -23,6 +23,7 @@ import Setting from './pages/setting/Setting';
 import Singleproduct from './pages/singleproduct/Singleproduct';
 import Addtocartpage from './pages/addtocartpage/Addtocartpage';
 import { CartContextProvider } from './context/cartContext/CartContext';
+import Orderhistory from './pages/orderhistory/Orderhistory';
 
 
  
@@ -62,6 +63,11 @@ function App() {
                  
  
                 <PrivateRoute exact path="/addtocart" component={Addtocartpage} />
+ 
+ 
+            
+                <PrivateRoute exact path="/userdashboard/:page" component={Userdashboard} />
+                {/* <PrivateRoute exact path="/addtocart" component={Addtocartpage} /> */}
  
               </Switch>
             </div>

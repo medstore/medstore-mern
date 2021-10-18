@@ -58,7 +58,7 @@ export default function Topbar() {
                 {
                     authenticated &&
                     <div className="topbarProfile">
-                        <img className="topbarProfImg" src={emptyprofile} />
+                        <img className="topbarProfImg" src={user.profileImg} />
 
                         <div class="dropdown-menu">
                             <button class="menu-btn">{user.email} </button>
@@ -67,7 +67,7 @@ export default function Topbar() {
                                 <NavLink exact className="links-hidden" to='/storedashboard/analytics'>Store DashBoard</NavLink>
                             </div>
                         </div>
-                        <div className="cartDiv" onClick={()=>history.push('/addtocart')}>
+                        <div className="cartDiv" onClick={()=>history.push('/userdashboard/addtocart')}>
                             <span className="cartNumber">{user.cartItem.length}</span>
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </div>
