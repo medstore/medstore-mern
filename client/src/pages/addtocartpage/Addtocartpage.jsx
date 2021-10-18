@@ -3,6 +3,7 @@ import { AppContext } from '../../context/appContext/AppContext'
 import { CircularProgress } from '@material-ui/core';
 import './addtocartpage.css'
 import axios from 'axios'
+import Orderconfirm from '../../components/form/Orderconfirm';
 
 export default function Addtocartpage() {
 
@@ -149,36 +150,6 @@ export default function Addtocartpage() {
         getProductdata();
     }, [user])
 
-    const handleCheckOut = async (e) => {
-        e.preventDefault();
-        const config = {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("authToken")}`
-            }
-        }
-        /* setIsFetching(true); */
-        try {
-            const { data } = await axios.post(`/api/private/buyproduct`, cartitems, config).catch(err => {
-                if (err.response.status === 404) {
-                    /* setErrors("Invalid User") */
-                    throw new Error(`Invalid User`);
-                }
-                else {
-                    /* setErrors("Internal Server Error") */
-                    throw new Error(`Internal Server Error`);
-                }
-                throw err;
-            });
-            /* setIsFetching(false); */
-            alert("Order Successful")
-        } catch (err) {
-            /* setIsFetching(false); */
-            /* setErrors("Error Occured") */
-        }
-
-    }
-
     return (
         <div className="addtocartpage">
             <div className="addtocartpageWrapper">
@@ -199,7 +170,7 @@ export default function Addtocartpage() {
                         <span className="gt">Grand Total</span>
                         <span>₹{grossTotal}/-</span>
                     </b>
-                    <button className="ckButton" onClick={handleCheckOut}>Check Out</button>
+                    <Orderconfirm signal={true} value={cartitems}/>
                 </div>
             </div>
         </div>

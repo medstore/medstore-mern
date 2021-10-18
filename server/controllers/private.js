@@ -132,10 +132,11 @@ exports.addproduct = async (req, res, next) => {
     }
 };
 
-
+//order products
 exports.buyproduct = async (req, res, next) => {
     try {
-        const receiveItem = req.body;
+        const receiveItem = req.body.items;
+        const deliveryAddress = req.body.address;
         for (const obj of receiveItem) {
             const { customerId, customerName, storeId, totalPrice } = obj;
             const productId = obj._id;
@@ -147,7 +148,8 @@ exports.buyproduct = async (req, res, next) => {
                 storeId: storeId,
                 totalPrice: totalPrice,
                 productId: productId,
-                quantity: quantity
+                quantity: quantity,
+                deliveryAddress: deliveryAddress
             });
         }
 

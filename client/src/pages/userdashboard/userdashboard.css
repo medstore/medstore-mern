@@ -12,6 +12,7 @@
 .right{
     flex: 0.8;
     overflow-y: scroll;
+    margin: 20px 0px;
 }
 
 .dashboardul{

@@ -58,7 +58,7 @@ export default function Topbar() {
                 {
                     authenticated &&
                     <div className="topbarProfile">
-                        <img className="topbarProfImg" src={emptyprofile} />
+                        <img className="topbarProfImg" src={user.profileImg} />
 
                         <div class="dropdown-menu">
                             <button class="menu-btn">{user.email} </button>
