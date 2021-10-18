@@ -36,8 +36,7 @@ function Homemap(props) {
 
 	useEffect(() => {
 		setStores(props.value);
-		
-		if (props.value.length>0) {
+		if (props && props.value.length>0) {
 			handleGeocoderViewportChange({
 				width: "95%",
 				height: "95%",

@@ -6,8 +6,8 @@ const Order = require('../models/Order')
 //get user data
 exports.getuser = async (req, res, next) => {
     try {
-        const { _id, firstname, lastname, email, cartItem, userAddress, storeId, ...other } = req.user;
-        res.status(200).json({ _id, firstname, lastname, email, cartItem, userAddress, storeId });
+        const { _id, firstname, lastname, email, cartItem, userAddress, storeId, profileImg, ...other } = req.user;
+        res.status(200).json({ _id, firstname, lastname, email, cartItem, userAddress, storeId, profileImg });
     } catch (err) {
         next(err);
     }
@@ -132,10 +132,11 @@ exports.addproduct = async (req, res, next) => {
     }
 };
 
-
+//order products
 exports.buyproduct = async (req, res, next) => {
     try {
-        const receiveItem = req.body;
+        const receiveItem = req.body.items;
+        const deliveryAddress = req.body.address;
         for (const obj of receiveItem) {
             const { customerId, customerName, storeId, totalPrice } = obj;
             const productId = obj._id;
@@ -147,7 +148,8 @@ exports.buyproduct = async (req, res, next) => {
                 storeId: storeId,
                 totalPrice: totalPrice,
                 productId: productId,
-                quantity: quantity
+                quantity: quantity,
+                deliveryAddress: deliveryAddress
             });
         }
 
@@ -194,6 +196,16 @@ exports.getrandomproducts = async (req, res, next) => {
     try {
         let product = await Product.find();
         res.status(200).json(product);
+    } catch (err) {
+        next(err);
+        console.log(err)
+    }
+}
+
+exports.getorderhistory = async (req, res, next) => {
+    try {
+        const order = await Order.find({customerId: req.body.userId});
+        res.status(200).json(order);
     } catch (err) {
         next(err);
         console.log(err)

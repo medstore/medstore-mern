@@ -5,6 +5,10 @@ const OrderSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please provide customerId"],
     },
+    deliveryAddress: {
+        type: String,
+        required: [true, "Please provide deliveryAddress"],
+    },
     customerName: {
         type: String,
         required: [true, "Please provide customerName"],

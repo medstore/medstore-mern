@@ -7,7 +7,7 @@
 }
 .profileWrapper{
     display: flex;
-    width: 50%;
+    width: 80%;
     justify-content: center;
     align-content: center;
     flex-direction: column;

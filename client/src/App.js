@@ -16,6 +16,7 @@ import Userdashboard from './pages/userdashboard/Userdashboard';
 import Singleproduct from './pages/singleproduct/Singleproduct';
 import Addtocartpage from './pages/addtocartpage/Addtocartpage';
 import { CartContextProvider } from './context/cartContext/CartContext';
+import Orderhistory from './pages/orderhistory/Orderhistory';
 
 
 
@@ -32,12 +33,14 @@ function App() {
                 <PrivateRoute exact path="/" component={Home} />
                 <Route exact path="/signin" component={Signin} />
                 <Route exact path="/signup" component={Signup} />
+                {/* <Route exact path="/orderhistory" component={Orderhistory} /> */}
+
                 <PrivateRoute exact path="/product/:productId" component={Singleproduct} />
-                <PrivateRoute exact path="/profile" component={Profile} />
+                {/* <PrivateRoute exact path="/profile" component={Profile} /> */}
                 <PrivateRoute exact path="/createstore/:userid" component={Createstore} />
                 <PrivateRoute exact path="/addproduct" component={Product} />
-                <PrivateRoute exact path="/userdashboard/:id" component={Userdashboard} />
-                <PrivateRoute exact path="/addtocart" component={Addtocartpage} />
+                <PrivateRoute exact path="/userdashboard/:page" component={Userdashboard} />
+                {/* <PrivateRoute exact path="/addtocart" component={Addtocartpage} /> */}
               </Switch>
             </div>
           </BrowserRouter>

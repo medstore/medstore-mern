@@ -48,6 +48,27 @@ exports.signup = async (req, res, next) => {
   }
 };
 
+//   Update user
+exports.updateuser = async (req, res, next) => {
+  const { firstname, lastname, userAddress} = req.body;
+
+  try {
+    const user = await User.findById(req.body.userId);
+    if(!user){
+      return res.status(404).json({ sucess: false, error: "User Not Found" });
+    }
+    await user.updateOne(
+      {
+        $set: req.body
+      }
+   )
+   res.status(200).json(user);
+  }
+  catch (err) {
+    next(err);
+  }
+};
+
 
 const sendToken = async (user, statusCode, res) => {
   const token = await user.getSignedJwtToken();
