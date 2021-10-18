@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
  
-const {getuser, registerstore , addproduct, searchProduct, getsingleproduct,getrandomproducts, additemtocart, getAllCartItem, removeitemfromcart, buyproduct ,getallStoreProduct , getallOrderedProduct , getStoreDetails , getorderhistory} = require('../controllers/private');
+const {getuser, registerstore , addproduct, searchProduct, getsingleproduct,getrandomproducts, additemtocart, getAllCartItem, removeitemfromcart, buyproduct ,getallStoreProduct , getallOrderedProduct , getStoreDetails , getorderhistory ,getAnalytics} = require('../controllers/private');
  
  
 const {protect} = require('../middleware/auth')
@@ -14,7 +14,7 @@ router.route("/storedashboard/addstoreproduct").post(protect, addproduct);
 router.route("/storedashboard/allstoreproduct").post(protect, getallStoreProduct);
 router.route("/storedashboard/orders").post(protect, getallOrderedProduct);
 router.route("/storedashboard/setting").post(protect, getStoreDetails);
- 
+router.route("/storedashboard/analytics").post(protect, getAnalytics);
 router.route("/product").post(protect, addproduct);
 router.route("/searchproduct").post(protect, searchProduct);
 router.route("/getsingleproduct/:productId").get(getsingleproduct);
