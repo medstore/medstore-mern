@@ -2,14 +2,18 @@
     height: calc(100vh - 50px);
     width: 100%;
     background-color: #f0f2f5;
+    display: flex;
 }
 .left{
-    width: 300px;
+    flex: 0.2;
     height: calc(100vh - 50px);
     background-color:#283290;
-    position: absolute;
 }
-
+.right{
+    flex: 0.8;
+    overflow-y: scroll;
+    margin: 20px 0px;
+}
 .dashboardul{
     overflow:hidden;
     margin: 0px;
@@ -30,6 +34,10 @@
     transition: all 0.2s ease;
     border-bottom-left-radius: 10px;
     border-top-left-radius: 10px;
+}
+
+.dashboardListItem:hover{
+    background-color: #5a63b9;
 }
 
  

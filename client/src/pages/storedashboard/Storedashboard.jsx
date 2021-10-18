@@ -2,8 +2,12 @@ import './storedashboard.css'
 import { useHistory } from 'react-router'
 import { useContext } from 'react';
 import { AppContext } from '../../context/appContext/AppContext';
-
-export default function Storedashboard() {
+import Analytics from '../analytics/Analytics';
+import Orders from '../orders/Orders';
+import Setting from '../setting/Setting';
+import AllProduct from '../allproduct/AllProduct';
+import Product from '../addproduct/Product';
+export default function Storedashboard(props) {
 
     const history = useHistory();
     const {dispatch} = useContext(AppContext);
@@ -13,6 +17,30 @@ export default function Storedashboard() {
         history.push(`/storedashboard/${e.target.id}`);
     }
  
+
+    const switchComponent = () => {
+        switch (props.match.params.page) {
+            case 'analytics':
+                return <Analytics />
+            /* case 'profile':
+              return <Profile /> */
+            case 'addstoreproduct':
+                return <Product />
+            case 'allstoreproduct':
+                return <AllProduct />
+            case 'orders':
+                return <Orders />
+            case 'setting':
+                return <Setting />
+            default:
+                return (
+                    <div className="notFoundDiv">
+                        <h2>Sorry, Page Not Found!</h2>
+                    </div>
+                )
+        }
+    }
+
     return (
         <div className="storedashboard">
             <div className="left">
@@ -25,7 +53,9 @@ export default function Storedashboard() {
                 </ul>
             </div>
             <div className="right">
-
+                {
+                    switchComponent()
+                }
             </div>
         </div>
     )
