@@ -121,8 +121,9 @@ export default function Createstore(props) {
                         <div className="divinput" >
                             <input type="text" required className="storeregInput"
                                 name="storeAddress"
-                                value={myStore.storeAddress} />
-                            <label for="">Store Address</label>
+                                value={myStore.storeAddress}
+                                disabled='true'
+                                placeholder="Search Address in below input field" />
                         </div>
                         <div className="addressMap">
                             <CreateStoreMap />
