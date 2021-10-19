@@ -89,10 +89,18 @@
  .dropdown-menu {
     position: relative;
     display: inline-block;
+    justify-content: center;
+    align-items: center;
+ }
+ .dropdown-flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
  }
  .menu-content {
     display: none;
     position: absolute;
+    top: 50px;
     background-color:white;
     min-width: 180px;
     z-index: 1;
@@ -122,3 +130,39 @@
     display: block;
     
  }
+ .drawerButton{
+    display: none;
+}
+
+ @media only screen and (max-width: 650px) {
+    .drawerButton{
+        display: flex;
+    }
+    .cartDiv{
+        margin-left: 5px;
+    }
+    .topbarProfile{
+        right: 20px;
+    }
+    .homeLogo{
+        font-size: 22px;
+        font-weight: 700;
+        margin-left: 10px;
+        color: #00ff0d;
+    }
+    .nav-link{
+        margin: 5px;
+    }
+    .topbarProfImg{
+        height: 25px;
+        width: 25px;
+        border-radius: 50%;
+        margin: auto;
+    }
+    .menu-btn {
+        background-color: #283290;
+        color: white;
+        padding-right: 5px;
+        font-size: 15px;
+     }
+}

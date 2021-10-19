@@ -5,14 +5,17 @@ import { AppContext } from '../../context/appContext/AppContext';
 import Profile from '../profile/Profile';
 import Addtocartpage from '../addtocartpage/Addtocartpage';
 import Orderhistory from '../orderhistory/Orderhistory';
+import DrawerContext from '../../context/DrawerContext';
 
 export default function Userdashboard(props) {
 
     const history = useHistory();
     const {user, dispatch } = useContext(AppContext);
+    const {isOpen, setOpen} = useContext(DrawerContext)
 
     const changePage = (e) => {
         e.preventDefault();
+        setOpen();
         history.push(`/userdashboard/${e.target.id}`);
     }
 
@@ -43,7 +46,7 @@ export default function Userdashboard(props) {
 
     return (
         <div className="userdashboard">
-            <div className="left">
+            <div className={"left " + (isOpen && "active")}>
                 <ul className="dashboardul">
                     <li id="profile" className={"dashboardListItem"} onClick={changePage}>My Account</li>
                     <li id="orderhistory" className={"dashboardListItem"} onClick={changePage} >My Orders</li>

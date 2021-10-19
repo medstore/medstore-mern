@@ -7,10 +7,13 @@ import Orders from '../orders/Orders';
 import Setting from '../setting/Setting';
 import AllProduct from '../allproduct/AllProduct';
 import Product from '../addproduct/Product';
+import DrawerContext from '../../context/DrawerContext';
+
 export default function Storedashboard(props) {
 
     const history = useHistory();
     const {dispatch} = useContext(AppContext);
+    const {isOpen, setOpen} = useContext(DrawerContext)
 
     const changePage = (e) => {
         e.preventDefault();
@@ -43,7 +46,7 @@ export default function Storedashboard(props) {
 
     return (
         <div className="storedashboard">
-            <div className="left">
+            <div className={"left " + (isOpen && "active")}>
                 <ul className="dashboardul">
                     <li id="analytics" className={"dashboardListItem"} onClick={changePage}>Analytics</li>
                     <li id="addstoreproduct" className={"dashboardListItem"} onClick={changePage} >Add Product</li>
