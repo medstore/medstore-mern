@@ -18,6 +18,14 @@
     margin-left: 25px;
     margin-right: 25px;
     color: #00ff0d;
+    display: none;
+}
+.homeLogo1{
+    font-size: 25px;
+    font-weight: 700;
+    margin-left: 25px;
+    margin-right: 25px;
+    color: #00ff0d;
 }
 .topbarList{
     margin: 0;
@@ -149,6 +157,10 @@
         font-weight: 700;
         margin-left: 10px;
         color: #00ff0d;
+        display:flex;
+    }
+    .homeLogo1{
+        display: none;
     }
     .nav-link{
         margin: 5px;

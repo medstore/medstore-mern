@@ -55,6 +55,7 @@ export default function Topbar() {
                     showButton ? <button className="drawerButton" onClick={handleDrawer}>open</button> : null
                 } */}
 
+                <NavLink exact className="nav-link" to="/"><span className="homeLogo1">MedStore</span></NavLink>
                 <span className="homeLogo" onClick={handleDrawer}>MedStore</span>
 
                 <ul className="topbarList">
