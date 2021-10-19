@@ -29,17 +29,27 @@
 }
 .productPrice{
     font-weight: bold;
+    margin: 0px;
 }
 .productPriceStrike{
     color: grey;
     font-size: 15px;
+}
+.cardstorename{
+    color: grey;
+    font-weight: 400;
+    font-size: 14px;
 }
 
 @media only screen and (max-width: 768px) {
     .productCards{
         width: 47%;
     }
-    .productCards{
-        height: 250px;
+    .productImg{
+        width: 100%;
+        object-fit: contain;
+        height: 100px;
+        margin: 0px;
+        padding: 0px;
     }
 }

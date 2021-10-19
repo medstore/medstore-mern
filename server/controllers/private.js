@@ -118,9 +118,11 @@ exports.addproduct = async (req, res, next) => {
         }
 
         const { productName, productDescription, productImage, productPrice, productDetails, storeId } = req.body;
+        const store = await Store.findById(storeId)
 
         const product = await Product.create({
             storeId: storeId,
+            storeName: store.storeName,
             productName: productName,
             productDescription: productDescription,
             productImage: productImage,

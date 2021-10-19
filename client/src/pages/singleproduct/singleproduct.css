@@ -19,6 +19,11 @@
     height: 100%;
     width: 100%;
 }
+.spstoreName{
+    color: gray;
+    font-weight: 400;
+    font-size: 18px;
+}
 .spName{
     font-weight: 500;
     font-size: 22px;

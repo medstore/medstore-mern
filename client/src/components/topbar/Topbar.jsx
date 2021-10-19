@@ -39,6 +39,7 @@ export default function Topbar() {
     return (
         <div className="topbar">
             <div className="topbarWrapper">
+                <button>open</button>
                 <NavLink exact className="nav-link" to="/"><span className="homeLogo">MedStore</span></NavLink>
 
                 <ul className="topbarList">

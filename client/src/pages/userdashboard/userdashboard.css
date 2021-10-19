@@ -4,13 +4,20 @@
     background-color: #f0f2f5;
     display: flex;
 }
+
 .left{
-    flex: 0.2;
+    /* flex: 0.2; */
+    width: 300px;
+    position: fixed;
     height: calc(100vh - 50px);
     background-color:#283290;
 }
+
 .right{
-    flex: 0.8;
+    /* flex: 0.8; */
+    width: calc(100% - 300px);
+    position: absolute;
+    right: 0px;
     overflow-y: scroll;
     margin: 20px 0px;
 }
@@ -58,4 +65,26 @@
 }
 .dashHr{
     margin: 20px;
+}
+
+@media only screen and (max-width: 650px) {
+    /* .left{
+        position: absolute;
+    }
+    .right{
+        width: 100%;
+        overflow-y: scroll;
+        margin: 20px 0px;
+    } */
+    .left{
+        z-index: 999;
+    }
+    
+    .right{
+        /* flex: 0.8; */
+        width: 100%;
+        right: 0px;
+        overflow-y: scroll;
+        margin: 20px 0px;
+    }
 }

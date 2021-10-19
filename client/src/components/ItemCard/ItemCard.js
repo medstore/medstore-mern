@@ -10,7 +10,8 @@ const ItemCart = (props) => {
                     <div className="productCardWrapper">
                         <img src={props.value.productImage} alt="product_image" className="productImg" />
                         <h4 className="productTitle">{props.value.productName}</h4>
-                        <span className="productPrice">{`Rs ${props.value.productPrice}/-`}</span>
+                        <span className="cardstorename">by {props.value.storeName}</span>
+                        <h4 className="productPrice">{`Rs ${props.value.productPrice}/-`}</h4>
                     </div>
                 </a>
             </div>
