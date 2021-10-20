@@ -17,6 +17,7 @@ export default function Storedashboard(props) {
 
     const changePage = (e) => {
         e.preventDefault();
+        setOpen();
         history.push(`/storedashboard/${e.target.id}`);
     }
  
