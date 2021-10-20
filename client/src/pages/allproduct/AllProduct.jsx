@@ -13,7 +13,7 @@ const AllProduct = () => {
     const [errors, setErrors] = useState("");
     const [isFetching, setIsFetching] = useState(false);
     const history = useHistory();
-    const [product, setProduct] = useState([{ productName: "abcdd", productDescription: "", productImage:"", productPrice: "", productDetails: ""}])
+    const [product, setProduct] = useState([{ productName: "abcdd", productDescription: "", productImage:"", productPrice: "", productDetails: "" , productQuantity: ""}])
     
     
     useEffect(() => {   
@@ -91,7 +91,8 @@ const AllProduct = () => {
                             </div>
                          <div>
                          <h3>{item.productName}</h3>
-                         <span className="productPrice">{`₹${item.productPrice}/-`}</span> 
+                         <span className="productPrice">{`₹${item.productPrice}/-`}</span> <br></br><br></br>
+                         <label> <b>Stock : </b><span >{item.productQuantity}</span></label>
                          <p>{item.productDescription}</p>
                           <p>{item.productDetails}</p>
                          </div>

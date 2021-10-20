@@ -117,7 +117,7 @@ exports.addproduct = async (req, res, next) => {
             return res.status(404).json({ sucess: false, error: "User Not Found" })
         }
 
-        const { productName, productDescription, productImage, productPrice, productDetails, storeId } = req.body;
+        const { productName, productDescription, productImage, productPrice, productDetails, productQuantity, storeId } = req.body;
         const store = await Store.findById(storeId)
 
         const product = await Product.create({
@@ -127,6 +127,7 @@ exports.addproduct = async (req, res, next) => {
             productDescription: productDescription,
             productImage: productImage,
             productPrice: productPrice,
+            productQuantity : productQuantity,
             productDetails: productDetails
         });
         res.status(200).json({ sucess: true, message: "Product Added Successfully" });

@@ -90,6 +90,9 @@ export default function Singleproduct(props) {
                                 <h2 className="spName">{item.productName}</h2>
                                 <p className="spstoreName">{item.storeName}</p>
                                 <span className="spPrice">₹{item.productPrice}/-</span>
+                                <br></br>
+
+                                <label className="spQuantity"> <b >Stock : </b><span >{item.productQuantity}</span></label><br></br>
                                 <p className="spDescription">{item.productDescription}</p>
                                 <p className="spDetails">
                                     {item.productDetails}

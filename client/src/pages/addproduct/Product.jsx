@@ -15,7 +15,7 @@ import axios from "axios";
 import { AppContext } from '../../context/appContext/AppContext';
 const Product = () => {
     const { user } = useContext(AppContext);
-    const [product, setProduct] = useState({ productName: "", productDescription: "", productImage:"", productPrice: NaN, productDetails: ""})
+    const [product, setProduct] = useState({ productName: "", productDescription: "", productImage:"", productPrice: NaN, productDetails: "" , productQuantity: ""})
     const [errors, setErrors] = useState("");
     const [isFetching, setIsFetching] = useState(false);
     const history = useHistory();
@@ -60,7 +60,7 @@ const Product = () => {
             setErrors(err.message)
         }
         alert('Product Added Successfully')
-        setProduct({ productName: "", productDescription: "", productImage:"", productPrice: NaN, productDetails: ""})
+        setProduct({ productName: "", productDescription: "", productImage:"", productPrice: NaN, productDetails: "" , productQuantity: ""})
 
     }
 
@@ -110,6 +110,14 @@ const Product = () => {
                         <label for="">Price</label>
                         </div>
                         
+                        <div className="divinput" > 
+                        <input type="text" required  className="productInput" 
+                        name="productQuantity" 
+                        value={product.productQuantity} 
+                        onChange={handleChange} />
+                        <label for="">Quantity</label>
+                        </div>
+
                         <div className="divinput" > 
                         <input type="text" required  className="productInput" 
                         name="productDetails" 
