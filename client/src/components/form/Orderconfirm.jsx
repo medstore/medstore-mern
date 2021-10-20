@@ -15,7 +15,7 @@ export default function Orderconfirm(props) {
 
     const { user } = useContext(AppContext);
     const [open, setOpen] = React.useState(false);
-    const [myUser, setMyUser] = useState(user)
+    const [myUser, setMyUser] = useState(user? user: {})
     const [selectedValue, setSelectedValue] = useState(false)
 
     const handleChange = (e) => {

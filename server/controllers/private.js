@@ -2,7 +2,9 @@ const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
 const Store = require("../models/Store");
 const Product = require("../models/Product");
+
 const Order = require('../models/Order')
+ 
 //get user data
 exports.getuser = async (req, res, next) => {
     try {
@@ -116,9 +118,11 @@ exports.addproduct = async (req, res, next) => {
         }
 
         const { productName, productDescription, productImage, productPrice, productDetails, storeId } = req.body;
+        const store = await Store.findById(storeId)
 
         const product = await Product.create({
             storeId: storeId,
+            storeName: store.storeName,
             productName: productName,
             productDescription: productDescription,
             productImage: productImage,
@@ -132,7 +136,31 @@ exports.addproduct = async (req, res, next) => {
     }
 };
 
-//order products
+ 
+exports.getallStoreProduct = async (req, res, next) => {
+    try {
+        // console.log(req.body.storeId);
+         const storeExist = await Store.findById({ _id: req.body.storeId});
+        
+        if (storeExist) {
+            const productExist = await Product.find({ storeId : req.body.storeId});
+            
+            if(!productExist){
+                return res.status(404).json({ sucess: false, error: "Product data unavailable" });
+            }
+            else{
+                console.log(productExist)
+                return res.status(200).json({products: productExist}); 
+            }
+ 
+        }
+    } catch (err) {
+        next(err);
+        console.log(err)
+    }
+};
+  
+ 
 exports.buyproduct = async (req, res, next) => {
     try {
         const receiveItem = req.body.items;
@@ -154,13 +182,43 @@ exports.buyproduct = async (req, res, next) => {
         }
 
         res.status(200).json({ sucess: true, message: "Order Successfull" });
+ 
     } catch (err) {
         next(err);
         console.log(err)
     }
 };
 
+ 
+exports.getallOrderedProduct = async (req, res, next) => {
+    try {
+        // console.log(req.body.storeId);
+         const storeExist = await Store.findById({ _id: req.body.storeId});
+        
+        if (storeExist) {
+            const orderExist = await Order.find({ storeId : req.body.storeId}); 
 
+            let result = orderExist.map(a => a.productId);
+                // console.log(result)
+            const productExist = await Product.find({ _id : result});
+            
+            if(!orderExist && !productExist){
+                return res.status(404).json({ sucess: false, error: "Product data unavailable" });
+            }
+            else{
+                // console.log(orderExist)
+                // console.log(productExist)
+                
+                return res.status(200).json({orders: orderExist ,products: productExist }); 
+            }
+ 
+        }
+    } catch (err) {
+        next(err);
+        console.log(err)
+    }
+ 
+};
 exports.searchProduct = async (req, res, next) => {
     try {
         const prod = [];
@@ -186,11 +244,42 @@ exports.searchProduct = async (req, res, next) => {
             return res.status(200).json({ message: "No product found" });
         }
         res.status(200).json({ product: prod, stores: nearByStores });
+ 
     } catch (err) {
         next(err);
         console.log(err)
     }
-}
+ 
+};
+
+exports.getStoreDetails = async (req, res, next) => {
+    try {
+        // console.log(req.body.storeId);
+         const storeExist = await Store.findById({ _id: req.body.storeId});
+        
+        if (!storeExist) {
+            return res.status(404).json({ sucess: false, error: "Store data unavailable" });
+        }
+            else{
+                // console.log(storeExist)
+                store = await Store.findByIdAndUpdate(req.body.storeId,req.body,{
+                    //new : true => return new updated document , defalut value is false
+                    new: true,
+                    //runValidators :true => to check validation
+                    runValidators :true,
+                    useFindAndModify : false
+                });
+                return res.status(200).json({store: store}); 
+            }
+ 
+        }
+     
+    catch (err) {
+        next(err);
+        console.log(err)
+    }
+};
+
 
 exports.getrandomproducts = async (req, res, next) => {
     try {
@@ -200,7 +289,7 @@ exports.getrandomproducts = async (req, res, next) => {
         next(err);
         console.log(err)
     }
-}
+} 
 
 exports.getorderhistory = async (req, res, next) => {
     try {
@@ -210,4 +299,34 @@ exports.getorderhistory = async (req, res, next) => {
         next(err);
         console.log(err)
     }
-}
+} 
+
+exports.getAnalytics = async (req, res, next) => {
+    try {
+        // console.log(req.body.storeId);
+         const storeExist = await Store.findById({ _id: req.body.storeId});
+        
+        if (storeExist) {
+            const orderExist = await Order.find({ storeId : req.body.storeId}); 
+
+            let result = orderExist.map(a => a.productId);
+                // console.log(result)
+            const productExist = await Product.find({ _id : result});
+            
+            if(!orderExist && !productExist){
+                return res.status(404).json({ sucess: false, error: "Product data unavailable" });
+            }
+            else{
+                // console.log(orderExist)
+                // console.log(productExist)
+                
+                return res.status(200).json({orders: orderExist ,products: productExist }); 
+            }
+ 
+        }
+    } catch (err) {
+        next(err);
+        console.log(err)
+    }
+ 
+};

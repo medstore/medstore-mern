@@ -13,10 +13,12 @@ import PrivateRoute from './components/routing/PrivateRoute';
 import Createstore from './pages/createstore/Createstore';
 import Product from './pages/addproduct/Product';
 import Userdashboard from './pages/userdashboard/Userdashboard';
+import Storedashboard from './pages/storedashboard/Storedashboard';
 import Singleproduct from './pages/singleproduct/Singleproduct';
 import Addtocartpage from './pages/addtocartpage/Addtocartpage';
 import { CartContextProvider } from './context/cartContext/CartContext';
 import Orderhistory from './pages/orderhistory/Orderhistory';
+import { DrawerContextProvider } from './context/DrawerContext';
 
 
 
@@ -24,28 +26,34 @@ function App() {
   return (
     <AppContextProvider>
       <AddContextProvider>
-        <CartContextProvider>
-        <div className="App">
-          <BrowserRouter>
-            <Topbar />
-            <div className="appWrapper">
-              <Switch>
-                <PrivateRoute exact path="/" component={Home} />
-                <Route exact path="/signin" component={Signin} />
-                <Route exact path="/signup" component={Signup} />
-                {/* <Route exact path="/orderhistory" component={Orderhistory} /> */}
+        <DrawerContextProvider>
+          <CartContextProvider>
+            <div className="App">
+              <BrowserRouter>
+                <Topbar />
+                <div className="appWrapper">
+                  <Switch>
+                    <PrivateRoute exact path="/" component={Home} />
+                    <Route exact path="/signin" component={Signin} />
+                    <Route exact path="/signup" component={Signup} />
 
-                <PrivateRoute exact path="/product/:productId" component={Singleproduct} />
-                {/* <PrivateRoute exact path="/profile" component={Profile} /> */}
-                <PrivateRoute exact path="/createstore/:userid" component={Createstore} />
-                <PrivateRoute exact path="/addproduct" component={Product} />
-                <PrivateRoute exact path="/userdashboard/:page" component={Userdashboard} />
-                {/* <PrivateRoute exact path="/addtocart" component={Addtocartpage} /> */}
-              </Switch>
+                    <PrivateRoute exact path="/product/:productId" component={Singleproduct} />
+
+                    <PrivateRoute exact path="/createstore/:userid" component={Createstore} />
+                    <PrivateRoute exact path="/addproduct" component={Product} />
+
+                    <PrivateRoute exact path="/userdashboard/:page" component={Userdashboard} />
+
+                    <PrivateRoute exact path="/storedashboard/:page" component={Storedashboard} />
+
+                    {/* <PrivateRoute exact path="/addtocart" component={Addtocartpage} /> */}
+
+                  </Switch>
+                </div>
+              </BrowserRouter>
             </div>
-          </BrowserRouter>
-        </div>
-        </CartContextProvider>
+          </CartContextProvider>
+        </DrawerContextProvider>
       </AddContextProvider>
     </AppContextProvider>
   );

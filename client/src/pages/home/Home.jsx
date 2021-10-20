@@ -4,7 +4,7 @@ import useGeoLocation from "../../components/maps/useGeoLocation";
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 import Itemdata from '../../components/ItemCard/Itemdata'
-import ItemCart from '../../components/ItemCard/ItemCard'
+import ItemCard from '../../components/ItemCard/ItemCard'
 import Product from '../addproduct/Product';
 import { CircularProgress } from '@material-ui/core';
 
@@ -86,6 +86,7 @@ export default function Home() {
                         setStores([]);
                     }else{
                         setProducts(res.data.product);
+                        console.log(res.data.product)
                         setStores(res.data.stores);
                     }
                 }
@@ -130,7 +131,7 @@ export default function Home() {
                             {
                                 isLoading ? <CircularProgress color="grey" size="40px" /> :
                                     products && products.length>0 ? products.map((item, key) => {
-                                        return <><ItemCart value={item} key={key} /></>
+                                        return <><ItemCard value={item} key={key} /></>
                                     }) : "No Product Found"
                             }
 

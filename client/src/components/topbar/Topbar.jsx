@@ -6,10 +6,13 @@ import emptyprofile from "../../images/emptyprofile.png"
 import { AppContext } from '../../context/appContext/AppContext';
 import axios from 'axios';
 import Createstore from '../../App';
+import DrawerContext from '../../context/DrawerContext';
 
 export default function Topbar() {
 
     const { authenticated, user, dispatch } = useContext(AppContext);
+    const { isOpen, setOpen } = useContext(DrawerContext);
+    const [showButton, setShowButton] = useState(false)
 
     const config = {
         headers: {
@@ -17,19 +20,28 @@ export default function Topbar() {
             Authorization: `Bearer ${localStorage.getItem("authToken")}`
         }
     }
-    const getLoggedIn = async ()=>{
+    const getLoggedIn = async () => {
         const res = await axios.get("/api/private/getuser", config);
-        if(res){
-            dispatch({type: "FETCH_SUCCESS", payload: res.data });
-        }else{
-            dispatch({type: "EMPTY_STATE"});
+        if (res) {
+            dispatch({ type: "FETCH_SUCCESS", payload: res.data });
+        } else {
+            dispatch({ type: "EMPTY_STATE" });
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         getLoggedIn();
-    },[]);
+    }, []);
 
+    useEffect(() => {
+        if (window.location.href.split('/')[3] == "userdashboard") {
+            setShowButton(true);
+        }
+    }, [window.location.href]);
+
+    const handleDrawer = () => {
+        setOpen();
+    }
     const history = useHistory();
     const logoutHandler = () => {
         localStorage.removeItem("authToken")
@@ -39,7 +51,12 @@ export default function Topbar() {
     return (
         <div className="topbar">
             <div className="topbarWrapper">
-                <NavLink exact className="nav-link" to="/"><span className="homeLogo">MedStore</span></NavLink>
+                {/* {
+                    showButton ? <button className="drawerButton" onClick={handleDrawer}>open</button> : null
+                } */}
+
+                <NavLink exact className="nav-link" to="/"><span className="homeLogo1">MedStore</span></NavLink>
+                <span className="homeLogo" onClick={handleDrawer}>MedStore</span>
 
                 <ul className="topbarList">
                     {
@@ -58,15 +75,20 @@ export default function Topbar() {
                 {
                     authenticated &&
                     <div className="topbarProfile">
-                        <img className="topbarProfImg" src={user.profileImg} />
+                        {/* <img className="topbarProfImg" src={user.profileImg} /> */}
 
                         <div class="dropdown-menu">
-                            <button class="menu-btn">{user.email} </button>
-                            <div class="menu-content">
-                                <NavLink exact className="links-hidden" to='/userdashboard/profile'>DashBoard</NavLink>
+                            <div className="dropdown-flex">
+                                <img className="topbarProfImg" src={user.profileImg} />
+                                <button class="menu-btn">{user.email} </button>
+                                <div class="menu-content">
+                                    <NavLink exact className="links-hidden" to='/userdashboard/profile'>DashBoard</NavLink>
+                                    <NavLink exact className="links-hidden" to='/storedashboard/analytics'>Store DashBoard</NavLink>
+                                </div>
                             </div>
+
                         </div>
-                        <div className="cartDiv" onClick={()=>history.push('/userdashboard/addtocart')}>
+                        <div className="cartDiv" onClick={() => history.push('/userdashboard/addtocart')}>
                             <span className="cartNumber">{user.cartItem.length}</span>
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </div>
