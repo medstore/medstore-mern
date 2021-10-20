@@ -117,7 +117,7 @@ exports.addproduct = async (req, res, next) => {
             return res.status(404).json({ sucess: false, error: "User Not Found" })
         }
 
-        const { productName, productDescription, productImage, productPrice, productDetails, storeId } = req.body;
+        const { productName, productDescription, productImage, productPrice, productDetails, productQuantity, storeId } = req.body;
         const store = await Store.findById(storeId)
 
         const product = await Product.create({
@@ -127,6 +127,7 @@ exports.addproduct = async (req, res, next) => {
             productDescription: productDescription,
             productImage: productImage,
             productPrice: productPrice,
+            productQuantity : productQuantity,
             productDetails: productDetails
         });
         res.status(200).json({ sucess: true, message: "Product Added Successfully" });
@@ -198,7 +199,12 @@ exports.getallOrderedProduct = async (req, res, next) => {
             const orders = await Order.find({ storeId: req.body.storeId }).sort({createdAt: -1});
             for (const obj of orders) {
                 const product = await Product.findById(obj.productId);
-                resOrder.push({ orderId: obj._id, customerName: obj.customerName, quantity: obj.quantity, productName: product.productName, totalPrice: obj.totalPrice, status: obj.status });
+                 
+                resOrder.push({ orderId: obj._id, customerName: obj.customerName, quantity: obj.quantity, productName: product.productName, totalPrice: obj.totalPrice, status: obj.status ,createdAt: obj.createdAt , deliveryAddress: obj.deliveryAddress });
+            }
+            const order = await Order.findById(req.body.orderId);
+            if (order) {
+                await order.updateOne({ $set: { status: req.body.status } });
             }
             res.status(200).json(resOrder);
         }

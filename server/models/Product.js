@@ -29,6 +29,10 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide productDetails"],
   },
+  productQuantity: {
+    type: String,
+    required: [true, "Please provide productQuantity"],
+  },
 },
 {timestamps: true});
 
