@@ -14,22 +14,55 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import { CircularProgress } from '@material-ui/core';
-
+import { AppContext } from '../../context/appContext/AppContext';
 
 export default function Tbrow(props) {
-
+    const { user } = useContext(AppContext);
     const [isFetching, setIsFetching] = useState(false);
     const [status, setStatus] = useState(props.value.status);
-
+    const [errors, setErrors] = useState("");
     const handleChange = (event) => {
         setStatus(event.target.value);
     };
 
+    const handleStatus = async (e) => {
+        e.preventDefault();
+        setIsFetching(true)
+        setErrors(false);
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("authToken")}` 
+            }
+        }
+
+        try {
+            const { data } = await axios.post(`/api/private/storedashboard/orders`, {orderId : props.value.orderId, storeId: user.storeId, ownerId: user._id , status :status }, config).catch(err => {
+              if (err.response.status === 409) {
+                setErrors("Invalid User")
+                throw new Error(`Invalid User`);
+              }
+              else {
+                setErrors("Internal Server Error")
+                throw new Error(`Internal Server Error`);
+              }
+              throw err;
+            });
+             
+            setIsFetching(false);
+  
+          } catch (err) {
+            setIsFetching(false);
+            setErrors(err.message)
+        }
+        alert('Status Updated Successfully')
+         
+    } 
     return (
         <TableRow>
-            <TableCell align="left">{props.value.orderId}</TableCell>
-
-            <TableCell align="left">{props.value.customerName}</TableCell>
+            <TableCell align="left">{props.value.orderId} <br></br> <br></br> <span><b>Ordered on:</b> {props.value.createdAt.split("T")[0]}</span></TableCell>
+           
+            <TableCell align="left">{props.value.customerName} <br></br><b>Address : </b>{props.value.deliveryAddress}</TableCell>
 
             <TableCell align="left">
                 {props.value.quantity}
@@ -63,7 +96,7 @@ export default function Tbrow(props) {
 
             </TableCell>
             <TableCell>
-                <button type="submit" className="statusButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "Update Status"}</button>
+                <button type="submit" onClick={handleStatus} className="statusButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="20px" /> : "Update Status"}</button>
             </TableCell>
         </TableRow>
     )
