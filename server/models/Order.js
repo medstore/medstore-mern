@@ -23,7 +23,7 @@ const OrderSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        default: "ordered",
+        default: "Ordered",
     },
     quantity: {
         type: String,

@@ -22,3 +22,8 @@
 .statusButton:disabled{
     cursor: not-allowed;
 }
+.crBar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
