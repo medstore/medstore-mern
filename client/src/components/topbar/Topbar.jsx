@@ -83,7 +83,6 @@ export default function Topbar() {
                                 <button class="menu-btn">{user.email} </button>
                                 <div class="menu-content">
                                     <NavLink exact className="links-hidden" to='/userdashboard/profile'>DashBoard</NavLink>
-                                    <NavLink exact className="links-hidden" to='/storedashboard/analytics'>Store DashBoard</NavLink>
                                 </div>
                             </div>
 
