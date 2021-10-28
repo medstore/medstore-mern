@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import './signup.css'
+import './storesignup.css'
 import { useHistory } from 'react-router';
 import { CircularProgress } from '@material-ui/core'
 import axios from "axios"
 
-export default function Signup() {
+export default function Storesignup() {
 
 
     const [errors, setErrors] = useState("");
@@ -44,9 +44,9 @@ export default function Signup() {
                     }
                     throw err;
                 });
-                localStorage.setItem("authToken", data.token);
+                localStorage.setItem("storeauthToken", data.token);
                 setIsFetching(false);
-                history.push('/')
+                history.push('/storesignin')
             } catch (err) {
                 setIsFetching(false)
             }

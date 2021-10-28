@@ -1,5 +1,6 @@
 const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
+const Seller = require("../models/Seller");
 
 
 exports.signin = async (req, res, next) => {
@@ -9,6 +10,26 @@ exports.signin = async (req, res, next) => {
   }
   try {
     const user = await User.findOne({ email }).select("+password");
+    if (!user) {
+      return next(new ErrorResponse("Invalid credentials", 401));
+    }
+    const isMatch = await user.matchPassword(password);
+    if (!isMatch) {
+      return next(new ErrorResponse("Invalid credentials", 401));
+    }
+    sendToken(user, 200, res);
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.storesignin = async (req, res, next) => {
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return next(new ErrorResponse("Please provide an email and password", 400));
+  }
+  try {
+    const user = await Seller.findOne({ email }).select("+password");
     if (!user) {
       return next(new ErrorResponse("Invalid credentials", 401));
     }
@@ -35,6 +56,31 @@ exports.signup = async (req, res, next) => {
       return res.status(409).json({ sucess: false, error: "user already exist" })
     }
     const user = await User.create({
+      firstname,
+      lastname,
+      email,
+      password,
+    });
+
+    sendToken(user, 200, res);
+  }
+  catch (err) {
+    next(err);
+  }
+};
+
+//store Signup
+exports.storesignup = async (req, res, next) => {
+  const { firstname, lastname, email, password, cpassword } = req.body;
+  try {
+    const oldUser = await Seller.findOne({ email: req.body.email });
+    if (password != cpassword) {
+      return res.status(401).json({ sucess: false, error: "Invalid credential" });
+    }
+    if (oldUser) {
+      return res.status(409).json({ sucess: false, error: "user already exist" })
+    }
+    const user = await Seller.create({
       firstname,
       lastname,
       email,

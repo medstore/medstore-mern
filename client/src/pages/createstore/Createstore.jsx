@@ -76,6 +76,9 @@ export default function Createstore(props) {
                 throw err;
             });
             setIsFetching(false);
+            if(data){
+                alert("Store Created Successfully")
+            }
         } catch (err) {
             setIsFetching(false);
             setErrors(err.message)

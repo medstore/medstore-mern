@@ -288,7 +288,7 @@ exports.getrandomproducts = async (req, res, next) => {
 
 exports.getorderhistory = async (req, res, next) => {
     try {
-        const order = await Order.find({ customerId: req.body.userId });
+        const order = await Order.find({ customerId: req.body.userId }).sort({createdAt: -1});
         res.status(200).json(order);
     } catch (err) {
         next(err);
@@ -298,26 +298,20 @@ exports.getorderhistory = async (req, res, next) => {
 
 exports.getAnalytics = async (req, res, next) => {
     try {
-        // console.log(req.body.storeId);
         const storeExist = await Store.findById({ _id: req.body.storeId });
 
         if (storeExist) {
             const orderExist = await Order.find({ storeId: req.body.storeId });
 
             let result = orderExist.map(a => a.productId);
-            // console.log(result)
             const productExist = await Product.find({ _id: result });
 
             if (!orderExist && !productExist) {
                 return res.status(404).json({ sucess: false, error: "Product data unavailable" });
             }
             else {
-                // console.log(orderExist)
-                // console.log(productExist)
-
                 return res.status(200).json({ orders: orderExist, products: productExist });
             }
-
         }
     } catch (err) {
         next(err);
