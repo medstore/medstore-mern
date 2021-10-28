@@ -65,9 +65,21 @@ export default function Topbar() {
                                 <li className="nav-item">
                                     <NavLink exact className="nav-link" to="/signin">Login</NavLink>
                                 </li>
-                                <li className="nav-item">
+                                {/* <li className="nav-item">
                                     <NavLink exact className="nav-link" to="/signup">Sign Up</NavLink>
-                                </li>
+                                </li> */}
+                                <div class="dropdown-menu">
+                                    <div className="dropdown-flex">
+                                        <li class="menu-btn">More <i class="fas fa-caret-down"></i></li>
+
+                                        <div class="menu-content">
+                                            {/* <NavLink exact className="links-hidden" to='/userdashboard/profile'>DashBoard</NavLink> */}
+                                            <NavLink exact className="links-hidden" to='/signup'>Signup</NavLink>
+                                            <NavLink exact className="links-hidden" to='/userdashboard/profile'>Sell on Medstore</NavLink>
+                                        </div>
+                                    </div>
+
+                                </div>
                             </>
                         )
                     }
@@ -80,8 +92,8 @@ export default function Topbar() {
                         <div class="dropdown-menu">
                             <div className="dropdown-flex">
                                 <img className="topbarProfImg" src={user.profileImg} />
-                                <button class="menu-btn">{user.email} </button>
-                                <div class="menu-content">
+                                <li class="menu-btn1">{user.email} </li>
+                                <div class="menu-content1">
                                     <NavLink exact className="links-hidden" to='/userdashboard/profile'>DashBoard</NavLink>
                                 </div>
                             </div>

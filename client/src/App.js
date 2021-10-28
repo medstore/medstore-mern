@@ -33,7 +33,7 @@ function App() {
                 <Topbar />
                 <div className="appWrapper">
                   <Switch>
-                    <PrivateRoute exact path="/" component={Home} />
+                    <Route exact path="/" component={Home} />
                     <Route exact path="/signin" component={Signin} />
                     <Route exact path="/signup" component={Signup} />
 
