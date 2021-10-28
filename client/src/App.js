@@ -19,6 +19,8 @@ import Addtocartpage from './pages/addtocartpage/Addtocartpage';
 import { CartContextProvider } from './context/cartContext/CartContext';
 import Orderhistory from './pages/orderhistory/Orderhistory';
 import { DrawerContextProvider } from './context/DrawerContext';
+import Storesignup from './storePage/storesignup/Storesignup';
+import Storelogin from './storePage/storelogin/Storelogin';
 
 
 
@@ -36,6 +38,8 @@ function App() {
                     <Route exact path="/" component={Home} />
                     <Route exact path="/signin" component={Signin} />
                     <Route exact path="/signup" component={Signup} />
+                    <Route exact path="/storesignin" component={Storelogin} />
+                    <Route exact path="/storesignup" component={Storesignup} />
 
                     <PrivateRoute exact path="/product/:productId" component={Singleproduct} />
 
