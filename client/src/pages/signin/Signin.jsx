@@ -47,7 +47,7 @@ export default function Signin() {
         <div className="loginContainer">
             <div className="loginWrapper">
                 <form className="loginRight" onSubmit={handleSubmit} >
-                    <div className="loginBox">
+                    <div className="loginBox1">
                         {errors ?
                             <div className="errorDiv">
                                 <span className="errorMessage">{errors}</span>
