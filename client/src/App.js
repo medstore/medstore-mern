@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { AppContextProvider } from './context/appContext/AppContext';
+import { AppContext, AppContextProvider } from './context/appContext/AppContext';
 import { AddContextProvider } from './context/storemapcontext/AddContext';
 
 import Topbar from './components/topbar/Topbar';
@@ -21,10 +21,14 @@ import Orderhistory from './pages/orderhistory/Orderhistory';
 import { DrawerContextProvider } from './context/DrawerContext';
 import Storesignup from './storePage/storesignup/Storesignup';
 import Storelogin from './storePage/storelogin/Storelogin';
+import StorePrivateRoute from './components/routing/StorePrivateRoute';
+import StoreTopbar from './components/topbar/StoreTopbar';
+import { useContext } from 'react';
 
 
 
 function App() {
+  const {user, seller} = useContext(AppContext);
   return (
     <AppContextProvider>
       <AddContextProvider>
@@ -32,7 +36,9 @@ function App() {
           <CartContextProvider>
             <div className="App">
               <BrowserRouter>
-                <Topbar />
+              {
+                seller ? <StoreTopbar/> : <Topbar />
+              }
                 <div className="appWrapper">
                   <Switch>
                     <Route exact path="/" component={Home} />
@@ -43,12 +49,12 @@ function App() {
 
                     <PrivateRoute exact path="/product/:productId" component={Singleproduct} />
 
-                    <PrivateRoute exact path="/createstore/:userid" component={Createstore} />
+                    <StorePrivateRoute exact path="/createstore/:userid" component={Createstore} />
                     <PrivateRoute exact path="/addproduct" component={Product} />
 
                     <PrivateRoute exact path="/userdashboard/:page" component={Userdashboard} />
 
-                    <PrivateRoute exact path="/storedashboard/:page" component={Storedashboard} />
+                    <StorePrivateRoute exact path="/storedashboard/:page" component={Storedashboard} />
 
                     {/* <PrivateRoute exact path="/addtocart" component={Addtocartpage} /> */}
 

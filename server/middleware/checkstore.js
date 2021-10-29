@@ -22,16 +22,16 @@ exports.checkstore = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     const seller = await Seller.findById(decoded.id);
-    const store = await Store.findOne({ownerId: decoded.id});
+    /* const store = await Store.findOne({ownerId: decoded.id}); */
 
     if (!seller) {
-      return next(new ErrorResponse("Not authorized to access this router", 401));
+        return next(new ErrorResponse("Not authorized to access this route by user", 401));
     }
-    if(!store){
+    /* if(!store){
         return next(new ErrorResponse("No store found with this id", 404));
-    }
+    } */
 
-    req.seller = {seller: seller, store: store};
+    req.seller = seller;
 
     next();
   } catch (err) {
