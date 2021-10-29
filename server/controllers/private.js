@@ -2,6 +2,7 @@ const ErrorResponse = require("../utils/errorResponse");
 const User = require("../models/User");
 const Store = require("../models/Store");
 const Product = require("../models/Product");
+const Seller = require("../models/Seller")
 
 const Order = require('../models/Order')
 
@@ -10,6 +11,16 @@ exports.getuser = async (req, res, next) => {
     try {
         const { _id, firstname, lastname, email, cartItem, userAddress, storeId, profileImg, ...other } = req.user;
         res.status(200).json({ _id, firstname, lastname, email, cartItem, userAddress, storeId, profileImg });
+    } catch (err) {
+        next(err);
+    }
+};
+
+//get seller data
+exports.getseller = async (req, res, next) => {
+    try {
+        const { _id, firstname, lastname, email, storeId, profileImg, ...other } = req.seller;
+        res.status(200).json({ _id, firstname, lastname, email, storeId, profileImg });
     } catch (err) {
         next(err);
     }
@@ -74,7 +85,7 @@ exports.getAllCartItem = async (req, res, next) => {
 exports.registerstore = async (req, res, next) => {
     try {
         let list = {};
-        const userExist = await User.findOne({ _id: req.body.userId });
+        const userExist = await Seller.findOne({ _id: req.body.userId });
         if (!userExist) {
             return res.status(404).json({ sucess: false, error: "User Not Found" })
         }
@@ -96,7 +107,7 @@ exports.registerstore = async (req, res, next) => {
             addressList: { ...list }
         });
 
-        const user = await User.findById(req.body.userId);
+        const user = await Seller.findById(req.body.userId);
         if (user) {
             await user.updateOne({ $set: { storeId: store._id } });
         }

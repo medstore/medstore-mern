@@ -4,18 +4,21 @@ const AppReducer = (state, actions) => {
             return {
                 authenticated: false,
                 user: null,
+                seller: null,
                 error: false
             };
         case "FETCH_SUCCESS":
             return {
                 authenticated: true,
                 user: actions.payload,
+                seller: actions.seller,
                 error: false
             };
         case "FETCH_FAILED":
             return {
                 authenticated: false,
                 user: null,
+                seller: null,
                 error: actions.payload
             };
         default:

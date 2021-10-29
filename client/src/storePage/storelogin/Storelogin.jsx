@@ -36,7 +36,7 @@ export default function Storelogin() {
             const {data} = await axios.post("/api/auth/storesignin", user, config);
             localStorage.setItem("storeauthToken", data.token);
             setIsFetching(false);
-            history.push('/')
+            history.push('/storedashboard/analytics')
         } catch (error) {
             setErrors(error.response.data.error);
             setIsFetching(false)
