@@ -4,6 +4,7 @@ import AppReducer from "./AppReducer";
 const INITIAL_STATE = {
     authenticated: false,
     user: null,
+    seller: null,
     isFetching: false,
     error: false
 }
@@ -17,6 +18,7 @@ export const AppContextProvider = ({children}) => {
             value={{
                 authenticated: state.authenticated,
                 user: state.user,
+                seller: state.seller,
                 isFetching: state.isFetching,
                 error: state.error,
                 dispatch,

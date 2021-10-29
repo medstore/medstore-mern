@@ -9,7 +9,7 @@ import { AppContext } from '../../context/appContext/AppContext';
 
 export default function Createstore(props) {
 
-    const { user } = useContext(AppContext);
+    const { user, seller } = useContext(AppContext);
     const { latitude, longitude } = useContext(AddContext);
     const [errors, setErrors] = useState("");
     const [myStore, setMyStore] = useState({ storeName: "", ownerName: "", ownerEmail: "", storeAddress: "" })
@@ -18,6 +18,11 @@ export default function Createstore(props) {
     const history = useHistory();
 
 
+    useEffect(()=>{
+        if(seller && seller.storeId){
+            history.push('/storedashboard/analytics')
+        }
+    },[seller])
     const getUserLocation = async (long, lati) => {
         let list = [];
         let placeName = "";
@@ -56,12 +61,12 @@ export default function Createstore(props) {
         const config = {
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                Authorization: `Bearer ${localStorage.getItem("storeauthToken")}`
             }
         }
 
         try {
-            const { data } = await axios.post(`/api/private/createstore/${props.match.params.userid}`, { ...myStore, addressList, userId: user._id, latitude:latitude, longitude:longitude}, config).catch(err => {
+            const { data } = await axios.post(`/api/private/createstore/${props.match.params.userid}`, { ...myStore, addressList, userId: seller._id, latitude:latitude, longitude:longitude}, config).catch(err => {
                 if (err.response.status === 409) {
                     setErrors("Invalid User")
                     throw new Error(`Invalid User`);
@@ -77,7 +82,7 @@ export default function Createstore(props) {
             });
             setIsFetching(false);
             if(data){
-                alert("Store Created Successfully")
+                window.location.reload();
             }
         } catch (err) {
             setIsFetching(false);

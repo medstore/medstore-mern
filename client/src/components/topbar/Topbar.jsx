@@ -29,14 +29,15 @@ export default function Topbar() {
         }
     }
 
-    useEffect(() => {
+    /* useEffect(() => {
         getLoggedIn();
-    }, []);
+    }, []); */
 
     useEffect(() => {
         if (window.location.href.split('/')[3] == "userdashboard") {
             setShowButton(true);
         }
+        getLoggedIn();
     }, [window.location.href]);
 
     const handleDrawer = () => {
@@ -60,7 +61,7 @@ export default function Topbar() {
 
                 <ul className="topbarList">
                     {
-                        authenticated === false && (
+                        !authenticated && (
                             <>
                                 <li className="nav-item">
                                     <NavLink exact className="nav-link" to="/signin">Login</NavLink>
@@ -85,7 +86,7 @@ export default function Topbar() {
                     }
                 </ul>
                 {
-                    authenticated &&
+                    authenticated && user &&
                     <div className="topbarProfile">
                         {/* <img className="topbarProfImg" src={user.profileImg} /> */}
 
