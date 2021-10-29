@@ -15,7 +15,7 @@ export default function Storelogin() {
 
     const gotoSignup = (e) => {
         e.preventDefault();
-        history.push('/signup')
+        history.push('/storesignup')
     }
     const handleChange = (e) => {
         e.preventDefault();

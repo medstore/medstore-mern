@@ -15,7 +15,7 @@ export default function Storesignup() {
 
     const gotoLogin = (e) => {
         e.preventDefault();
-        history.push('/signin')
+        history.push('/storesignin')
     }
     const handleChange = (e) => {
         e.preventDefault();
@@ -61,6 +61,7 @@ export default function Storesignup() {
             <div className="signupWrapper">
                 <form className="signupRight" onSubmit={handleSubmit} >
                     <div className="signupBox">
+                        <h1>Create your business account and start selling today 😊</h1>
                         {errors ?
                             <div className="errorDiv">
                                 <span className="errorMessage">{errors}</span>

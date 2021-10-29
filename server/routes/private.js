@@ -4,7 +4,8 @@ const router = express.Router();
 const {getuser, registerstore , addproduct, searchProduct, getsingleproduct,getrandomproducts, additemtocart, getAllCartItem, removeitemfromcart, buyproduct ,getallStoreProduct , getallOrderedProduct , getStoreDetails , getorderhistory ,getAnalytics} = require('../controllers/private');
  
  
-const {protect} = require('../middleware/auth')
+const {protect} = require('../middleware/auth');
+const { checkstore } = require('../middleware/checkstore');
 
 router.route("/getuser").get(protect, getuser);
 router.route("/getrandomproducts").get(getrandomproducts);
@@ -24,5 +25,7 @@ router.route("/removeitemfromcart").post(protect, removeitemfromcart);
 router.route("/buyproduct").post(protect, buyproduct);
  
 router.route("/getorderhistory").post(protect, getorderhistory);
+
+router.route("/hellostore").post(checkstore, getrandomproducts);
  
 module.exports = router;

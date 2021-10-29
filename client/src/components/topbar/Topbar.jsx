@@ -75,7 +75,7 @@ export default function Topbar() {
                                         <div class="menu-content">
                                             {/* <NavLink exact className="links-hidden" to='/userdashboard/profile'>DashBoard</NavLink> */}
                                             <NavLink exact className="links-hidden" to='/signup'>Signup</NavLink>
-                                            <NavLink exact className="links-hidden" to='/userdashboard/profile'>Sell on Medstore</NavLink>
+                                            <NavLink exact className="links-hidden" to='/storesignin'>Sell on Medstore</NavLink>
                                         </div>
                                     </div>
 

@@ -22,7 +22,7 @@
 
 .signupBox {
     border-radius: 5%;
-    height: 100%;
+    height: auto;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -76,6 +76,7 @@
     border-radius: 10px;
     border: none;
     cursor: pointer;
+    margin: 10px 0px;
 }
 .signupButton{
     background-color: #283290;
