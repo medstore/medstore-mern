@@ -4,7 +4,7 @@ import { useHistory } from 'react-router';
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { AppContext } from '../../context/appContext/AppContext';
-import { Line } from "react-chartjs-2";
+import { Line , Doughnut} from "react-chartjs-2";
 const Analytics = () => {
 
 
@@ -12,8 +12,8 @@ const Analytics = () => {
     const [errors, setErrors] = useState("");
     const [isFetching, setIsFetching] = useState(false);
     const history = useHistory();
-    const [order, setOrder] = useState([{ ownerId: "", storeId: "", productId:"", status: "", quantity: ""}])
-    const [product, setProduct] = useState([{ productName: "abcdd", productDescription: "", productImage:"", productPrice: NaN, productDetails: ""}])
+    const [order, setOrder] = useState([{ ownerId: "", storeId: "", productId:"", status: "", quantity: "" , totalPrice:""}])
+    const [product, setProduct] = useState([{ productName: "abcdd", productDescription: "", productImage:"", productPrice: NaN, productDetails: "" , productQuantity:""}])
     
     
     useEffect(() => {   
@@ -58,25 +58,45 @@ const Analytics = () => {
        
   },[user])
  
-    let totalPrice = 0;
-    product &&
-    product.forEach((item) => {
-        totalPrice += parseFloat(item.productPrice);
+    let totalSalesPrice = 0;
+    order &&
+    order.forEach((item) => {
+        totalSalesPrice += parseFloat(item.totalPrice);
       });
  
-   
+  
+  let outOfStock = 0;
+
+  product &&
+    product.forEach((item) => {
+      if (item.productQuantity === "0") {
+        outOfStock += 1;
+      }
+    });
+  
+     
   const lineState = {
-    labels: ["Initial Price", "Total Price"],
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
     datasets: [
       {
-        label: "TOTAL PRICE",
+        label: "SALES",
+        lineTension: 0.9,
         backgroundColor: ["tomato"],
         hoverBackgroundColor: ["rgb(197, 72, 49)"],
-        data: [0, totalPrice],
+        data: [65, 59, 80, 81, 56, 55, 40],
       },
     ],
   };
-   
+  const doughnutState = {
+    labels: ["Out of Stock", "InStock"],
+    datasets: [
+      {
+        backgroundColor: ["#00A6B4", "#6800B4"],
+        hoverBackgroundColor: ["#4B5000", "#35014F"],
+        data: [outOfStock, product.length - outOfStock],
+      },
+    ],
+  };
     return (
         
         <div className="dashboard">
@@ -91,26 +111,29 @@ const Analytics = () => {
           <div>
              
             <p>
-              Total Product Price <br /> ₹{totalPrice}
+              Total Sales Price <br /> ₹{totalSalesPrice}
             </p>
           </div>
           <div className="dashboardSummaryBox2">
             <Link to="">
-              <p>Product</p>
+              <p>Total Products</p>
               <p>{product && product.length}</p>
             </Link>
             <Link to="">
-              <p>Orders</p>
+              <p>Orders Delivered</p>
               <p>{order && order.length}</p>
             </Link>
              
           </div> 
         </div>
- 
+        <div className="doughnutChart">
+        <h2>Product Stock</h2>
+          <Doughnut data={doughnutState}  />
+        </div>
         <div className="lineChart">
           <Line data={lineState} />
         </div>
-         
+        
       </div>
     </div>
     )

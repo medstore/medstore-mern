@@ -298,11 +298,11 @@ exports.getorderhistory = async (req, res, next) => {
 
 exports.getAnalytics = async (req, res, next) => {
     try {
-        const storeExist = await Store.findById({ _id: req.body.storeId });
+        const storeExist = await Store.findById({ _id: req.body.storeId  });
 
         if (storeExist) {
             const orderExist = await Order.find({ storeId: req.body.storeId });
-
+            const orderDelivered = await Order.find({ storeId: req.body.storeId , status: "Delivered"}); 
             let result = orderExist.map(a => a.productId);
             const productExist = await Product.find({ _id: result });
 
@@ -310,7 +310,8 @@ exports.getAnalytics = async (req, res, next) => {
                 return res.status(404).json({ sucess: false, error: "Product data unavailable" });
             }
             else {
-                return res.status(200).json({ orders: orderExist, products: productExist });
+                 console.log(orderExist)
+                return res.status(200).json({ orders: orderDelivered, products: productExist });   
             }
         }
     } catch (err) {

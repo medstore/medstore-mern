@@ -46,14 +46,14 @@
   
   .dashboardSummaryBox2 > a {
     color: rgb(0, 0, 0);
-    font: 300 2rem "Roboto";
+    font: 300 1.5rem "Roboto";
     text-align: center;
     background-color: rgb(255, 233, 174);
     text-decoration: none;
-    padding: 1.5rem;
+    padding: 1rem;
     width: 10vmax;
     height: 10vmax;
-    margin: 2rem;
+    margin: 3rem;
     border-radius: 100%;
     display: flex;
     justify-content: center;
@@ -78,8 +78,10 @@
   }
   
   .doughnutChart {
-    width: 30vmax;
-    margin: auto;
+    width: 25vw;
+    margin: auto  ;
+    text-align: center;
+    margin-bottom: 15vh;
   }
   
   @media screen and (max-width: 600px) {
