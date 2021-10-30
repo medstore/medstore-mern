@@ -34,7 +34,7 @@ export default function Signup() {
         }
         if (user.password === user.cpassword) {
             try {
-                const {data} = await axios.post("/api/auth/storesignup", user, config).catch(err => {
+                const {data} = await axios.post("/api/auth/signup", user, config).catch(err => {
                     if (err.response.status === 409) {
                         setErrors("User Already Exist!")
                         throw new Error(`user already exist`);

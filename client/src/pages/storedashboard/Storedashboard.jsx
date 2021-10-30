@@ -21,7 +21,7 @@ export default function Storedashboard(props) {
         history.push(`/storedashboard/${e.target.id}`);
     }
     const logoutHandler = () => {
-        localStorage.removeItem("authToken")
+        localStorage.removeItem("storeauthToken")
         dispatch({ type: "EMPTY_STATE" });
         history.push("/storesignin")
     }

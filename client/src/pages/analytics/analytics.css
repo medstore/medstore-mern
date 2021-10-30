@@ -54,7 +54,7 @@
     width: 10vmax;
     height: 10vmax;
     margin: 3rem;
-    border-radius: 100%;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -103,7 +103,7 @@
       width: 6vmax;
       height: 6vmax;
       margin: 1rem;
-      border-radius: 100%;
+      border-radius: 10px;
       display: flex;
        
     }

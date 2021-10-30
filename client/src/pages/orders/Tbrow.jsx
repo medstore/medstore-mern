@@ -17,7 +17,7 @@ import { CircularProgress } from '@material-ui/core';
 import { AppContext } from '../../context/appContext/AppContext';
 
 export default function Tbrow(props) {
-    const { user } = useContext(AppContext);
+    const { user, seller } = useContext(AppContext);
     const [isFetching, setIsFetching] = useState(false);
     const [status, setStatus] = useState(props.value.status);
     const [errors, setErrors] = useState("");
@@ -32,36 +32,36 @@ export default function Tbrow(props) {
         const config = {
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("authToken")}` 
+                Authorization: `Bearer ${localStorage.getItem("storeauthToken")}`
             }
         }
 
         try {
-            const { data } = await axios.post(`/api/private/storedashboard/orders`, {orderId : props.value.orderId, storeId: user.storeId, ownerId: user._id , status :status }, config).catch(err => {
-              if (err.response.status === 409) {
-                setErrors("Invalid User")
-                throw new Error(`Invalid User`);
-              }
-              else {
-                setErrors("Internal Server Error")
-                throw new Error(`Internal Server Error`);
-              }
-              throw err;
+            const { data } = await axios.post(`/api/private/storedashboard/orders`, { orderId: props.value.orderId, storeId: seller.storeId, ownerId: seller._id, status: status }, config).catch(err => {
+                if (err.response.status === 409) {
+                    setErrors("Invalid User")
+                    throw new Error(`Invalid User`);
+                }
+                else {
+                    setErrors("Internal Server Error")
+                    throw new Error(`Internal Server Error`);
+                }
+                throw err;
             });
-             
+
             setIsFetching(false);
-  
-          } catch (err) {
+
+        } catch (err) {
             setIsFetching(false);
             setErrors(err.message)
         }
         alert('Status Updated Successfully')
-         
-    } 
+
+    }
     return (
         <TableRow>
             <TableCell align="left">{props.value.orderId} <br></br> <br></br> <span><b>Ordered on:</b> {props.value.createdAt.split("T")[0]}</span></TableCell>
-           
+
             <TableCell align="left">{props.value.customerName} <br></br><b>Address : </b>{props.value.deliveryAddress}</TableCell>
 
             <TableCell align="left">

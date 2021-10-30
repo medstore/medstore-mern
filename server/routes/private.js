@@ -9,8 +9,6 @@ const { checkstore } = require('../middleware/checkstore');
 
 router.route("/getuser").get(protect, getuser);
 router.route("/getrandomproducts").get(getrandomproducts);
- 
-
 router.route("/product").post(protect, addproduct);
 router.route("/searchproduct").post(protect, searchProduct);
 router.route("/getsingleproduct/:productId").get(getsingleproduct);

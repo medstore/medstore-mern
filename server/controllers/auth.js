@@ -86,7 +86,6 @@ exports.storesignup = async (req, res, next) => {
       email,
       password,
     });
-
     sendToken(user, 200, res);
   }
   catch (err) {
