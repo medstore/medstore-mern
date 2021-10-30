@@ -20,7 +20,11 @@ export default function Storedashboard(props) {
         setOpen();
         history.push(`/storedashboard/${e.target.id}`);
     }
- 
+    const logoutHandler = () => {
+        localStorage.removeItem("authToken")
+        dispatch({ type: "EMPTY_STATE" });
+        history.push("/storesignin")
+    }
 
     const switchComponent = () => {
         switch (props.match.params.page) {
@@ -54,6 +58,8 @@ export default function Storedashboard(props) {
                     <li id="allstoreproduct" className={"dashboardListItem"} onClick={changePage}>All Product</li>
                     <li id="orders" className={"dashboardListItem"} onClick={changePage}>Orders</li>
                     <li id="setting" className={"dashboardListItem"} onClick={changePage}>Setting</li>
+                    <hr className="dashHr"></hr>
+                    <li id="logout" className="dashListItemLogout" onClick={logoutHandler}>Logout</li>
                 </ul>
             </div>
             <div className="right">

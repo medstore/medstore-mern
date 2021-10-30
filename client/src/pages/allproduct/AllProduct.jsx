@@ -9,7 +9,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 const AllProduct = () => {
     
 
-    const { user } = useContext(AppContext);
+    const { seller } = useContext(AppContext);
     const [errors, setErrors] = useState("");
     const [isFetching, setIsFetching] = useState(false);
     const history = useHistory();
@@ -19,7 +19,7 @@ const AllProduct = () => {
     useEffect(() => {   
      
       
-        if(user) 
+        if(seller) 
         {
             const productData = async () => {
              
@@ -28,13 +28,13 @@ const AllProduct = () => {
             const config = {
                 headers: {
                     "Content-Type": "application/json",
-                    Authorization: `Bearer ${localStorage.getItem("authToken")}`
+                    Authorization: `Bearer ${localStorage.getItem("storeauthToken")}`
                 }
             }
              
              
             try {
-                const { data } = await axios.post(`/api/private/storedashboard/allstoreproduct`, {storeId : user.storeId } , config).catch(err => {
+                const { data } = await axios.post(`/api/private/storedashboard/allstoreproduct`, {storeId : seller.storeId } , config).catch(err => {
                     if (err.response.status === 409) {
                         setErrors("Invalid User")
                         throw new Error(`Invalid User`);
@@ -58,7 +58,7 @@ const AllProduct = () => {
         
         }
         
-  },[user])
+  },[seller])
 
   
     return (

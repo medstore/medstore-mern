@@ -21,8 +21,8 @@
     font: 300 2rem "Roboto";
     text-align: center;
     width: 50%;
-    padding: 1.5rem;
-    margin: auto;
+    padding: 0.5rem;
+    margin: -34px auto;;
   }
   
   .dashboardSummary {
@@ -46,14 +46,14 @@
   
   .dashboardSummaryBox2 > a {
     color: rgb(0, 0, 0);
-    font: 300 2rem "Roboto";
+    font: 300 1.5rem "Roboto";
     text-align: center;
     background-color: rgb(255, 233, 174);
     text-decoration: none;
-    padding: 1.5rem;
+    padding: 1rem;
     width: 10vmax;
     height: 10vmax;
-    margin: 2rem;
+    margin: 3rem;
     border-radius: 100%;
     display: flex;
     justify-content: center;
@@ -78,8 +78,10 @@
   }
   
   .doughnutChart {
-    width: 30vmax;
-    margin: auto;
+    width: 25vw;
+    margin: auto  ;
+    text-align: center;
+    margin-bottom: 15vh;
   }
   
   @media screen and (max-width: 600px) {
@@ -94,6 +96,16 @@
     .dashboardSummary > div > p {
       margin: 0;
     }
-  
+    .dashboardSummaryBox2 > a {
+     
+      font: 300 0.6rem "Roboto";
+      padding: 1rem;
+      width: 6vmax;
+      height: 6vmax;
+      margin: 1rem;
+      border-radius: 100%;
+      display: flex;
+       
+    }
     
   }

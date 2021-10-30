@@ -9,13 +9,8 @@ const { checkstore } = require('../middleware/checkstore');
 
 router.route("/getuser").get(protect, getuser);
 router.route("/getrandomproducts").get(getrandomproducts);
-
  
-router.route("/storedashboard/addstoreproduct").post(protect, addproduct);
-router.route("/storedashboard/allstoreproduct").post(protect, getallStoreProduct);
-router.route("/storedashboard/orders").post(protect, getallOrderedProduct);
-router.route("/storedashboard/setting").post(protect, getStoreDetails);
-router.route("/storedashboard/analytics").post(protect, getAnalytics);
+
 router.route("/product").post(protect, addproduct);
 router.route("/searchproduct").post(protect, searchProduct);
 router.route("/getsingleproduct/:productId").get(getsingleproduct);
@@ -29,5 +24,9 @@ router.route("/getorderhistory").post(protect, getorderhistory);
 //seller private route
 router.route("/getseller").get(checkstore, getseller);
 router.route("/createstore/:userid").post(checkstore, registerstore);
- 
+router.route("/storedashboard/addstoreproduct").post(checkstore, addproduct);
+router.route("/storedashboard/allstoreproduct").post(checkstore, getallStoreProduct);
+router.route("/storedashboard/orders").post(checkstore, getallOrderedProduct);
+router.route("/storedashboard/setting").post(checkstore, getStoreDetails);
+router.route("/storedashboard/analytics").post(checkstore, getAnalytics);
 module.exports = router;

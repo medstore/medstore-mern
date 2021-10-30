@@ -123,9 +123,9 @@ exports.registerstore = async (req, res, next) => {
 exports.addproduct = async (req, res, next) => {
     try {
 
-        const userExist = await User.findOne({ _id: req.body.userId });
-        if (!userExist) {
-            return res.status(404).json({ sucess: false, error: "User Not Found" })
+        const sellerExist = await Seller.findOne({ _id: req.body.sellerId });
+        if (!sellerExist) {
+            return res.status(404).json({ sucess: false, error: "Seller Not Found" })
         }
 
         const { productName, productDescription, productImage, productPrice, productDetails, productQuantity, storeId } = req.body;
@@ -309,11 +309,11 @@ exports.getorderhistory = async (req, res, next) => {
 
 exports.getAnalytics = async (req, res, next) => {
     try {
-        const storeExist = await Store.findById({ _id: req.body.storeId });
+        const storeExist = await Store.findById({ _id: req.body.storeId  });
 
         if (storeExist) {
             const orderExist = await Order.find({ storeId: req.body.storeId });
-
+            const orderDelivered = await Order.find({ storeId: req.body.storeId , status: "Delivered"}); 
             let result = orderExist.map(a => a.productId);
             const productExist = await Product.find({ _id: result });
 
@@ -321,7 +321,8 @@ exports.getAnalytics = async (req, res, next) => {
                 return res.status(404).json({ sucess: false, error: "Product data unavailable" });
             }
             else {
-                return res.status(200).json({ orders: orderExist, products: productExist });
+                 console.log(orderDelivered)
+                return res.status(200).json({ orders: orderDelivered, products: productExist });   
             }
         }
     } catch (err) {

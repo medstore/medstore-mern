@@ -14,7 +14,7 @@ import { useHistory } from 'react-router';
 import axios from "axios";
 import { AppContext } from '../../context/appContext/AppContext';
 const Product = () => {
-    const { user } = useContext(AppContext);
+    const { seller } = useContext(AppContext);
     const [product, setProduct] = useState({ productName: "", productDescription: "", productImage:"", productPrice: NaN, productDetails: "" , productQuantity: ""})
     const [errors, setErrors] = useState("");
     const [isFetching, setIsFetching] = useState(false);
@@ -38,22 +38,23 @@ const Product = () => {
         const config = {
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${localStorage.getItem("authToken")}` 
+                Authorization: `Bearer ${localStorage.getItem("storeauthToken")}` 
             }
         }
 
         try {
-            const { data } = await axios.post(`/api/private/storedashboard/addstoreproduct`, { ...product,  userId: user._id, storeId: user.storeId}, config).catch(err => {
+            const { data } = await axios.post(`/api/private/storedashboard/addstoreproduct`, { ...product,  sellerId: seller._id, storeId: seller.storeId}, config).catch(err => {
                 if (err.response.status === 409) {
-                    setErrors("Invalid User")
-                    throw new Error(`Invalid User`);
+                    setErrors("Invalid seller")
+                    throw new Error(`Invalid seller`);
                 } 
                 else {
                     setErrors("Internal Server Error")
                     throw new Error(`Internal Server Error`);
                 }
                 throw err;
-            });
+            });console.log(seller)
+            // console.log(seller._id)
             setIsFetching(false);
         } catch (err) {
             setIsFetching(false);
@@ -63,7 +64,7 @@ const Product = () => {
         setProduct({ productName: "", productDescription: "", productImage:"", productPrice: NaN, productDetails: "" , productQuantity: ""})
 
     }
-
+    
     return (
         <div className="productContainer">
             <div className="productWrapper">
