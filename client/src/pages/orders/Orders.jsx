@@ -19,14 +19,14 @@ import Tbrow from "./Tbrow"
 const Orders = () => {
 
 
-  const { user } = useContext(AppContext);
+  const { seller } = useContext(AppContext);
   const [errors, setErrors] = useState("");
   const [isFetching, setIsFetching] = useState(false);
   const history = useHistory();
   const [order, setOrder] = useState([])
 
   useEffect(() => {
-    if (user) {
+    if (seller) {
       const orderData = async () => {
 
         setIsFetching(true)
@@ -34,13 +34,13 @@ const Orders = () => {
         const config = {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            Authorization: `Bearer ${localStorage.getItem("storeauthToken")}`
           }
         }
 
         // console.log(user.storeId)
         try {
-          const { data } = await axios.post(`/api/private/storedashboard/orders`, { storeId: user.storeId, ownerId: user._id }, config).catch(err => {
+          const { data } = await axios.post(`/api/private/storedashboard/orders`, { storeId: seller.storeId, ownerId: seller._id }, config).catch(err => {
             if (err.response.status === 409) {
               setErrors("Invalid User")
               throw new Error(`Invalid User`);
@@ -64,7 +64,7 @@ const Orders = () => {
       orderData()
     }
 
-  }, [user])
+  }, [seller])
 
 
   return (

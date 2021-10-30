@@ -21,8 +21,8 @@
     font: 300 2rem "Roboto";
     text-align: center;
     width: 50%;
-    padding: 1.5rem;
-    margin: auto;
+    padding: 0.5rem;
+    margin: -34px auto;;
   }
   
   .dashboardSummary {
@@ -96,6 +96,16 @@
     .dashboardSummary > div > p {
       margin: 0;
     }
-  
+    .dashboardSummaryBox2 > a {
+     
+      font: 300 0.6rem "Roboto";
+      padding: 1rem;
+      width: 6vmax;
+      height: 6vmax;
+      margin: 1rem;
+      border-radius: 100%;
+      display: flex;
+       
+    }
     
   }

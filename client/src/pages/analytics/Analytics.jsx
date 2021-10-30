@@ -30,7 +30,7 @@ const Analytics = () => {
         const config = {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("authToken")}`
+            Authorization: `Bearer ${localStorage.getItem("storeauthToken")}`
           }
         }
 
@@ -48,6 +48,7 @@ const Analytics = () => {
             }
             throw err;
           });
+          console.log(data.products)
           setOrder(data.orders)
           setProduct(data.products)
           setIsFetching(false);
@@ -114,15 +115,14 @@ const Analytics = () => {
             <span className="errorMessage">{errors}</span>
           </div> : null}
         <div className="dashboardSummary">
-          <div>
-
-            <p>
-              Total Sales Price <br /> ₹{totalSalesPrice}
-            </p>
-          </div>
+           
           <div className="dashboardSummaryBox2">
+           <Link to="">
+              <p>Total Sales Price</p>
+              <p>₹{totalSalesPrice}</p>
+            </Link>
             <Link to="">
-              <p>Total Products</p>
+              <p>Total Products ordered</p>
               <p>{product && product.length}</p>
             </Link>
             <Link to="">
@@ -140,12 +140,7 @@ const Analytics = () => {
         <div className="lineChart">
           <Line data={lineState} />
         </div>
- 
-        <div className="lineChart">
-          <Line data={lineState} />
-        </div>
-
- 
+   
       </div>
     </div>
   )
