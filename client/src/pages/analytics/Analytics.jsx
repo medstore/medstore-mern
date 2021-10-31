@@ -14,9 +14,20 @@ const Analytics = () => {
   const [isFetching, setIsFetching] = useState(false);
   const history = useHistory();
   const [order, setOrder] = useState([{ ownerId: "", storeId: "", productId:"", status: "", quantity: "" , totalPrice:""}])
-    const [product, setProduct] = useState([{ productName: "abcdd", productDescription: "", productImage:"", productPrice: NaN, productDetails: "" , productQuantity:""}])
-
-
+  const [product, setProduct] = useState([{ productName: "abcdd", productDescription: "", productImage:"", productPrice: NaN, productDetails: "" , productQuantity:""}])
+  const [jan, setJan] = useState();
+  const [feb, setFeb] = useState();
+  const [march, setMarch] = useState();
+  const [april, setApril] = useState();
+  const [may, setMay] = useState();
+  const [june, setJune] = useState();
+  const [july, setJuly] = useState();
+  const [aug, setAug] = useState();
+  const [sept, setSept] = useState();
+  const [oct, setOct] = useState();
+  const [nov, setNov] = useState();
+  const [dec, setDec] = useState();
+  
   useEffect(() => {
     if (seller) {
       if (!seller.storeId) {
@@ -48,9 +59,21 @@ const Analytics = () => {
             }
             throw err;
           });
-          console.log(data.products)
+          console.log(data.octo)
           setOrder(data.orders)
           setProduct(data.products)
+          setJan(data.jan);
+          setFeb(data.feb);
+          setMarch(data.march);
+          setApril(data.april);
+          setMay(data.may);
+          setJune(data.june);
+          setJuly(data.july);
+          setAug(data.aug);
+          setSept(data.sept);
+          setOct(data.oct);
+          setNov(data.nov);
+          setDec(data.dec);
           setIsFetching(false);
         } catch (err) {
 
@@ -68,7 +91,7 @@ const Analytics = () => {
         totalSalesPrice += parseFloat(item.totalPrice);
       });
  
-  
+       
   let outOfStock = 0;
 
   product &&
@@ -78,18 +101,16 @@ const Analytics = () => {
       }
     });
   
-     
  
-  
   const lineState = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    labels: ["January", "February", "March", "April", "May", "June", "July" , "August" ,"September" ,"October" , "November" , "December"],
     datasets: [
       {
         label: "SALES",
         lineTension: 0.9,
         backgroundColor: ["tomato"],
         hoverBackgroundColor: ["rgb(197, 72, 49)"],
-        data: [65, 59, 80, 81, 56, 55, 40],
+        data: [ jan, feb, march, april, may, june ,july,aug, sept,oct,nov,dec],
       },
     ],
   };

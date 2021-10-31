@@ -316,12 +316,28 @@ exports.getAnalytics = async (req, res, next) => {
             const orderDelivered = await Order.find({ storeId: req.body.storeId , status: "Delivered"}); 
             let result = orderExist.map(a => a.productId);
             const productExist = await Product.find({ _id: result });
+            let jan = await Order.find({"updatedAt":{$gte:new Date("2021-01-01T23:59:59Z"),$lte:new Date("2021-01-31T23:59:59Z")}, status: "Delivered"}).countDocuments();
+            let feb = await Order.find({"updatedAt":{$gte:new Date("2021-02-01T23:59:59Z"),$lte:new Date("2021-02-31T23:59:59Z")}, status: "Delivered"}).countDocuments();
+            let march = await Order.find({"updatedAt":{$gte:new Date("2021-03-01T23:59:59Z"),$lte:new Date("2021-03-31T23:59:59Z")}, status: "Delivered"}).countDocuments();
+            let april = await Order.find({"updatedAt":{$gte:new Date("2021-04-01T23:59:59Z"),$lte:new Date("2021-04-31T23:59:59Z")}, status: "Delivered"}).countDocuments();
+            let may = await Order.find({"updatedAt":{$gte:new Date("2021-05-01T23:59:59Z"),$lte:new Date("2021-05-31T23:59:59Z")}, status: "Delivered"}).countDocuments();
+            let june = await Order.find({"updatedAt":{$gte:new Date("2021-06-01T23:59:59Z"),$lte:new Date("2021-06-31T23:59:59Z")}, status: "Delivered"}).countDocuments();
+            let july = await Order.find({"updatedAt":{$gte:new Date("2021-07-01T23:59:59Z"),$lte:new Date("2021-07-31T23:59:59Z")}, status: "Delivered"}).countDocuments();
+            let aug = await Order.find({"updatedAt":{$gte:new Date("2021-08-01T23:59:59Z"),$lte:new Date("2021-08-31T23:59:59Z")}, status: "Delivered"}).countDocuments();
+            let sept = await Order.find({"updatedAt":{$gte:new Date("2021-09-01T23:59:59Z"),$lte:new Date("2021-09-31T23:59:59Z")}, status: "Delivered"}).countDocuments();
+            let oct = await Order.find({"updatedAt":{$gte:new Date("2021-10-01T23:59:59Z"),$lte:new Date("2021-10-31T23:59:59Z")}, status: "Delivered"}).countDocuments();
+            let nov = await Order.find({"updatedAt":{$gte:new Date("2021-11-01T23:59:59Z"),$lte:new Date("2021-11-31T23:59:59Z")}, status: "Delivered"}).countDocuments();
+            let dec = await Order.find({"updatedAt":{$gte:new Date("2021-12-01T23:59:59Z"),$lte:new Date("2021-12-31T23:59:59Z")}, status: "Delivered"}).countDocuments();
 
             if (!orderExist && !productExist) {
                 return res.status(404).json({ sucess: false, error: "Product data unavailable" });
             }
             else {
-                return res.status(200).json({ orders: orderDelivered, products: productExist });   
+                console.log(jan)
+                console.log(feb)
+                console.log(nov)
+                console.log(oct)
+                return res.status(200).json({ orders: orderDelivered, products: productExist ,jan : jan ,feb : feb, march : march , april : april, may : may, june : june , july : july, aug : aug , sept : sept, oct : oct , nov : nov , dec : dec});   
             }
         }
     } catch (err) {
