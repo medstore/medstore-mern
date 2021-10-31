@@ -10,7 +10,7 @@ import DrawerContext from '../../context/DrawerContext';
 
 export default function StoreTopbar() {
 
-    const { authenticated, user, dispatch } = useContext(AppContext);
+    const { authenticated, user, dispatch, seller } = useContext(AppContext);
     const { isOpen, setOpen } = useContext(DrawerContext);
     const [showButton, setShowButton] = useState(false)
 
@@ -33,12 +33,6 @@ export default function StoreTopbar() {
         getLoggedIn();
     }, []); */
 
-    useEffect(() => {
-        if (window.location.href.split('/')[3] == "userdashboard") {
-            setShowButton(true);
-        }
-        getLoggedIn();
-    }, [window.location.href]);
 
     const handleDrawer = () => {
         setOpen();
@@ -49,6 +43,7 @@ export default function StoreTopbar() {
         dispatch({ type: "EMPTY_STATE" });
         history.push("/signin")
     }
+    console.log("hello",seller.storeId);
     return (
         <div className="topbar">
             <div className="topbarWrapper">
@@ -56,8 +51,8 @@ export default function StoreTopbar() {
                     showButton ? <button className="drawerButton" onClick={handleDrawer}>open</button> : null
                 } */}
 
-                <NavLink exact className="nav-link" to="/"><span className="homeLogo1">MedStore</span></NavLink>
-                <span className="homeLogo" onClick={handleDrawer}>MedStore</span>
+                <NavLink exact className="nav-link" to="/"><span className="homeLogo1">{seller.storeId}</span></NavLink>
+                <span className="homeLogo" onClick={handleDrawer}>{seller.storeId}</span>
 
                 <ul className="topbarList">
                 </ul>

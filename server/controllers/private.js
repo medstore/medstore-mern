@@ -321,7 +321,6 @@ exports.getAnalytics = async (req, res, next) => {
                 return res.status(404).json({ sucess: false, error: "Product data unavailable" });
             }
             else {
-                 console.log(orderDelivered)
                 return res.status(200).json({ orders: orderDelivered, products: productExist });   
             }
         }

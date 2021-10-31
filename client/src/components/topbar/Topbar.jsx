@@ -12,7 +12,7 @@ export default function Topbar() {
 
     const { authenticated, user, dispatch } = useContext(AppContext);
     const { isOpen, setOpen } = useContext(DrawerContext);
-    const [showButton, setShowButton] = useState(false)
+    /* const [showButton, setShowButton] = useState(false) */
 
     const config = {
         headers: {
@@ -33,12 +33,12 @@ export default function Topbar() {
         getLoggedIn();
     }, []); */
 
-    useEffect(() => {
+    /* useEffect(() => {
         if (window.location.href.split('/')[3] == "userdashboard") {
             setShowButton(true);
         }
         getLoggedIn();
-    }, [window.location.href]);
+    }, [window.location.href]); */
 
     const handleDrawer = () => {
         setOpen();

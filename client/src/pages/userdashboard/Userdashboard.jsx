@@ -51,11 +51,6 @@ export default function Userdashboard(props) {
                     <li id="profile" className={"dashboardListItem"} onClick={changePage}>My Account</li>
                     <li id="orderhistory" className={"dashboardListItem"} onClick={changePage} >My Orders</li>
                     <li id="addtocart" className={"dashboardListItem"} onClick={changePage}>My Cart</li>
-                    {
-                        user && user.storeId ?
-                        <li id="createstore" className={"dashboardListItem"} onClick={()=>{history.push('/storedashboard/analytics');}}>Store Dashboard</li> :
-                        <li id="createstore" className={"dashboardListItem"} onClick={()=>{history.push(`/createstore/${user._id}`);}}>Create Store</li>
-                    }
                     <hr className="dashHr"></hr>
                     <li id="logout" className="dashListItemLogout" onClick={logoutHandler}>Logout</li>
                 </ul>

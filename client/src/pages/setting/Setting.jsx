@@ -69,7 +69,6 @@ const Setting = () => {
                 }
             }
        
-            console.log(seller.storeId)
             try {
                 const { data } = await axios.post(`/api/private/storedashboard/setting`, { storeId : seller.storeId} , config).catch(err => {
                     if (err.response.status === 409) {

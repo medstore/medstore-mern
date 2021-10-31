@@ -117,29 +117,30 @@ const Analytics = () => {
         <div className="dashboardSummary">
            
           <div className="dashboardSummaryBox2">
-           <Link to="">
+           <div className="dsbCard">
               <p>Total Sales Price</p>
               <p>₹{totalSalesPrice}</p>
-            </Link>
-            <Link to="">
+            </div>
+            <div className="dsbCard">
               <p>Total Products ordered</p>
               <p>{product && product.length}</p>
-            </Link>
-            <Link to="">
+            </div>
+            <div className="dsbCard">
               <p>Orders Delivered</p>
               <p>{order && order.length}</p>
-            </Link>
+            </div>
 
           </div>
+        </div>
+        <div className="lineChart">
+          <Line data={lineState} />
         </div>
  
         <div className="doughnutChart">
         <h2>Product Stock</h2>
           <Doughnut data={doughnutState}  />
         </div>
-        <div className="lineChart">
-          <Line data={lineState} />
-        </div>
+        
    
       </div>
     </div>
