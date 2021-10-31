@@ -27,12 +27,13 @@
   
   .dashboardSummary {
     margin: 2rem 0;
+    padding: 0px 30px;
   }
   
   .dashboardSummary > div {
     display: flex;
     background-color: white;
-    justify-content: center;
+    justify-content: space-around;
   }
   .dashboardSummary > div > p {
     background-color: rgba(70, 117, 218, 0.932);
@@ -44,7 +45,7 @@
     margin: 0 2rem;
   }
   
-  .dashboardSummaryBox2 > a {
+  /* .dashboardSummaryBox2 > a {
     color: rgb(0, 0, 0);
     font: 300 1.5rem "Roboto";
     text-align: center;
@@ -59,14 +60,23 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+  } */
+  .dsbCard{
+    color: rgb(0, 0, 0);
+    background-color: rgb(255, 233, 174);
+    margin: 3rem;
+    flex: 3.3;
+    margin: 10px 80px;
+    text-align: center;
+    border-radius: 10px;
+    font: 300 1.5rem "Roboto";
   }
-  
-  .dashboardSummaryBox2 > a:first-child {
+  .dashboardSummaryBox2 > div:first-child {
     background-color: rgb(255, 110, 110);
     color: rgb(255, 255, 255);
   }
   
-  .dashboardSummaryBox2 > a:last-child {
+  .dashboardSummaryBox2 > div:last-child {
     background-color: rgb(51, 51, 51);
     color: rgb(255, 255, 255);
   }
@@ -74,7 +84,7 @@
   
   .lineChart {
     width: 80%;
-    margin: auto;
+    margin: 50px auto;
   }
   
   .doughnutChart {
@@ -96,7 +106,11 @@
     .dashboardSummary > div > p {
       margin: 0;
     }
-    .dashboardSummaryBox2 > a {
+    .dashboardSummary {
+      margin: 2rem 0;
+      padding: 0px 10px;
+    }
+    /* .dashboardSummaryBox2 > a {
      
       font: 300 0.6rem "Roboto";
       padding: 1rem;
@@ -106,6 +120,21 @@
       border-radius: 10px;
       display: flex;
        
+    } */
+    .lineChart {
+      width: 95%;
+    }
+    .dsbCard{
+      background-color: rgb(255, 233, 174);
+      margin: 3rem;
+      flex: 3.3;
+      margin: 10px;
+      text-align: center;
+      border-radius: 10px;
+      font: 300 1rem "Roboto";
+    }
+    .doughnutChart {
+      width: 80%;
     }
     
   }

@@ -13,7 +13,7 @@ const AllProduct = () => {
     const [errors, setErrors] = useState("");
     const [isFetching, setIsFetching] = useState(false);
     const history = useHistory();
-    const [product, setProduct] = useState([{ productName: "abcdd", productDescription: "", productImage:"", productPrice: "", productDetails: "" , productQuantity: ""}])
+    const [product, setProduct] = useState([{ productName: "", productDescription: "", productImage:"", productPrice: "", productDetails: "" , productQuantity: ""}])
     
     
     useEffect(() => {   

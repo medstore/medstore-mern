@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './signin.css'
 import { useHistory } from 'react-router';
 import { CircularProgress } from '@material-ui/core'
@@ -14,6 +14,12 @@ export default function Signin() {
     const [newuser, setUser] = useState({ email: "", password: ""})
     const [isFetching, setIsFetching] = useState(false);
     const history = useHistory();
+
+    useEffect(()=>{
+        if(user){
+            history.push('/') 
+        }
+    },[user])
 
     const gotoSignup = (e) => {
         e.preventDefault();
@@ -38,7 +44,7 @@ export default function Signin() {
             const {data} = await axios.post("/api/auth/signin", newuser, config);
             localStorage.setItem("authToken", data.token);
             setIsFetching(false);
-            history.push('/')
+            window.location.reload();
         } catch (error) {
             setErrors(error.response.data.error);
             setIsFetching(false)
