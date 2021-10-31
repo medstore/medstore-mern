@@ -15,11 +15,11 @@ export default function Signin() {
     const [isFetching, setIsFetching] = useState(false);
     const history = useHistory();
 
-    useEffect(()=>{
+    /* useEffect(()=>{
         if(user){
             history.push('/') 
         }
-    },[user])
+    },[user]) */
 
     const gotoSignup = (e) => {
         e.preventDefault();
@@ -44,7 +44,7 @@ export default function Signin() {
             const {data} = await axios.post("/api/auth/signin", newuser, config);
             localStorage.setItem("authToken", data.token);
             setIsFetching(false);
-            window.location.reload();
+            history.push('/userdashboard/profile')
         } catch (error) {
             setErrors(error.response.data.error);
             setIsFetching(false)

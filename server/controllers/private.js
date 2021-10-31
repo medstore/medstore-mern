@@ -333,10 +333,6 @@ exports.getAnalytics = async (req, res, next) => {
                 return res.status(404).json({ sucess: false, error: "Product data unavailable" });
             }
             else {
-                console.log(jan)
-                console.log(feb)
-                console.log(nov)
-                console.log(oct)
                 return res.status(200).json({ orders: orderDelivered, products: productExist ,jan : jan ,feb : feb, march : march , april : april, may : may, june : june , july : july, aug : aug , sept : sept, oct : oct , nov : nov , dec : dec});   
             }
         }
