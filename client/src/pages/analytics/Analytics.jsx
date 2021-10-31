@@ -109,10 +109,7 @@ const Analytics = () => {
         lineTension: 0.5,
         backgroundColor: ["blue"],
         borderColor: 'blue',
-        fillColor: ["blue" ],
-        strokeColor: "blue", 
-        highlightFill: "blue",
-        highlightStroke: "blue",
+        color: '#666',
         hoverBackgroundColor: ["rgb(197, 72, 49)"],
         data: [jan, feb, march, april, may, june, july, aug, sept, oct, nov, dec],
       },
@@ -134,7 +131,7 @@ const Analytics = () => {
     <div className="dashboard">
 
       <div className="dashboardContainer">
-        <h1>Analytics</h1>
+        <h1><b>Analytics</b></h1>
         {errors ?
           <div className="errorDiv">
             <span className="errorMessage">{errors}</span>
