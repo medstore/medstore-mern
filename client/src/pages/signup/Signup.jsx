@@ -46,7 +46,7 @@ export default function Signup() {
                 });
                 localStorage.setItem("authToken", data.token);
                 setIsFetching(false);
-                history.push('/')
+                history.push('/userdashboard/profile')
             } catch (err) {
                 setIsFetching(false)
             }
